@@ -1,29 +1,80 @@
 <template>
   <HeaderComponent />
-  <div class="m-40 border p-10 rounded-3xl">
+  <div class="h-[700px] m-16 md:m-24 p-10">
     <router-view v-slot="{ Component, route }">
-      <transition name="slide" mode="out-in">
+      <transition :name="transitionName" mode="out-in">
         <component :is="Component" :key="route.fullPath" />
       </transition>
     </router-view>
   </div>
-
 </template>
 
 
 <script setup>
 import HeaderComponent from './components/HeaderComponent.vue';
+import { ref, watchEffect } from 'vue';
+import { useRoute } from 'vue-router';
+import { RoutesEnum } from '@/enums/routesEnum'; // Importa o enum das rotas
 
+// Estado reativo para armazenar o nome da transição
+const transitionName = ref('slide-right');
+
+// Pegando a rota atual
+const route = useRoute();
+
+// Estado reativo para manter o índice da rota anterior
+const previousRouteIndex = ref(RoutesEnum.HOME);
+
+// Função para determinar a direção da transição
+const determineTransition = (fromIndex, toIndex) => {
+  if (toIndex > fromIndex) {
+    transitionName.value = 'slide-left';
+  } else {
+    transitionName.value = 'slide-right';
+  }
+};
+
+// Usamos watchEffect para reagir às mudanças de rota
+watchEffect(() => {
+  const routes = Object.values(RoutesEnum);
+  const fromIndex = previousRouteIndex.value;
+  const toIndex = routes.indexOf(RoutesEnum[route.name?.toUpperCase()] || 0);
+
+  determineTransition(fromIndex, toIndex);
+  previousRouteIndex.value = toIndex;
+});
 </script>
 
 <style scoped>
-.slide-enter-active,
-.slide-leave-active {
+/* Animação para a direita */
+.slide-right-enter-active,
+.slide-right-leave-active {
   transition: transform 0.5s ease;
 }
 
-.slide-enter,
-.slide-leave-to {
+.slide-right-enter,
+.slide-right-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-right-leave,
+.slide-right-enter-to {
+  transform: translateX(0%);
+}
+
+/* Animação para a esquerda */
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: transform 0.5s ease;
+}
+
+.slide-left-enter,
+.slide-left-leave-to {
   transform: translateX(-100%);
+}
+
+.slide-left-leave,
+.slide-left-enter-to {
+  transform: translateX(0%);
 }
 </style>
