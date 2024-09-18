@@ -1,9 +1,3 @@
 <template>
-  <div>aaaaaa</div>
+  <div>Projects Page coming soon!</div>
 </template>
-
-<script setup>
-
-</script>
-
-<style></style>
