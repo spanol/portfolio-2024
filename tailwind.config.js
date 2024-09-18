@@ -26,6 +26,7 @@ module.exports = {
       fontFamily: {
         title: ["Montserrat", "sans-serif"],
         body: ["Open Sans", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
       },
       fontSize: {
         h1: "32px",
