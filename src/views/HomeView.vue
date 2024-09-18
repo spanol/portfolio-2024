@@ -1,6 +1,6 @@
 <template>
-  <div class="about h-full flex flex-col-reverse lg:flex-row items-center text-center lg:text-start">
-    <div class="infos lg1:w-2/4 mt-16 lg:mt-0">
+  <div class="abouts flex flex-col-reverse lg:flex-row items-center text-center lg:items-start lg:text-start gap-x-10">
+    <div class="info lg:w-3/5 mt-16 lg:mt-0">
       <h1 class="font-bold text-5xl">
         Fullstack Developer 🚀
       </h1>
@@ -18,7 +18,7 @@
         </a>
       </div>
 
-      <div class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-20">
+      <div class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-32">
         <p class="font-medium border-b-2 border-slate-500 lg:border-0 lg:text-nowrap">Main Tech Stack</p>
 
         <div class="flex flex-wrap lg:flex-shrink justify-center gap-x-5">
@@ -46,7 +46,9 @@
       </div>
     </div>
 
-    <ImageComponent />
+    <div>
+      <ImageComponent />
+    </div>
   </div>
 </template>
 
