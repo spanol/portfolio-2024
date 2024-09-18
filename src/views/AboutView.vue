@@ -1,25 +1,28 @@
 <template>
   <div class="about flex justify-center gap-32">
-    <div class="image-wrapper w-2/4">
-      <img class="rounded-3xl" src="@/assets/image.webp" alt="">
+    <div class="image-wrapper">
+      <img class="rounded-3xl" src="@/assets/menino-feliz.webp" alt="">
+      <img class="rounded-3xl" src="@/assets/menino-barba.webp" alt="">
     </div>
 
-    <div class="infos w-2/4">
-      <h1 class="font-extrabold text-blue-500">
-        Sobre
+    <div class="infos flex flex-col gap-y-10 w-2/4">
+      <h1 class="font-extrabold text-lg text-blue-500">
+        SOBRE
       </h1>
 
 
-      <h2 class="font-bold">
+      <h2 class="font-bold text-3xl">
         Fullstack Developer
         based in São Paulo, Brazil 🚩
       </h2>
 
-      <span>
-        Hey, my name is Stefan, and I'm a Frontend Developer. My passion is to create and develop a clean UI/UX for my
-        users.
+      <span class="text-xl mt-10">
+        Meu nome é Vinicius, eu sou um desenvolvedor fullstack, minha paixão é criar e desenvolver aplicações limpas,
+        seguras, e inovadoras.
 
-        My main stack currently is React/Next.js in combination with Tailwind CSS and TypeScript.
+        Minha stack atual é Angular com o .NET Framework, tenho experiencia com bibliotecas de estilização como
+        tailwind, bootstrap, já efetuei diversos projetos para explorar pelo menos o básico de React, Vue e Angular que
+        eu já tenho uma experiência profissional, também já estudei bancos de dado como Mongo (no-sql), oracle sql.
       </span>
     </div>
   </div>
