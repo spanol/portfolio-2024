@@ -7,6 +7,7 @@ import { OhVueIcon, addIcons } from "oh-vue-icons";
 import {
   BiGithub,
   BiLinkedin,
+  BiList,
   ViFileTypeHtml,
   ViFileTypeCss,
   ViFileTypeJs,
@@ -15,11 +16,13 @@ import {
   ViFileTypeCsharp,
   ViFileTypeDocker,
   ViFileTypeNestjs,
+  PrMapMarker,
 } from "oh-vue-icons/icons";
 
 addIcons(
   BiGithub,
   BiLinkedin,
+  BiList,
   ViFileTypeHtml,
   ViFileTypeCss,
   ViFileTypeJs,
@@ -27,7 +30,8 @@ addIcons(
   ViFileTypeAngular,
   ViFileTypeCsharp,
   ViFileTypeDocker,
-  ViFileTypeNestjs
+  ViFileTypeNestjs,
+  PrMapMarker
 );
 
 const app = createApp(App);
