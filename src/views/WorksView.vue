@@ -1,3 +1,5 @@
 <template>
-  Woks
+  <div>
+    Works
+  </div>
 </template>

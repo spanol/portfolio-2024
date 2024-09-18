@@ -1,3 +1,5 @@
 <template>
-  Projects
+  <div>
+    New priojects coming soon
+  </div>
 </template>
