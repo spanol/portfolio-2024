@@ -4,10 +4,9 @@
       <h1 class="font-bold text-5xl">
         Fullstack Developer 🚀
       </h1>
-      <h3 class="text-light text-lg xl:w-4/5 mt-5">Olá!, eu sou Vinicius Spanol, sou um desenvolvedor full stack, tenho
-        experiência
-        com a criação de
-        aplicativos web e mobile além de alguns conhecimentos em DevOps e IOT.
+      <h3 class="text-light text-lg xl:w-4/5 mt-5">Olá! Sou Vinicius Spanol, desenvolvedor fullstack com experiência na
+        criação de aplicativos web e mobile. Além disso, possuo conhecimentos em DevOps e Internet das Coisas (IoT),
+        sempre buscando soluções eficientes e inovadoras.
       </h3>
       <div class="socials mt-8">
         <a href="https://github.com/spanol" target="_blank">
