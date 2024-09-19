@@ -29,7 +29,6 @@
           Node.js (Express) e Flask. Também possuo experiência com bancos de dados NoSQL, como MongoDB, e SQL, com
           Oracle.
         </span>
-
         <br>
         <br>
 
@@ -45,6 +44,7 @@
 
 <style scoped>
 .image-wrapper {
-  width: 425px;
+  max-width: 425px;
+  min-width: 350px;
 }
 </style>

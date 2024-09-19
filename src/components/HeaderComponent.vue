@@ -41,12 +41,12 @@
 
     <div v-if="isOpen" class="list bg-white">
       <div class="md:hidden flex flex-col items-center gap-y-3">
-        <RouterLink to="/" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
+        <RouterLink to="/" @click="toggleMenu()" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
           class="p-2 transition-all duration-300">
           Home
         </RouterLink>
-        <RouterLink to="/about" :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }"
-          class="p-2 transition-all duration-300">
+        <RouterLink to="/about" @click="toggleMenu()"
+          :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }" class="p-2 transition-all duration-300">
           About
         </RouterLink>
         <!-- <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
