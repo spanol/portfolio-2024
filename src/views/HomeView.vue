@@ -30,7 +30,7 @@
           </div>
 
           <div class="flex">
-            <v-icon name="vi-file-type-js" scale="3" />
+            <v-icon name="vi-file-type-arduino" scale="3" />
             <v-icon name="vi-file-type-docker" scale="3" />
           </div>
 
@@ -42,7 +42,7 @@
 
           <div class="flex">
             <v-icon name="vi-file-type-angular" scale="3" />
-            <v-icon name="vi-file-type-angular" scale="3" />
+            <v-icon name="vi-file-type-js" scale="3" />
           </div>
         </div>
       </div>
