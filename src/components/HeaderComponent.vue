@@ -1,20 +1,21 @@
 <template>
   <header class="z-50 bg-white fixed top-0 w-full shadow-md h-16">
-    <div class="h-full flex items-center px-5 justify-between font-extrabold" :class="{ 'border-b': isOpen }">
+    <div class="h-full flex items-center px-5 lg:px-16 justify-between font-extrabold text-lg"
+      :class="{ 'border-b': isOpen }">
       <span>
         Spanol.dev
       </span>
 
       <div class="hidden md:flex justify-between items-center gap-x-5">
         <RouterLink to="/" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
-          class="transition-all duration-300">
+          class="hover:text-blue-500 transition-all duration-300">
           Home
         </RouterLink>
         <RouterLink to="/about" :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }"
-          class="transition-all duration-300">
+          class="hover:text-blue-500 transition-all duration-300">
           About
         </RouterLink>
-        <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
+        <!-- <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
           class="transition-all duration-300">
           Projects
         </RouterLink>
@@ -28,7 +29,7 @@
         </RouterLink>
         <a class="border p-2 border-blue-500 bg-blue-500 rounded-3xl text-white" href="#">
           Download Resume
-        </a>
+        </a> -->
       </div>
 
       <div class="md:hidden">
@@ -48,7 +49,7 @@
           class="p-2 transition-all duration-300">
           About
         </RouterLink>
-        <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
+        <!-- <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
           class="p-2 transition-all duration-300">
           Projects
         </RouterLink>
@@ -59,7 +60,7 @@
         <RouterLink to="/contact" :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
           class="p-2 transition-all duration-300">
           Contact
-        </RouterLink>
+        </RouterLink> -->
       </div>
     </div>
   </header>

@@ -22,6 +22,7 @@ module.exports = {
           red: "#F44336",
           success: "#388E3C",
         },
+        light: "#767676",
       },
       fontFamily: {
         title: ["Montserrat", "sans-serif"],

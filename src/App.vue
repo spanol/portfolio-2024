@@ -1,6 +1,6 @@
 <template>
   <HeaderComponent />
-  <div class="min-h-[500px] m-16 md:m-24 lg:m-28 xl:m-32 p-10">
+  <div class="min-h-[500px] m-16 mb-0 md:m-24 md:mb-0 lg:m-28 lg:mb-0 xl:m-32 p-10">
     <router-view v-slot="{ Component, route }">
       <transition :name="transitionName" mode="out-in">
         <component :is="Component" :key="route.fullPath" />
