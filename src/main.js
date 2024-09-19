@@ -1,4 +1,41 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import "./index.css";
 
-createApp(App).mount('#app')
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import {
+  BiGithub,
+  BiLinkedin,
+  BiList,
+  ViFileTypeHtml,
+  ViFileTypeCss,
+  ViFileTypeJs,
+  ViFileTypeTailwind,
+  ViFileTypeAngular,
+  ViFileTypeCsharp,
+  ViFileTypeDocker,
+  ViFileTypeNestjs,
+  PrMapMarker,
+} from "oh-vue-icons/icons";
+
+addIcons(
+  BiGithub,
+  BiLinkedin,
+  BiList,
+  ViFileTypeHtml,
+  ViFileTypeCss,
+  ViFileTypeJs,
+  ViFileTypeTailwind,
+  ViFileTypeAngular,
+  ViFileTypeCsharp,
+  ViFileTypeDocker,
+  ViFileTypeNestjs,
+  PrMapMarker
+);
+
+const app = createApp(App);
+
+app.component("v-icon", OhVueIcon);
+app.use(router);
+app.mount("#app");
