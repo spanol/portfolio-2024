@@ -33,7 +33,7 @@
       </div>
 
       <div class="md:hidden">
-        <a href="#" @click="toggleMenu()">
+        <a @click="toggleMenu()">
           <v-icon name="bi-list" scale="2" />
         </a>
       </div>
