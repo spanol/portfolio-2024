@@ -22,12 +22,12 @@
         <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
           class="transition-all duration-300">
           Works
-        </RouterLink>
+        </RouterLink> -->
         <RouterLink to="/contact" :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
           class="transition-all duration-300">
           Contact
         </RouterLink>
-        <a class="border p-2 border-blue-500 bg-blue-500 rounded-3xl text-white" href="#">
+        <!-- <a class="border p-2 border-blue-500 bg-blue-500 rounded-3xl text-white" href="#">
           Download Resume
         </a> -->
       </div>
@@ -56,11 +56,11 @@
         <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
           class="p-2 transition-all duration-300">
           Works
-        </RouterLink>
-        <RouterLink to="/contact" :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
-          class="p-2 transition-all duration-300">
-          Contact
         </RouterLink> -->
+        <RouterLink to="/contact" @click="toggleMenu()"
+          :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }" class="p-2 transition-all duration-300">
+          Contact
+        </RouterLink>
       </div>
     </div>
   </header>
