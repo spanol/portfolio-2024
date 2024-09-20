@@ -8,6 +8,7 @@ import {
   BiGithub,
   BiLinkedin,
   BiList,
+  BiTwitter,
   ViFileTypeHtml,
   ViFileTypeCss,
   ViFileTypeJs,
@@ -24,6 +25,7 @@ import {
 addIcons(
   BiGithub,
   BiLinkedin,
+  BiTwitter,
   BiList,
   ViFileTypeHtml,
   ViFileTypeCss,
