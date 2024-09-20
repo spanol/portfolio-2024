@@ -13,7 +13,7 @@
         </RouterLink>
         <RouterLink to="/about" :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }"
           class="hover:text-blue-500 transition-all duration-300">
-          About
+          Sobre
         </RouterLink>
         <!-- <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
           class="transition-all duration-300">
@@ -25,7 +25,7 @@
         </RouterLink> -->
         <RouterLink to="/contact" :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
           class="transition-all duration-300">
-          Contact
+          Contato
         </RouterLink>
         <!-- <a class="border p-2 border-blue-500 bg-blue-500 rounded-3xl text-white" href="#">
           Download Resume
@@ -47,7 +47,7 @@
         </RouterLink>
         <RouterLink to="/about" @click="toggleMenu()"
           :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }" class="p-2 transition-all duration-300">
-          About
+          Sobre
         </RouterLink>
         <!-- <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
           class="p-2 transition-all duration-300">
@@ -59,7 +59,7 @@
         </RouterLink> -->
         <RouterLink to="/contact" @click="toggleMenu()"
           :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }" class="p-2 transition-all duration-300">
-          Contact
+          Contato
         </RouterLink>
       </div>
     </div>
