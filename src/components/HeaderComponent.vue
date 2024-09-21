@@ -39,34 +39,60 @@
       </div>
     </div>
 
-    <div v-if="isOpen" class="list bg-white">
-      <div class="md:hidden flex flex-col items-center gap-y-3 border-b">
-        <RouterLink to="/" @click="toggleMenu()" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
-          class="p-2 transition-all duration-300">
-          Home
-        </RouterLink>
-        <RouterLink to="/about" @click="toggleMenu()"
-          :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }" class="p-2 transition-all duration-300">
-          Sobre
-        </RouterLink>
-        <RouterLink to="/projects" @click="toggleMenu()"
-          :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
-          class="p-2 transition-all duration-300">
-          Projetos
-        </RouterLink>
-        <!-- <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
+    <Transition name="slide-down" mode="out-in">
+      <div v-if="isOpen" class="list bg-white">
+        <div class="md:hidden flex flex-col items-center gap-y-3 border-b">
+          <RouterLink to="/" @click="toggleMenu()" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
+            class="p-2 transition-all duration-300">
+            Home
+          </RouterLink>
+          <RouterLink to="/about" @click="toggleMenu()"
+            :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }" class="p-2 transition-all duration-300">
+            Sobre
+          </RouterLink>
+          <RouterLink to="/projects" @click="toggleMenu()"
+            :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
+            class="p-2 transition-all duration-300">
+            Projetos
+          </RouterLink>
+          <!-- <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
           class="p-2 transition-all duration-300">
           Works
         </RouterLink> -->
-        <RouterLink to="/contact" @click="toggleMenu()"
-          :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }" class="p-2 transition-all duration-300">
-          Contato
-        </RouterLink>
+          <RouterLink to="/contact" @click="toggleMenu()"
+            :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
+            class="p-2 transition-all duration-300">
+            Contato
+          </RouterLink>
+        </div>
       </div>
-    </div>
+    </Transition>
   </header>
 
 </template>
+
+
+<style>
+/* Animação para o slide-down */
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: max-height 0.8s ease-in-out, opacity 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.slide-down-enter-from,
+.slide-down-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+
+.slide-down-enter-to,
+.slide-down-leave-from {
+  max-height: 500px;
+  /* Altura máxima da animação */
+  opacity: 1;
+}
+</style>
 
 
 <script setup>
