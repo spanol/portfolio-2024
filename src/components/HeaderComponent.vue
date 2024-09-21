@@ -15,11 +15,11 @@
           class="hover:text-blue-500 transition-all duration-300">
           Sobre
         </RouterLink>
-        <!-- <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
+        <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
           class="transition-all duration-300">
-          Projects
+          Projetos
         </RouterLink>
-        <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
+        <!--   <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
           class="transition-all duration-300">
           Works
         </RouterLink> -->
@@ -40,7 +40,7 @@
     </div>
 
     <div v-if="isOpen" class="list bg-white">
-      <div class="md:hidden flex flex-col items-center gap-y-3">
+      <div class="md:hidden flex flex-col items-center gap-y-3 border-b">
         <RouterLink to="/" @click="toggleMenu()" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
           class="p-2 transition-all duration-300">
           Home
@@ -49,11 +49,12 @@
           :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }" class="p-2 transition-all duration-300">
           Sobre
         </RouterLink>
-        <!-- <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
+        <RouterLink to="/projects" @click="toggleMenu()"
+          :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
           class="p-2 transition-all duration-300">
-          Projects
+          Projetos
         </RouterLink>
-        <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
+        <!-- <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
           class="p-2 transition-all duration-300">
           Works
         </RouterLink> -->
@@ -77,5 +78,3 @@ const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
 </script>
-
-<style></style>
