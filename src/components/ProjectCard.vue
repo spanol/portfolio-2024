@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-3xl flex mt-16 justify-between shadow-card h-full">
+  <div class="rounded-3xl flex mt-16 border justify-between shadow-card h-full">
     <img class="hidden lg:block rounded-3xl rounded-e-none w-2/4" :src="image" alt="Preview do Projeto">
 
     <div class="rounded-e-3xl flex flex-col justify-center text-center p-6">

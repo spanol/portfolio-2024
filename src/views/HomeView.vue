@@ -31,7 +31,8 @@
           </a>
         </div>
 
-        <div class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-32 shadow-lg border rounded-xl p-5">
+        <div
+          class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-16 lg:mt-32 shadow-lg border rounded-xl p-5">
           <p class="font-medium border-b-2 border-light lg:border-0 lg:text-nowrap">Main Tech Stack</p>
           <div class="vertical-divisor hidden lg:block">|</div>
 

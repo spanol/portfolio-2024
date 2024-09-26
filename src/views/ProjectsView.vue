@@ -1,5 +1,10 @@
 <template>
   <div class="projects">
+    <div class="h6 bg-black justify-center text-center p-3 rounded-2xl mb-5">
+      <span class="text-white">
+        Essa página ainda está em construção 🚨
+      </span>
+    </div>
     <p class="font-extrabold text-lg uppercase text-blue-500">
       Projetos
     </p>
