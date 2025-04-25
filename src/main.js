@@ -21,6 +21,8 @@ import {
   ViFileTypeDocker,
   ViFileTypeNestjs,
   PrMapMarker,
+  ViFileTypeTypescript,
+  SiDotnet,
 } from "oh-vue-icons/icons";
 
 addIcons(
@@ -32,8 +34,10 @@ addIcons(
   ViFileTypeHtml,
   ViFileTypeCss,
   ViFileTypeJs,
+  ViFileTypeTypescript,
   ViFileTypeTailwind,
   ViFileTypeAngular,
+  SiDotnet,
   ViFileTypeArduino,
   CoPostgresql,
   ViFileTypeCsharp,
