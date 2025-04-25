@@ -1,11 +1,9 @@
 <template>
   <div class="about">
-    <p class="font-extrabold text-lg uppercase text-blue-500">
-      Sobre
-    </p>
+
     <div class="about flex flex-col-reverse xl:flex-row justify-center items-center gap-32">
       <div class="image-wrapper hidden xl:block">
-        <img class="rounded-3xl" src="@/assets/menino-codando.webp" alt="">
+        <img class="rounded-3xl" src="/images/menino-codando.webp" alt="Menino codando">
       </div>
 
       <div class="infos flex flex-col gap-y-10 lg:w-2/4">
