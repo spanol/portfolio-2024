@@ -1,8 +1,6 @@
   <template>
     <div class="contact flex flex-col gap-y-10 ">
-      <p class="font-extrabold text-lg uppercase text-blue-500">
-        Contato
-      </p>
+
 
       <div class="social-section mt-5">
         <h2 class="font-bold text-center md:text-start text-3xl">

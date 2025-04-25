@@ -1,6 +1,6 @@
 <template>
-  <header class="z-50 bg-white fixed top-0 w-full shadow-md h-16">
-    <div class="h-full flex items-center px-5 lg:px-16 justify-between font-extrabold text-lg"
+  <header class="z-50 fixed top-0 w-full shadow-md h-16">
+    <div class="h-full  bg-white  flex items-center px-5 lg:px-16 justify-between font-extrabold text-lg"
       :class="{ 'border-b': isOpen }">
       <span>
         Spanol.dev
@@ -19,17 +19,17 @@
           class="transition-all duration-300">
           Projetos
         </RouterLink>
-        <!--   <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
+        <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
           class="transition-all duration-300">
-          Works
-        </RouterLink> -->
+          Trabalhos
+        </RouterLink>
         <RouterLink to="/contact" :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
           class="transition-all duration-300">
           Contato
         </RouterLink>
-        <!-- <a class="border p-2 border-blue-500 bg-blue-500 rounded-3xl text-white" href="#">
-          Download Resume
-        </a> -->
+        <a class="border p-2 border-blue-500 bg-blue-500 rounded-3xl text-white" href="/curriculum.docx" download>
+          Baixar curriculum
+        </a>
       </div>
 
       <div class="md:hidden">
@@ -38,6 +38,14 @@
         </a>
       </div>
     </div>
+
+
+    <div class="p-2 ps-36 bg-white">
+      <p class="ms-6 font-extrabold text-lg uppercase text-blue-500">
+        {{ routeName }}
+      </p>
+    </div>
+
 
     <Transition name="slide-down" mode="out-in">
       <div v-if="isOpen" class="list bg-white">
@@ -55,10 +63,10 @@
             class="p-2 transition-all duration-300">
             Projetos
           </RouterLink>
-          <!-- <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
-          class="p-2 transition-all duration-300">
-          Works
-        </RouterLink> -->
+          <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
+            class="p-2 transition-all duration-300">
+            Trabalhos
+          </RouterLink>
           <RouterLink to="/contact" @click="toggleMenu()"
             :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
             class="p-2 transition-all duration-300">
@@ -68,7 +76,6 @@
       </div>
     </Transition>
   </header>
-
 </template>
 
 
@@ -97,8 +104,29 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const getRouteName = () => {
+  switch (location.path) {
+    case '/':
+      return 'Home'
+    case '/about':
+      return 'Sobre'
+    case '/projects':
+      return 'Projetos'
+    case '/contact':
+      return 'Contato'
+    case '/works':
+      return 'Works'
+    default:
+      break;
+  }
+}
 
 const isOpen = ref(false)
+const location = useRoute()
+const routeName = computed(() => getRouteName())
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value

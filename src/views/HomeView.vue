@@ -1,8 +1,6 @@
 <template>
   <div class="about">
-    <p class="font-extrabold text-lg uppercase text-blue-500">
-      Home
-    </p>
+
     <div class="flex flex-col-reverse xl:flex-row items-center text-center xl:items-start xl:text-start gap-x-10">
       <div class="info lg:w-3/5 mt-16 lg:mt-0">
 
@@ -15,6 +13,13 @@
             😎
           </span>
         </h1>
+        <h3 class="text-light text-lg xl:w-4/5 mt-5">Olá! Sou Vinicius Spanol, desenvolvedor fullstack com
+          experiência
+          na
+          criação de aplicativos web e mobile. Além disso, possuo conhecimentos em DevOps e Internet das Coisas (IoT),
+          sempre buscando soluções eficientes e inovadoras.
+        </h3>
+
         <h3 class="text-light text-lg xl:w-4/5 mt-5">Olá! Sou Vinicius Spanol, desenvolvedor fullstack com
           experiência
           na
@@ -43,8 +48,13 @@
             </div>
 
             <div class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
-              <v-icon name="vi-file-type-js" scale="3" />
+              <v-icon name="vi-file-type-typescript" scale="3" />
               <v-icon name="vi-file-type-csharp" scale="3" />
+            </div>
+
+            <div class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
+              <v-icon name="vi-file-type-angular" scale="3" />
+              <v-icon name="si-dotnet" scale="3" />
             </div>
 
             <div class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">

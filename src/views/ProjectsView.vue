@@ -5,9 +5,7 @@
         Essa página ainda está em construção 🚨
       </span>
     </div>
-    <p class="font-extrabold text-lg uppercase text-blue-500">
-      Projetos
-    </p>
+
 
     <h1 class="font-bold text-3xl">
       Cada projeto é uma nova história 🤠
