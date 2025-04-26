@@ -1,77 +1,48 @@
 <template>
-  <header class="z-50 fixed top-0 w-full shadow-md h-16">
-    <div class="h-full  bg-white  flex items-center px-5 lg:px-16 justify-between font-extrabold text-lg"
-      :class="{ 'border-b': isOpen }">
-      <span>
-        Spanol.dev
-      </span>
+  <header class="z-50 fixed top-0 w-full shadow-md h-16 dark:bg-dark-background dark:text-dark-text">
+    <div
+      class="h-full bg-white dark:bg-dark-surface flex items-center px-5 lg:px-16 justify-between font-extrabold text-lg"
+      :class="{ 'border-b dark:border-dark-border': isOpen }">
+      <RouterLink class="hover:text-blue-500" to="/">
+        spanol.dev
+      </RouterLink>
 
       <div class="hidden md:flex justify-between items-center gap-x-5">
-        <RouterLink to="/" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
-          class="hover:text-blue-500 transition-all duration-300">
-          Home
+        <RouterLink v-for="(tab, index) in navTabs" :key="index" :to="tab.path"
+          :class="{ 'border-b-4 border-blue-500 dark:border-blue-400': $route.path === tab.path }"
+          class="hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-300">
+          {{ tab.name }}
         </RouterLink>
-        <RouterLink to="/about" :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }"
-          class="hover:text-blue-500 transition-all duration-300">
-          Sobre
-        </RouterLink>
-        <RouterLink to="/projects" :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
-          class="transition-all duration-300">
-          Projetos
-        </RouterLink>
-        <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
-          class="transition-all duration-300">
-          Trabalhos
-        </RouterLink>
-        <RouterLink to="/contact" :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
-          class="transition-all duration-300">
-          Contato
-        </RouterLink>
-        <a class="border p-2 border-blue-500 bg-blue-500 rounded-3xl text-white" href="/curriculum.docx" download>
+
+        <a class="border p-2 border-blue-500 bg-blue-500 dark:border-blue-400 dark:bg-blue-400 rounded-3xl text-white"
+          href="/curriculum.docx" download>
           Baixar curriculum
         </a>
+
+        <ThemeTogglerComponent />
       </div>
 
-      <div class="md:hidden">
+      <div class="md:hidden flex items-center gap-x-4">
+        <ThemeTogglerComponent />
         <a @click="toggleMenu()">
           <v-icon name="bi-list" scale="2" />
         </a>
       </div>
     </div>
 
-
-    <div class="p-2 ps-36 bg-white">
-      <p class="ms-6 font-extrabold text-lg uppercase text-blue-500">
-        {{ routeName }}
-      </p>
-    </div>
-
-
     <Transition name="slide-down" mode="out-in">
-      <div v-if="isOpen" class="list bg-white">
-        <div class="md:hidden flex flex-col items-center gap-y-3 border-b">
-          <RouterLink to="/" @click="toggleMenu()" :class="{ 'border-b-4 border-blue-500': $route.path === '/' }"
+      <div v-if="isOpen" class="list bg-white dark:bg-dark-surface">
+        <div class="md:hidden flex flex-col items-center gap-y-3 border-b dark:border-dark-border">
+          <RouterLink v-for="(tab, index) in navTabs" :key="index" :to="tab.path"
+            :class="{ 'border-b-4 border-blue-500 dark:border-blue-400': $route.path === tab.path }"
             class="p-2 transition-all duration-300">
-            Home
+            {{ tab.name }}
           </RouterLink>
-          <RouterLink to="/about" @click="toggleMenu()"
-            :class="{ 'border-b-4 border-blue-500': $route.path === '/about' }" class="p-2 transition-all duration-300">
-            Sobre
-          </RouterLink>
-          <RouterLink to="/projects" @click="toggleMenu()"
-            :class="{ 'border-b-4 border-blue-500': $route.path === '/projects' }"
-            class="p-2 transition-all duration-300">
-            Projetos
-          </RouterLink>
-          <RouterLink to="/works" :class="{ 'border-b-4 border-blue-500': $route.path === '/works' }"
-            class="p-2 transition-all duration-300">
-            Trabalhos
-          </RouterLink>
-          <RouterLink to="/contact" @click="toggleMenu()"
-            :class="{ 'border-b-4 border-blue-500': $route.path === '/contact' }"
-            class="p-2 transition-all duration-300">
-            Contato
-          </RouterLink>
+          <a class="border p-2 border-blue-500 bg-blue-500 dark:border-blue-400 dark:bg-blue-400 rounded-3xl text-white"
+            href="/curriculum.docx" download>
+            Baixar curriculum
+          </a>
+
         </div>
       </div>
     </Transition>
@@ -104,29 +75,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
-
-const getRouteName = () => {
-  switch (location.path) {
-    case '/':
-      return 'Home'
-    case '/about':
-      return 'Sobre'
-    case '/projects':
-      return 'Projetos'
-    case '/contact':
-      return 'Contato'
-    case '/works':
-      return 'Works'
-    default:
-      break;
-  }
-}
-
+import ThemeTogglerComponent from './ThemeTogglerComponent.vue'
 const isOpen = ref(false)
-const location = useRoute()
-const routeName = computed(() => getRouteName())
+
+const navTabs = [
+  { name: 'Home', path: '/' },
+  { name: 'Sobre', path: '/about' },
+  { name: 'Projetos', path: '/projects' },
+  // { name: 'Trabalhos', path: '/works' },
+  { name: 'Contato', path: '/contact' },
+]
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
