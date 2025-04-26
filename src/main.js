@@ -21,6 +21,8 @@ import {
   ViFileTypeDocker,
   ViFileTypeNestjs,
   PrMapMarker,
+  BiMoonFill,
+  BiSunFill, 
   ViFileTypeTypescript,
   SiDotnet,
 } from "oh-vue-icons/icons";
@@ -43,6 +45,8 @@ addIcons(
   ViFileTypeCsharp,
   ViFileTypeDocker,
   ViFileTypeNestjs,
+  BiMoonFill,
+  BiSunFill,
   PrMapMarker
 );
 
