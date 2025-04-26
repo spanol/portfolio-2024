@@ -1,5 +1,5 @@
 <template>
-  <div class="z-10 img-hero lg:self-center bg-center bg-cover border-4 border-gray-800 h-64 w-64 lg:h-80 lg:w-80">
+  <div class="z-10 img-hero bg-center m-auto bg-cover border-4 border-gray-800 h-64 w-64 lg:h-96 lg:w-96">
   </div>
 </template>
 
