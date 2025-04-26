@@ -1,11 +1,12 @@
 <template>
-  <div class="about">
+  <div class="about dark:bg-dark-background dark:text-dark-text">
 
-    <div class="flex flex-col-reverse xl:flex-row items-center text-center xl:items-start xl:text-start gap-x-10">
+    <div
+      class="flex flex-col-reverse xl:flex-row items-center justify-between text-center xl:items-start xl:text-start gap-x-10">
       <div class="info lg:w-3/5 mt-16 lg:mt-0">
 
-        <h1 class="flex flex-col lg:flex-row font-bold text-4xl sm:text-5xl">
-          Fullstack Developer
+        <h1 class="flex flex-col lg:flex-row font-bold text-4xl sm:text-5xl xl:text-nowrap">
+          Desenvolvedor Fullstack
           <span class="hidden lg:block">
             🚀
           </span>
@@ -13,70 +14,94 @@
             😎
           </span>
         </h1>
-        <h3 class="text-light text-lg xl:w-4/5 mt-5">Olá! Sou Vinicius Spanol, desenvolvedor fullstack com
+        <h3 class="text-light dark:text-dark-text text-lg xl:w-4/5 mt-5">Olá! Sou Vinicius Spanol, desenvolvedor
+          fullstack com
           experiência
           na
           criação de aplicativos web e mobile. Além disso, possuo conhecimentos em DevOps e Internet das Coisas (IoT),
           sempre buscando soluções eficientes e inovadoras.
         </h3>
 
-        <h3 class="text-light text-lg xl:w-4/5 mt-5">Olá! Sou Vinicius Spanol, desenvolvedor fullstack com
-          experiência
-          na
-          criação de aplicativos web e mobile. Além disso, possuo conhecimentos em DevOps e Internet das Coisas (IoT),
-          sempre buscando soluções eficientes e inovadoras.
-        </h3>
         <div class="socials flex justify-center lg:justify-start gap-x-5 mt-6">
-          <a href="https://github.com/spanol" target="_blank">
-            <v-icon name="bi-github" scale="2.5" />
-          </a>
-
-          <a href="https://www.linkedin.com/in/vinicius-spanol/" target="_blank">
-            <v-icon name="bi-linkedin" scale="2.5" />
+          <a v-for="(icon, index) in contactIcons" :key="index" :href="icon.link" target="_blank"
+            class="dark:text-dark-text">
+            <v-icon :name="icon.icon" scale="2.5" />
           </a>
         </div>
 
         <div
-          class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-16 lg:mt-32 shadow-lg border rounded-xl p-5">
-          <p class="font-medium border-b-2 border-light lg:border-0 lg:text-nowrap">Main Tech Stack</p>
-          <div class="vertical-divisor hidden lg:block">|</div>
+          class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-16 lg:mt-28 shadow-lg border dark:border-dark-border dark:bg-dark-surface rounded-xl p-5">
+          <p class="font-medium border-b-2 border-light dark:border-dark-border lg:border-0 lg:text-nowrap">Principais
+            tecnologias</p>
+          <div class="vertical-divisor hidden lg:block dark:text-dark-text">|</div>
 
           <div class="flex flex-wrap lg:flex-shrink justify-center gap-x-5">
-            <div class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
-              <v-icon name="vi-file-type-html" scale="3" />
-              <v-icon name="vi-file-type-css" scale="3" />
+            <div v-for="(icon, index) in aboutIcons" :key="index"
+              class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
+              <v-icon :name="icon.icon" scale="3" class="dark:text-dark-text" />
             </div>
-
-            <div class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
-              <v-icon name="vi-file-type-typescript" scale="3" />
-              <v-icon name="vi-file-type-csharp" scale="3" />
-            </div>
-
-            <div class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
-              <v-icon name="vi-file-type-angular" scale="3" />
-              <v-icon name="si-dotnet" scale="3" />
-            </div>
-
-            <div class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
-              <v-icon name="vi-file-type-arduino" scale="3" />
-              <v-icon name="vi-file-type-docker" scale="3" />
-            </div>
-            <!-- <div class="flex">
-              <v-icon name="vi-file-type-nestjs" scale="3" />
-              <v-icon name="vi-file-type-angular" scale="3" />
-            </div> -->
           </div>
         </div>
       </div>
-
-      <div>
-        <ImageComponent />
-      </div>
+      <HomeImageComponent />
     </div>
 
   </div>
 </template>
 
 <script setup>
-import ImageComponent from "@/components/ImageComponment.vue";
+import HomeImageComponent from "@/components/HomeImageComponment.vue";
+
+const contactIcons = [
+  {
+    name: "GitHub",
+    icon: "bi-github",
+    link: "https://github.com/spanol",
+  },
+  {
+    name: "LinkedIn",
+    icon: "bi-linkedin",
+    link: "https://www.linkedin.com/in/vinicius-spanol/",
+  },
+]
+
+const aboutIcons = [
+  {
+    name: "HTML",
+    icon: "vi-file-type-html",
+  },
+  {
+    name: "CSS",
+    icon: "vi-file-type-css",
+  },
+
+  {
+    name: "TypeScript",
+    icon: "vi-file-type-typescript",
+  },
+  {
+    name: "C#",
+    icon: "vi-file-type-csharp",
+  },
+  {
+    name: "Angular",
+    icon: "vi-file-type-angular",
+  },
+  {
+    name: ".NET",
+    icon: "si-dotnet",
+  },
+  {
+    name: "NestJS",
+    icon: "vi-file-type-nestjs",
+  },
+  {
+    name: "Arduino",
+    icon: "vi-file-type-arduino",
+  },
+  {
+    name: "Docker",
+    icon: "vi-file-type-docker",
+  },
+];
 </script>
