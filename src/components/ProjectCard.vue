@@ -1,24 +1,21 @@
 <template>
-  <div class="rounded-3xl flex mt-16 border justify-between shadow-card h-full">
-    <img class="hidden lg:block rounded-3xl rounded-e-none w-2/4" :src="image" alt="Preview do Projeto">
+  <div
+    class="project-card rounded-3xl dark:bg-dark-surface flex mt-16 border-4 dark:border-0 justify-between shadow-card h-full">
 
-    <div class="rounded-e-3xl flex flex-col justify-center text-center p-6">
-      <h1 class="font-bold text-xl">
+    <div class="rounded-e-3xl flex flex-col justify-start text-center gap-y-3 p-6">
+
+      <img class="rounded-3xl border-2 dark:border-0 w-full h-52 object-cover
+      hover:scale-105 transition-transform duration-300 ease-in-out" :src="image" alt="Preview do Projeto">
+
+      <h1 class="font-bold text-xl p-2 text-black dark:text-white sm:text-2xl">
         {{ title }}
       </h1>
 
-      <p class="text-light text-center text-sm sm:text-md mt-5">
-        {{ description }}
+      <p class="text-light text-center text-sm sm:text-md dark:text-white mt-2">
+        {{ description.slice(0, 150) }}...
       </p>
 
-      <div class="font-bold langs text-center mt-4">
-        <span v-for="tech in technologies" :key="tech"
-          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 m-1">
-          {{ tech }}
-        </span>
-      </div>
-
-      <div class="actions text-sm sm:text-md mt-8 flex justify-center">
+      <div class="actions text-black dark:text-white text-sm sm:text-md mt-8 flex justify-center">
         <a :href="projectLink" target="_blank"
           class="btn btn-primary items-center flex font-semibold border p-1 sm:p-2 rounded-xl rounded-e-none">
           Ver Projeto
@@ -34,6 +31,12 @@
   </div>
 
 </template>
+
+<style>
+.project-card {
+  max-width: 400px;
+}
+</style>
 
 <script setup>
 defineProps({

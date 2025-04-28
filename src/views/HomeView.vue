@@ -22,7 +22,7 @@
           sempre buscando soluções eficientes e inovadoras.
         </h3>
 
-        <div class="socials flex justify-center lg:justify-start gap-x-5 mt-6">
+        <div class="socials flex justify-center xl:justify-start gap-x-5 mt-6">
           <a v-for="(icon, index) in contactIcons" :key="index" :href="icon.link" target="_blank"
             class="dark:text-dark-text">
             <v-icon :name="icon.icon" scale="2.5" />
@@ -30,13 +30,13 @@
         </div>
 
         <div
-          class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-16 lg:mt-28 shadow-lg border dark:border-dark-border dark:bg-dark-surface rounded-xl p-5">
+          class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-16 lg:mt-20 shadow-lg border dark:border-dark-border dark:bg-dark-surface rounded-xl p-5">
           <p class="font-medium border-b-2 border-light dark:border-dark-border lg:border-0 lg:text-nowrap">Principais
             tecnologias</p>
           <div class="vertical-divisor hidden lg:block dark:text-dark-text">|</div>
 
           <div class="flex flex-wrap lg:flex-shrink justify-center gap-x-5">
-            <div v-for="(icon, index) in aboutIcons" :key="index"
+            <div v-for="(icon, index) in techStackIcons" :key="index"
               class="flex hover:-translate-y-4 transition-all duration-150 cursor-pointer">
               <v-icon :name="icon.icon" scale="3" class="dark:text-dark-text" />
             </div>
@@ -51,21 +51,9 @@
 
 <script setup>
 import HomeImageComponent from "@/components/HomeImageComponment.vue";
+import { contactIcons } from "@/data/contactIcons";
 
-const contactIcons = [
-  {
-    name: "GitHub",
-    icon: "bi-github",
-    link: "https://github.com/spanol",
-  },
-  {
-    name: "LinkedIn",
-    icon: "bi-linkedin",
-    link: "https://www.linkedin.com/in/vinicius-spanol/",
-  },
-]
-
-const aboutIcons = [
+const techStackIcons = [
   {
     name: "HTML",
     icon: "vi-file-type-html",

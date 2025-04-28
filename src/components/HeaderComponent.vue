@@ -3,7 +3,8 @@
     <div
       class="h-full bg-white dark:bg-dark-surface flex items-center px-5 lg:px-16 justify-between font-extrabold text-lg"
       :class="{ 'border-b dark:border-dark-border': isOpen }">
-      <RouterLink class="hover:text-blue-500" to="/">
+      <RouterLink class="flex items-center gap-x-2 hover:text-blue-500" to="/">
+        <!-- <img :src="isDarkMode ? '/favicon-dark.svg' : '/favicon-light.svg'" alt="Logo" class="h-10 w-10 rounded-full" /> -->
         spanol.dev
       </RouterLink>
 
@@ -13,16 +14,18 @@
           class="hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-300">
           {{ tab.name }}
         </RouterLink>
-
         <a class="border p-2 border-blue-500 bg-blue-500 dark:border-blue-400 dark:bg-blue-400 rounded-3xl text-white"
           href="/curriculum.docx" download>
           Baixar curriculum
         </a>
-
         <ThemeTogglerComponent />
       </div>
 
       <div class="md:hidden flex items-center gap-x-4">
+        <a class="border p-2 border-blue-500 bg-blue-500 dark:border-blue-400 dark:bg-blue-400 rounded-3xl text-white"
+          href="/curriculum.docx" download>
+          Baixar curriculum
+        </a>
         <ThemeTogglerComponent />
         <a @click="toggleMenu()">
           <v-icon name="bi-list" scale="2" />
@@ -38,11 +41,6 @@
             class="p-2 transition-all duration-300">
             {{ tab.name }}
           </RouterLink>
-          <a class="border p-2 border-blue-500 bg-blue-500 dark:border-blue-400 dark:bg-blue-400 rounded-3xl text-white"
-            href="/curriculum.docx" download>
-            Baixar curriculum
-          </a>
-
         </div>
       </div>
     </Transition>
@@ -74,8 +72,9 @@
 
 
 <script setup>
-import { ref } from 'vue'
 import ThemeTogglerComponent from './ThemeTogglerComponent.vue'
+import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
 const isOpen = ref(false)
 
 const navTabs = [

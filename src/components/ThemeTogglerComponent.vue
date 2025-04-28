@@ -10,16 +10,24 @@
 import { ref, onMounted } from 'vue'
 
 const isDarkMode = ref(true)
+const favicon = document.querySelector("link[rel*='icon']")
 
 const toggleDarkMode = () => {
   isDarkMode.value = !isDarkMode.value
-  if (isDarkMode.value) {
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
-  }
+
+  isDarkMode.value ? setDarkTheme() : setLightTheme()
+}
+
+const setDarkTheme = () => {
+  favicon.href = '/favicon-dark.svg'
+  document.documentElement.classList.add('dark')
+  localStorage.setItem('theme', 'dark')
+}
+
+const setLightTheme = () => {
+  favicon.href = '/favicon-light.svg'
+  document.documentElement.classList.remove('dark')
+  localStorage.setItem('theme', 'light')
 }
 
 onMounted(() => {

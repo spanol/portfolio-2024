@@ -1,11 +1,18 @@
 <template>
   <HeaderComponent />
-  <div class="flex items-center min-h-screen p-16 lg:mt-12 xl:mt-10 2xl:mt-0">
-    <router-view v-slot="{ Component, route }">
-      <transition :name="transitionName" mode="out-in">
-        <component :is="Component" :key="route.fullPath" />
-      </transition>
-    </router-view>
+  <div class="app flex items-center justify-center min-h-screen p-16 xl:px-32 mt-8 lg:mt-12 xl:mt-10 2xl:mt-0">
+    <div :class="{
+      'flex flex-col w-full': true,
+      'items-start': route.name === 'contact',
+      'items-center': route.name !== 'contact',
+      'transition-all duration-500': true,
+    }">
+      <router-view v-slot="{ Component, route }">
+        <transition :name="transitionName" mode="out-in">
+          <component :is="Component" :key="route.fullPath" />
+        </transition>
+      </router-view>
+    </div>
   </div>
 </template>
 
@@ -41,6 +48,11 @@ watchEffect(() => {
 </script>
 
 <style scoped>
+.app {
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition: transform 0.5s ease;
