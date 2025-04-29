@@ -2,7 +2,7 @@ export const contactIcons = [
   {
     name: "GitHub",
     icon: "bi-github",
-    link: "https://linkedin.com/in/vinicius-spanol",
+    link: "https://github.com/spanol",
   },
   {
     name: "LinkedIn",
