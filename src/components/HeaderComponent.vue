@@ -32,14 +32,14 @@
 
       <div class="md:hidden flex items-center gap-x-4">
         <a
-          class="border p-2 border-primary bg-primary rounded-3xl transition-colors duration-150 text-white"
+          class="hidden sm:block border p-2 border-primary bg-primary rounded-3xl transition-colors duration-150 text-white"
           href="/curriculum.docx"
           download
         >
           Baixar curriculum
         </a>
         <ThemeTogglerComponent />
-        <a @click="toggleMenu()" href="#">
+        <a @click="toggleMenu()" class="text-primary" href="#">
           <v-icon name="bi-list" scale="2" />
         </a>
       </div>
@@ -59,6 +59,13 @@
           >
             {{ tab.name }}
           </RouterLink>
+          <a
+            class="block sm:hidden border mb-2 p-2 border-primary bg-primary rounded-3xl transition-colors duration-150 text-white"
+            href="/curriculum.docx"
+            download
+          >
+            Baixar curriculum
+          </a>
         </div>
       </div>
     </Transition>
