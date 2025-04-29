@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-import HomeImageComponent from "@/components/HomeImageComponment.vue";
+import HomeImageComponent from "@/components/HomeImageComponent.vue";
 import { contactIcons } from "@/data/contactIcons";
 
 const techStackIcons = [
