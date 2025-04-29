@@ -1,40 +1,46 @@
 <template>
   <HeaderComponent />
-  <div class="min-h-[500px] m-8 mt-20 mb-0 md:m-24 md:mb-0 lg:m-28 lg:mb-0 xl:m-32 p-5 sm:p-10 xl:mt-16">
+  <div
+    class="app flex items-center min-h-screen p-16 xl:px-32 mt-8 lg:mt-12 xl:mt-10 2xl:mt-0"
+    :class="{
+      'flex flex-col w-full h-full': true,
+      'transition-all duration-100': true,
+    }"
+  >
     <router-view v-slot="{ Component, route }">
-      <transition :name="transitionName" mode="out-in">
+      <Transition :name="transitionName" mode="out-in">
         <component :is="Component" :key="route.fullPath" />
-      </transition>
+      </Transition>
     </router-view>
   </div>
 </template>
 
-
 <script setup>
-import HeaderComponent from './components/HeaderComponent.vue';
-import { ref, watchEffect } from 'vue';
-import { useRoute } from 'vue-router';
-import { RoutesEnum } from '@/enums/routesEnum'; // Importa o enum das rotas
+import HeaderComponent from "./components/HeaderComponent.vue";
+import { onMounted, ref, watchEffect } from "vue";
+import { useRoute } from "vue-router";
+import { RoutesEnum } from "@/enums/routesEnum";
+import { usePrimaryColor } from "./composables/usePrimaryColor";
 
-// Estado reativo para armazenar o nome da transição
-const transitionName = ref('slide-right');
+const { animateHue } = usePrimaryColor();
+const transitionName = ref("slide-right");
 
-// Pegando a rota atual
 const route = useRoute();
 
-// Estado reativo para manter o índice da rota anterior
 const previousRouteIndex = ref(RoutesEnum.HOME);
 
-// Função para determinar a direção da transição
 const determineTransition = (fromIndex, toIndex) => {
   if (toIndex > fromIndex) {
-    transitionName.value = 'slide-left';
+    transitionName.value = "slide-left";
   } else {
-    transitionName.value = 'slide-right';
+    transitionName.value = "slide-right";
   }
 };
 
-// Usamos watchEffect para reagir às mudanças de rota
+onMounted(() => {
+  animateHue();
+});
+
 watchEffect(() => {
   const routes = Object.values(RoutesEnum);
   const fromIndex = previousRouteIndex.value;
@@ -46,7 +52,11 @@ watchEffect(() => {
 </script>
 
 <style scoped>
-/* Animação para a direita */
+.app {
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition: transform 0.5s ease;
@@ -62,7 +72,6 @@ watchEffect(() => {
   transform: translateX(0%);
 }
 
-/* Animação para a esquerda */
 .slide-left-enter-active,
 .slide-left-leave-active {
   transition: transform 0.5s ease;

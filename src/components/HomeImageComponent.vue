@@ -1,6 +1,7 @@
 <template>
-  <div class="z-10 img-hero lg:self-center bg-center bg-cover border-4 border-gray-800 h-64 w-64 lg:h-80 lg:w-80">
-  </div>
+  <div
+    class="z-10 img-hero bg-center m-auto bg-cover border-4 border-primary lg:mb-10 h-64 w-64 lg:h-72 lg:w-72 xl:h-96 xl:w-96"
+  ></div>
 </template>
 
 <style scoped>
@@ -10,7 +11,6 @@
   background-position: 50%;
   background-repeat: no-repeat;
   position: relative;
-  transition: all 1s ease-in-out;
 }
 
 @keyframes morph {
