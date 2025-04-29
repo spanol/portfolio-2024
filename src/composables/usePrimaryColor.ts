@@ -1,4 +1,4 @@
-import { ref, watch } from "vue";
+import { ref, watch, onUnmounted } from "vue";
 
 const hue = ref(0);
 const milliseconds = 110;
@@ -16,9 +16,13 @@ export function usePrimaryColor() {
   );
 
   function animateHue() {
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       hue.value = (hue.value + 1) % 360;
     }, milliseconds);
+
+    onUnmounted(() => {
+      clearInterval(intervalId);
+    });
   }
 
   return {
