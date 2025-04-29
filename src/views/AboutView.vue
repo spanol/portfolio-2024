@@ -45,7 +45,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import * as THREE from "three";
 import { onMounted, ref } from "vue";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
@@ -53,13 +53,13 @@ const threeCanvas = ref(null);
 
 onMounted(() => {
   const scene = new THREE.Scene();
-  scene.background = null; // Para fundo transparente
+  scene.background = null;
 
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
   camera.position.set(0, 0, 1);
 
   const renderer = new THREE.WebGLRenderer({
-    canvas: threeCanvas.value,
+    canvas: threeCanvas.value!,
     alpha: true,
     antialias: true,
   });
