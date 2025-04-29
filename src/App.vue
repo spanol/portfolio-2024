@@ -1,29 +1,29 @@
 <template>
   <HeaderComponent />
-  <div class="app flex items-center justify-center min-h-screen p-16 xl:px-32 mt-8 lg:mt-12 xl:mt-10 2xl:mt-0">
-    <div :class="{
-      'flex flex-col w-full': true,
-      'items-start': route.name === 'contact',
-      'items-center': route.name !== 'contact',
-      'transition-all duration-500': true,
-    }">
-      <router-view v-slot="{ Component, route }">
-        <transition :name="transitionName" mode="out-in">
-          <component :is="Component" :key="route.fullPath" />
-        </transition>
-      </router-view>
-    </div>
+  <div
+    class="app flex items-center min-h-screen p-16 xl:px-32 mt-8 lg:mt-12 xl:mt-10 2xl:mt-0"
+    :class="{
+      'flex flex-col w-full h-full': true,
+      'transition-all duration-100': true,
+    }"
+  >
+    <router-view v-slot="{ Component, route }">
+      <Transition :name="transitionName" mode="out-in">
+        <component :is="Component" :key="route.fullPath" />
+      </Transition>
+    </router-view>
   </div>
 </template>
 
-
 <script setup>
-import HeaderComponent from './components/HeaderComponent.vue';
-import { ref, watchEffect } from 'vue';
-import { useRoute } from 'vue-router';
-import { RoutesEnum } from '@/enums/routesEnum';
+import HeaderComponent from "./components/HeaderComponent.vue";
+import { onMounted, ref, watchEffect } from "vue";
+import { useRoute } from "vue-router";
+import { RoutesEnum } from "@/enums/routesEnum";
+import { usePrimaryColor } from "./composables/usePrimaryColor";
 
-const transitionName = ref('slide-right');
+const { animateHue } = usePrimaryColor();
+const transitionName = ref("slide-right");
 
 const route = useRoute();
 
@@ -31,11 +31,15 @@ const previousRouteIndex = ref(RoutesEnum.HOME);
 
 const determineTransition = (fromIndex, toIndex) => {
   if (toIndex > fromIndex) {
-    transitionName.value = 'slide-left';
+    transitionName.value = "slide-left";
   } else {
-    transitionName.value = 'slide-right';
+    transitionName.value = "slide-right";
   }
 };
+
+onMounted(() => {
+  animateHue();
+});
 
 watchEffect(() => {
   const routes = Object.values(RoutesEnum);

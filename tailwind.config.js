@@ -5,10 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          red: "#B71C1C",
-          standard: "#D32F2F",
-        },
+        primary: 'hsl(var(--color-primary) / <alpha-value>)',
         secondary: {
           light: "#E57373",
           coral: "#FF8A80",
