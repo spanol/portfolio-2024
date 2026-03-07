@@ -1,9 +1,12 @@
 import { ref, watch, onUnmounted } from "vue";
+import { useTheme } from "./useTheme";
 
 const hue = ref(0);
 const milliseconds = 110;
 
 export function usePrimaryColor() {
+  const { isMatrix } = useTheme();
+
   watch(
     hue,
     (newHue) => {
@@ -17,7 +20,12 @@ export function usePrimaryColor() {
 
   function animateHue() {
     const intervalId = setInterval(() => {
-      hue.value = (hue.value + 1) % 360;
+      if (isMatrix.value) {
+        // Lock to green hue (120°) in matrix mode
+        hue.value = 120;
+      } else {
+        hue.value = (hue.value + 1) % 360;
+      }
     }, milliseconds);
 
     onUnmounted(() => {

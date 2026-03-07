@@ -26,6 +26,14 @@ module.exports = {
           surface: "#2d2d2d",
           text: "#e0e0e0",
           border: "#404040",
+        },
+        matrix: {
+          background: "#000000",
+          surface: "#0a0a0a",
+          text: "#00FF41",
+          border: "#003B00",
+          glow: "#00FF41",
+          dim: "#005500",
         }
       },
       fontFamily: {

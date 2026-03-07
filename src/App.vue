@@ -1,4 +1,5 @@
 <template>
+  <MatrixRain v-if="isMatrix" />
   <HeaderComponent />
   <div
     class="app flex items-center min-h-screen p-16 xl:px-32 mt-8 lg:mt-12 xl:mt-10 2xl:mt-0"
@@ -17,12 +18,15 @@
 
 <script setup>
 import HeaderComponent from "./components/HeaderComponent.vue";
+import MatrixRain from "./components/MatrixRain.vue";
 import { onMounted, ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { RoutesEnum } from "@/enums/routesEnum";
 import { usePrimaryColor } from "./composables/usePrimaryColor";
+import { useTheme } from "./composables/useTheme";
 
 const { animateHue } = usePrimaryColor();
+const { isMatrix } = useTheme();
 const transitionName = ref("slide-right");
 
 const route = useRoute();

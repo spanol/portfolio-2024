@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import * as THREE from "three";
 import { usePrimaryColor } from "@/composables/usePrimaryColor";
 
@@ -30,6 +30,7 @@ const fragmentShader = `
   uniform vec2 uResolution;
   uniform float uHue;
   uniform float uIsDark;
+  uniform float uIsMatrix;
 
   vec3 hsl2rgb(float h, float s, float l) {
     float c = (1.0 - abs(2.0 * l - 1.0)) * s;
@@ -51,8 +52,15 @@ const fragmentShader = `
     // Theme-aware background
     vec3 bgColor = mix(vec3(1.0), vec3(0.102), uIsDark);
 
+    // Matrix override: pure black background
+    bgColor = mix(bgColor, vec3(0.0), uIsMatrix);
+
     // Wave primary color
     vec3 waveColor = hsl2rgb(uHue, 0.75, 0.45);
+
+    // Matrix override: force green wave color
+    vec3 matrixGreen = vec3(0.0, 1.0, 0.255);
+    waveColor = mix(waveColor, matrixGreen, uIsMatrix);
 
     // Multi-layered sinusoidal waves
     float wave = 0.0;
@@ -85,6 +93,10 @@ function isDarkMode(): boolean {
   return document.documentElement.classList.contains("dark");
 }
 
+function isMatrixMode(): boolean {
+  return document.documentElement.getAttribute("data-theme") === "matrix";
+}
+
 function initScene() {
   const container = containerRef.value;
   if (!container) return;
@@ -114,6 +126,7 @@ function initScene() {
       },
       uHue: { value: hue.value },
       uIsDark: { value: isDarkMode() ? 1.0 : 0.0 },
+      uIsMatrix: { value: isMatrixMode() ? 1.0 : 0.0 },
     },
   });
 
@@ -125,11 +138,12 @@ function initScene() {
   const observer = new MutationObserver(() => {
     if (material) {
       material.uniforms.uIsDark.value = isDarkMode() ? 1.0 : 0.0;
+      material.uniforms.uIsMatrix.value = isMatrixMode() ? 1.0 : 0.0;
     }
   });
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ["class"],
+    attributeFilter: ["class", "data-theme"],
   });
 
   // Resize handling

@@ -104,6 +104,7 @@ const fragmentShader = `
 
   uniform float uHue;
   uniform float uIsDark;
+  uniform float uIsMatrix;
   uniform float uTime;
 
   varying vec3 vNormal;
@@ -138,6 +139,13 @@ const fragmentShader = `
     // Brighter edge glow
     vec3 glowColor = hsl2rgb(uHue, 0.9, 0.7);
 
+    // Matrix override: use matrix green palette
+    if (uIsMatrix > 0.5) {
+      baseColor = vec3(0.0, 1.0, 0.255);
+      shiftedColor = vec3(0.0, 0.6 + vDisplacement * 0.4, 0.1);
+      glowColor = vec3(0.4, 1.0, 0.5);
+    }
+
     // Combine: body color + fresnel glow
     vec3 color = mix(shiftedColor, baseColor, vDisplacement * 0.5 + 0.5);
     color = mix(color, glowColor, fresnel * 0.8);
@@ -150,6 +158,8 @@ const fragmentShader = `
 
     // Ambient intensity based on theme
     float ambientBoost = mix(0.15, 0.05, uIsDark);
+    // Matrix: even darker ambient for contrast
+    ambientBoost = mix(ambientBoost, 0.02, uIsMatrix);
     color += ambientBoost;
 
     gl_FragColor = vec4(color, 1.0);
@@ -158,6 +168,10 @@ const fragmentShader = `
 
 function isDarkMode(): boolean {
   return document.documentElement.classList.contains("dark");
+}
+
+function isMatrixMode(): boolean {
+  return document.documentElement.getAttribute("data-theme") === "matrix";
 }
 
 onMounted(() => {
@@ -185,6 +199,7 @@ onMounted(() => {
     uDisplacement: { value: 0.35 },
     uHue: { value: hue.value },
     uIsDark: { value: isDarkMode() ? 1.0 : 0.0 },
+    uIsMatrix: { value: isMatrixMode() ? 1.0 : 0.0 },
   };
 
   const material = new THREE.ShaderMaterial({
@@ -202,6 +217,7 @@ onMounted(() => {
     fragmentShader: `
       precision highp float;
       uniform float uHue;
+      uniform float uIsMatrix;
 
       vec3 hsl2rgb(float h, float s, float l) {
         float c = (1.0 - abs(2.0 * l - 1.0)) * s;
@@ -219,6 +235,10 @@ onMounted(() => {
 
       void main() {
         vec3 color = hsl2rgb(uHue, 0.6, 0.7);
+        // Matrix: green wireframe
+        if (uIsMatrix > 0.5) {
+          color = vec3(0.0, 1.0, 0.255);
+        }
         gl_FragColor = vec4(color, 0.08);
       }
     `,
@@ -234,10 +254,11 @@ onMounted(() => {
   // Theme observer
   const observer = new MutationObserver(() => {
     uniforms.uIsDark.value = isDarkMode() ? 1.0 : 0.0;
+    uniforms.uIsMatrix.value = isMatrixMode() ? 1.0 : 0.0;
   });
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ["class"],
+    attributeFilter: ["class", "data-theme"],
   });
 
   function animate() {
