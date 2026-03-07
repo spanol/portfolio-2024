@@ -20,7 +20,7 @@ import WaveBackground from "@/components/WaveBackground.vue";
 
 .wave-wrapper {
   position: absolute;
-  inset: -2rem;
+  inset: -0.75rem;
   border-radius: 50%;
   overflow: hidden;
   animation: morph 8s ease-in-out infinite;
