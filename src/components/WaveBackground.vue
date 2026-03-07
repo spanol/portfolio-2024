@@ -54,16 +54,25 @@ const fragmentShader = `
     // Wave primary color
     vec3 waveColor = hsl2rgb(uHue, 0.75, 0.45);
 
-    // Consistent sinusoidal wave distortion
+    // Multi-layered sinusoidal waves
+    float wave = 0.0;
     float t = uTime;
-    float wave = sin(uv.x * 6.2832 * 2.0 + t) * 0.06
-               + sin(uv.x * 6.2832 * 3.0 - t * 0.7) * 0.03;
 
-    // Uniform stripe pattern
+    for (float i = 0.0; i < 7.0; i++) {
+      float freq = 3.0 + i * 1.2;
+      float speed = 1.0 + i * 0.3;
+      float amp = 0.07 / (1.0 + i * 0.3);
+      float phase = i * 1.5;
+
+      wave += sin(uv.x * freq * 3.14159 + t * speed + phase) * amp;
+      wave += sin(uv.x * freq * 2.0 + t * speed * 0.8 + phase + 1.0) * amp * 0.5;
+    }
+
+    // Create stripe pattern with wave distortion
     float stripeY = uv.y + wave;
-    float band = fract(stripeY * 8.0);
-    float pattern = smoothstep(0.4, 0.45, band) - smoothstep(0.55, 0.6, band);
-    pattern = 1.0 - pattern;
+    float stripe = smoothstep(0.45, 0.5, fract(stripeY * 7.0));
+    float stripe2 = 1.0 - smoothstep(0.0, 0.05, fract(stripeY * 7.0));
+    float pattern = max(stripe, stripe2);
 
     // Blend wave color with background
     vec3 color = mix(waveColor, bgColor, pattern);
