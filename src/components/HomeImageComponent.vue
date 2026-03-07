@@ -3,8 +3,7 @@
     <div class="wave-wrapper">
       <WaveBackground />
     </div>
-    <div
-      class="img-hero bg-center bg-cover h-64 w-64 lg:h-72 lg:w-72 xl:h-96 xl:w-96">
+    <div class="img-hero bg-center bg-cover h-64 w-64 lg:h-72 lg:w-72 xl:h-96 xl:w-96">
     </div>
   </div>
 </template>
@@ -31,7 +30,7 @@ import WaveBackground from "@/components/WaveBackground.vue";
   position: relative;
   z-index: 1;
   animation: morph 8s ease-in-out infinite;
-  background-image: url(/src/assets/spanol.jpeg);
+  background-image: url(/src/assets/spanol.png);
   background-position: 50%;
   background-repeat: no-repeat;
 }
