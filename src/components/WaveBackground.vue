@@ -1,115 +1,192 @@
 <template>
-  <canvas ref="canvasRef" class="wave-canvas" />
+  <div ref="containerRef" class="wave-container" />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from "vue";
+import * as THREE from "three";
 import { usePrimaryColor } from "@/composables/usePrimaryColor";
 
-const canvasRef = ref<HTMLCanvasElement | null>(null);
+const containerRef = ref<HTMLDivElement | null>(null);
 const { hue } = usePrimaryColor();
+
+let renderer: THREE.WebGLRenderer | null = null;
+let scene: THREE.Scene | null = null;
+let camera: THREE.OrthographicCamera | null = null;
+let material: THREE.ShaderMaterial | null = null;
 let animationId: number | null = null;
-let time = 0;
+let resizeObserver: ResizeObserver | null = null;
 
-function draw() {
-  const canvas = canvasRef.value;
-  if (!canvas) return;
+const vertexShader = `
+  void main() {
+    gl_Position = vec4(position, 1.0);
+  }
+`;
 
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
+const fragmentShader = `
+  precision highp float;
 
-  const width = canvas.width;
-  const height = canvas.height;
-  const currentHue = hue.value;
+  uniform float uTime;
+  uniform vec2 uResolution;
+  uniform float uHue;
+  uniform float uIsDark;
 
-  ctx.clearRect(0, 0, width, height);
-
-  // Dark base fill
-  ctx.fillStyle = `hsl(${currentHue}, 30%, 8%)`;
-  ctx.fillRect(0, 0, width, height);
-
-  const waveCount = 14;
-  const amplitude = width * 0.12;
-  const waveSpacing = height / (waveCount - 1);
-
-  for (let i = 0; i < waveCount; i++) {
-    const isColored = i % 2 === 0;
-    const baseY = i * waveSpacing;
-
-    ctx.beginPath();
-
-    // Start from below the previous wave
-    ctx.moveTo(0, baseY - waveSpacing * 0.5);
-
-    // Draw the wave shape across the width
-    for (let x = 0; x <= width; x += 2) {
-      const normalizedX = x / width;
-      const waveOffset = i * 0.8;
-      const y =
-        baseY +
-        Math.sin(normalizedX * Math.PI * 3 + time + waveOffset) * amplitude +
-        Math.sin(normalizedX * Math.PI * 1.5 + time * 0.7 + waveOffset) *
-          amplitude *
-          0.5;
-      ctx.lineTo(x, y);
-    }
-
-    // Close the path filling downward
-    ctx.lineTo(width, baseY + waveSpacing * 1.5);
-    ctx.lineTo(0, baseY + waveSpacing * 1.5);
-    ctx.closePath();
-
-    if (isColored) {
-      ctx.fillStyle = `hsl(${currentHue}, 75%, 45%)`;
-    } else {
-      ctx.fillStyle = `hsl(${currentHue}, 30%, 8%)`;
-    }
-    ctx.fill();
+  vec3 hsl2rgb(float h, float s, float l) {
+    float c = (1.0 - abs(2.0 * l - 1.0)) * s;
+    float x = c * (1.0 - abs(mod(h / 60.0, 2.0) - 1.0));
+    float m = l - c / 2.0;
+    vec3 rgb;
+    if (h < 60.0) rgb = vec3(c, x, 0.0);
+    else if (h < 120.0) rgb = vec3(x, c, 0.0);
+    else if (h < 180.0) rgb = vec3(0.0, c, x);
+    else if (h < 240.0) rgb = vec3(0.0, x, c);
+    else if (h < 300.0) rgb = vec3(x, 0.0, c);
+    else rgb = vec3(c, 0.0, x);
+    return rgb + m;
   }
 
-  time += 0.015;
-  animationId = requestAnimationFrame(draw);
+  void main() {
+    vec2 uv = gl_FragCoord.xy / uResolution;
+
+    // Theme-aware background
+    vec3 bgColor = mix(vec3(1.0), vec3(0.102), uIsDark);
+
+    // Wave primary color
+    vec3 waveColor = hsl2rgb(uHue, 0.75, 0.45);
+
+    // Multi-layered sinusoidal waves
+    float wave = 0.0;
+    float t = uTime;
+
+    for (float i = 0.0; i < 7.0; i++) {
+      float freq = 3.0 + i * 1.2;
+      float speed = 1.0 + i * 0.3;
+      float amp = 0.07 / (1.0 + i * 0.3);
+      float phase = i * 1.5;
+
+      wave += sin(uv.x * freq * 3.14159 + t * speed + phase) * amp;
+      wave += sin(uv.x * freq * 2.0 + t * speed * 0.8 + phase + 1.0) * amp * 0.5;
+    }
+
+    // Create stripe pattern with wave distortion
+    float stripeY = uv.y + wave;
+    float stripe = smoothstep(0.45, 0.5, fract(stripeY * 7.0));
+    float stripe2 = 1.0 - smoothstep(0.0, 0.05, fract(stripeY * 7.0));
+    float pattern = max(stripe, stripe2);
+
+    // Blend wave color with background
+    vec3 color = mix(waveColor, bgColor, pattern);
+
+    gl_FragColor = vec4(color, 1.0);
+  }
+`;
+
+function isDarkMode(): boolean {
+  return document.documentElement.classList.contains("dark");
 }
 
-function resizeCanvas() {
-  const canvas = canvasRef.value;
-  if (!canvas) return;
+function initScene() {
+  const container = containerRef.value;
+  if (!container) return;
 
-  const parent = canvas.parentElement;
-  if (!parent) return;
+  const rect = container.getBoundingClientRect();
+  const width = rect.width;
+  const height = rect.height;
 
-  const dpr = window.devicePixelRatio || 1;
-  const rect = parent.getBoundingClientRect();
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
-  canvas.style.width = `${rect.width}px`;
-  canvas.style.height = `${rect.height}px`;
+  scene = new THREE.Scene();
+  camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-  const ctx = canvas.getContext("2d");
-  if (ctx) ctx.scale(dpr, dpr);
+  renderer = new THREE.WebGLRenderer({ alpha: false, antialias: false });
+  renderer.setSize(width, height);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
+
+  material = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms: {
+      uTime: { value: 0 },
+      uResolution: {
+        value: new THREE.Vector2(
+          width * window.devicePixelRatio,
+          height * window.devicePixelRatio
+        ),
+      },
+      uHue: { value: hue.value },
+      uIsDark: { value: isDarkMode() ? 1.0 : 0.0 },
+    },
+  });
+
+  const geometry = new THREE.PlaneGeometry(2, 2);
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  // Watch theme changes via MutationObserver
+  const observer = new MutationObserver(() => {
+    if (material) {
+      material.uniforms.uIsDark.value = isDarkMode() ? 1.0 : 0.0;
+    }
+  });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  // Resize handling
+  resizeObserver = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      const { width: w, height: h } = entry.contentRect;
+      if (renderer && material) {
+        renderer.setSize(w, h);
+        material.uniforms.uResolution.value.set(
+          w * window.devicePixelRatio,
+          h * window.devicePixelRatio
+        );
+      }
+    }
+  });
+  resizeObserver.observe(container);
+}
+
+function animate() {
+  if (!renderer || !scene || !camera || !material) return;
+
+  material.uniforms.uTime.value += 0.035;
+  material.uniforms.uHue.value = hue.value;
+
+  renderer.render(scene, camera);
+  animationId = requestAnimationFrame(animate);
 }
 
 onMounted(() => {
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-  draw();
+  initScene();
+  animate();
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", resizeCanvas);
-  if (animationId !== null) {
-    cancelAnimationFrame(animationId);
+  if (animationId !== null) cancelAnimationFrame(animationId);
+  if (resizeObserver) resizeObserver.disconnect();
+  if (renderer) {
+    renderer.dispose();
+    renderer.domElement.remove();
   }
+  if (material) material.dispose();
 });
 </script>
 
 <style scoped>
-.wave-canvas {
+.wave-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+.wave-container :deep(canvas) {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 </style>
