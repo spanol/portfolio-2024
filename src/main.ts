@@ -25,6 +25,7 @@ import {
   BiSunFill, 
   ViFileTypeTypescript,
   SiDotnet,
+  BiTerminalFill,
 } from "oh-vue-icons/icons";
 
 addIcons(
@@ -47,6 +48,7 @@ addIcons(
   ViFileTypeNestjs,
   BiMoonFill,
   BiSunFill,
+  BiTerminalFill,
   PrMapMarker
 );
 

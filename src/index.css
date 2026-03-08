@@ -7,3 +7,144 @@
     @apply bg-white dark:bg-dark-background;
   }
 }
+
+/* ========================================
+   MATRIX THEME OVERRIDES
+   ======================================== */
+
+/* Force matrix colors over the dark theme defaults */
+[data-theme="matrix"] {
+  --color-primary: 120 100% 50%;
+}
+
+[data-theme="matrix"] body {
+  background: #000000 !important;
+  font-family: "Courier New", "Fira Code", "Consolas", monospace !important;
+}
+
+/* Override dark theme surface/text/border colors with matrix greens */
+[data-theme="matrix"] .dark\:bg-dark-background {
+  background-color: #000000 !important;
+}
+
+[data-theme="matrix"] .dark\:bg-dark-surface {
+  background-color: #0a0a0a !important;
+  border: 1px solid #003b0066;
+}
+
+[data-theme="matrix"] .dark\:text-dark-text {
+  color: #00ff41 !important;
+}
+
+[data-theme="matrix"] .dark\:border-dark-border {
+  border-color: #003b00 !important;
+}
+
+/* General text in matrix mode */
+[data-theme="matrix"] h1,
+[data-theme="matrix"] h2,
+[data-theme="matrix"] h3,
+[data-theme="matrix"] h4,
+[data-theme="matrix"] h5,
+[data-theme="matrix"] h6 {
+  color: #00ff41 !important;
+  text-shadow: 0 0 8px #00ff4180, 0 0 20px #00ff4140;
+  font-family: "Courier New", "Fira Code", monospace !important;
+}
+
+[data-theme="matrix"] p,
+[data-theme="matrix"] span,
+[data-theme="matrix"] a,
+[data-theme="matrix"] li,
+[data-theme="matrix"] label {
+  color: #33ff66;
+}
+
+[data-theme="matrix"] a:hover {
+  color: #00ff41 !important;
+  text-shadow: 0 0 10px #00ff41;
+}
+
+/* Buttons in matrix mode */
+[data-theme="matrix"] button {
+  color: #00ff41;
+}
+
+[data-theme="matrix"] .bg-primary {
+  background-color: #00ff41 !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px #00ff4160, 0 0 30px #00ff4130;
+}
+
+[data-theme="matrix"] .text-primary {
+  color: #00ff41 !important;
+}
+
+/* Matrix glow effect for interactive elements */
+[data-theme="matrix"] button:hover,
+[data-theme="matrix"] a:hover {
+  text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff4180;
+}
+
+/* Scrollbar styling for matrix */
+[data-theme="matrix"] ::-webkit-scrollbar {
+  width: 6px;
+}
+
+[data-theme="matrix"] ::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+[data-theme="matrix"] ::-webkit-scrollbar-thumb {
+  background: #003b00;
+  border-radius: 3px;
+}
+
+[data-theme="matrix"] ::-webkit-scrollbar-thumb:hover {
+  background: #00ff41;
+}
+
+/* Scanline overlay effect */
+[data-theme="matrix"] .app {
+  position: relative;
+}
+
+[data-theme="matrix"] .app::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* CRT screen edge vignette */
+[data-theme="matrix"] .app::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Selection color in matrix */
+[data-theme="matrix"] ::selection {
+  background: #00ff41;
+  color: #000000;
+}
