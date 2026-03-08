@@ -24,7 +24,7 @@
 
 /* Override dark theme surface/text/border colors with matrix greens */
 [data-theme="matrix"] .dark\:bg-dark-background {
-  background-color: #000000 !important;
+  background-color: transparent !important;
 }
 
 [data-theme="matrix"] .dark\:bg-dark-surface {
