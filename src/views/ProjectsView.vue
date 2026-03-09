@@ -31,9 +31,17 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
 import ProjectCard from "@/components/ProjectCard.vue";
-import { projects } from "@/data/projects";
+import { Project } from "@/types/project";
+
+const projects = ref<Project[]>([]);
+
+onMounted(async () => {
+  const response = await fetch("/data/projects.json");
+  projects.value = await response.json();
+});
 </script>
 
 <style scoped>
