@@ -16,29 +16,15 @@
       </h1>
 
       <p class="text-light text-center text-sm sm:text-md dark:text-white mt-2">
-        {{ description.slice(0, 150) }}...
+        {{ description.length > 100 ? description.slice(0, 100) + '...' : description }}
       </p>
 
-      <div
-        class="actions text-black dark:text-white text-sm sm:text-md mt-8 flex justify-center"
+      <button
+        class="mt-4 px-4 py-2 text-sm font-semibold rounded-xl border-2 border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
+        @click="$emit('select')"
       >
-        <a
-          :href="projectLink"
-          target="_blank"
-          class="btn btn-primary items-center flex font-semibold border p-1 sm:p-2 rounded-xl rounded-e-none"
-        >
-          Ver Projeto
-          <v-icon class="ms-1" name="bi-link-45deg" scale="1.5" />
-        </a>
-        <a
-          :href="githubLink"
-          target="_blank"
-          class="btn btn-secondary border items-center flex font-semibold p-1 sm:p-2 rounded-xl rounded-s-none"
-        >
-          Código
-          <v-icon class="ms-1" name="bi-github" scale="1.5" />
-        </a>
-      </div>
+        Ver detalhes
+      </button>
     </div>
   </div>
 </template>
@@ -58,4 +44,6 @@ defineProps({
   projectLink: String,
   githubLink: String,
 });
+
+defineEmits(["select"]);
 </script>

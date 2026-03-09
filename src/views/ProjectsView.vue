@@ -25,18 +25,23 @@
           v-for="project in projects"
           :key="project.title"
           v-bind="project"
+          @select="selectedProject = project"
         />
       </TransitionGroup>
     </div>
+
+    <ProjectModal :project="selectedProject" @close="selectedProject = null" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import ProjectCard from "@/components/ProjectCard.vue";
+import ProjectModal from "@/components/ProjectModal.vue";
 import { Project } from "@/types/project";
 
 const projects = ref<Project[]>([]);
+const selectedProject = ref<Project | null>(null);
 
 onMounted(async () => {
   const response = await fetch("/data/projects.json");
