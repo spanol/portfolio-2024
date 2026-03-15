@@ -2,35 +2,37 @@
   {
     "title": "Bet Aki",
     "description": "Plataforma de apostas esportivas regulamentada com experiência de usuário envolvente e intuitiva. Liderou a modernização do frontend de Angular 14 para Angular 21 com arquitetura baseada em Signals, reduzindo o bundle de 4 MB para 1,69 MB sem perda de funcionalidades. Desenvolvimento de dashboard administrativo para gerenciamento de slots, provedores, banners e carrosséis, dando autonomia total ao time de marketing.",
-    "image": "https://placeholder.com/800x450",
+    "image": "https://image.thum.io/get/width/800/https://betaki.bet",
     "technologies": ["Angular", "TypeScript", "Signals", "SCSS", ".NET 6.0", "PostgreSQL"],
-    "projectLink": "https://betaki.bet.br"
+    "projectLink": "https://betaki.bet"
   },
   {
     "title": "Bet Aki – Landing Pages",
     "description": "Landing pages promocionais de alta conversão desenvolvidas em Vue.js para a plataforma Bet Aki. Foco em performance, SEO e captação de leads, com backend em .NET para processamento de formulários e integração com o sistema principal da plataforma.",
-    "image": "https://placeholder.com/800x450",
+    "image": "https://image.thum.io/get/width/800/https://betaki.bet",
     "technologies": ["Vue.js", "TypeScript", "SEO", ".NET"],
-    "projectLink": "https://betaki.bet.br"
+    "projectLink": "https://betaki.bet"
   },
   {
     "title": "Brasil Terminal Portuário",
     "description": "Sistema de sustentação para um dos maiores terminais portuários do Brasil. Atuação em correção de bugs críticos em produção, manutenção de código legado (.NET Framework < 4.5), monitoramento e análise de filas de eventos com RabbitMQ, e implementação de testes automatizados em uma arquitetura de microserviços de alta disponibilidade.",
-    "image": "https://placeholder.com/800x450",
+    "image": "https://image.thum.io/get/width/800/https://www.btp.com.br/",
     "technologies": ["Angular", ".NET Framework", "RabbitMQ", "Microservices", "Docker", "Bootstrap"],
-    "projectLink": "https://www.brasiltp.com.br/"
+    "projectLink": "https://www.btp.com.br/"
   },
   {
     "title": "E-commerce Internacional (VSA Software)",
     "description": "Aplicação de e-commerce de grande escala com foco no mercado internacional. Atuação full stack com Angular no frontend e C#/.NET no backend, implementando novas funcionalidades, otimizações de performance e escalabilidade. Responsável também pela documentação técnica detalhada para a equipe de desenvolvimento e stakeholders.",
-    "image": "https://placeholder.com/800x450",
-    "technologies": ["Angular", "C#", ".NET", "PostgreSQL", "TypeScript"]
+    "image": "https://image.thum.io/get/width/800/https://vsasolutions.com.br/",
+    "technologies": ["Angular", "C#", ".NET", "PostgreSQL", "TypeScript"],
+    "projectLink": "https://vsasolutions.com.br/"
   },
   {
     "title": "Landing Page Promocional (VSA Software)",
     "description": "Landing page promocional desenvolvida em Vue.js para o e-commerce da VSA Software, com foco em aumento de conversão e aquisição de novos usuários. Otimizada para performance e SEO, com design responsivo e carregamento rápido.",
-    "image": "https://placeholder.com/800x450",
-    "technologies": ["Vue.js", "TypeScript", "SEO"]
+    "image": "https://image.thum.io/get/width/800/https://vsasolutions.com.br/",
+    "technologies": ["Vue.js", "TypeScript", "SEO"],
+    "projectLink": "https://vsasolutions.com.br/"
   },
   {
     "title": "Daichi",
@@ -43,7 +45,7 @@
   {
     "title": "Alô Freelas",
     "description": "Plataforma que conecta freelancers a estabelecimentos locais como bares, distribuidoras e prestadores de serviço. Backend robusto em NestJS com Clean Architecture, sistema de cadastro e matching entre profissionais e vagas temporárias, com foco na economia local e na agilidade de contratação.",
-    "image": "https://placeholder.com/800x450",
+    "image": "https://image.thum.io/get/width/800/https://alofreelas.com",
     "technologies": ["NestJS", "TypeScript", "PostgreSQL", "Clean Architecture"],
     "projectLink": "https://alofreelas.com",
     "githubLink": "https://github.com/spanol"
