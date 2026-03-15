@@ -1,61 +1,102 @@
 [
   {
+    "title": "Bet Aki",
+    "description": "Plataforma de apostas esportivas regulamentada com experiência de usuário envolvente e intuitiva. Modernização de um frontend Angular 14 legado para Angular 21 com arquitetura baseada em Signals, reduzindo o bundle de 4 MB para 1,69 MB mantendo o mesmo conjunto de features. Inclui dashboard de gerenciamento de slots, provedores, banners e carrosséis para autonomia do time de marketing.",
+    "image": "https://placeholder.com/800x450",
+    "technologies": ["Angular", "Vue.js", ".NET 6.0", "PostgreSQL"],
+    "projectLink": "https://betaki.bet.br"
+  },
+  {
+    "title": "Bet Aki – Landing Pages",
+    "description": "Landing pages promocionais desenvolvidas em Vue.js para destacar promoções, atrair novos usuários e aumentar a conversão na plataforma Bet Aki. Projeto com foco em performance e SEO, incluindo backend para recebimento de leads.",
+    "image": "https://placeholder.com/800x450",
+    "technologies": ["Vue.js", "SEO", ".NET"],
+    "projectLink": "https://betaki.bet.br"
+  },
+  {
+    "title": "Brasil Terminal Portuário",
+    "description": "Sistema de sustentação para um dos maiores terminais portuários do Brasil. Atuação em correção de breaking bugs, manutenção de código legado (.NET < 4.5), análise de filas de eventos com RabbitMQ, e implementação de testes automatizados em uma arquitetura de microserviços de alto nível.",
+    "image": "https://placeholder.com/800x450",
+    "technologies": ["Angular", "Bootstrap", ".NET", "RabbitMQ", "Microservices"],
+    "projectLink": "https://www.brasiltp.com.br/"
+  },
+  {
     "title": "Daichi",
-    "description": "Uma rede social voltada para a comunidade geek, com foco em conectar pessoas com interesses em comum. Desenvolvida utilizando .NET 6.0 no backend, Angular no frontend e PostgreSQL como banco de dados.",
+    "description": "Rede social voltada para a comunidade geek, com foco em conectar pessoas com interesses em comum. Desenvolvido 100% do zero: banco de dados PostgreSQL, backend em .NET 6.0 com Entity Framework e Clean Architecture, e frontend dinâmico e responsivo com Angular e Bootstrap.",
     "image": "/images/projects/daichi.png",
-    "technologies": [".NET 6.0", "Angular", "PostgreSQL"],
+    "technologies": [".NET 6.0", "Angular", "PostgreSQL", "Clean Architecture"],
     "projectLink": "https://daichi.com",
     "githubLink": "https://github.com/spanol"
   },
   {
+    "title": "E-commerce Internacional (VSA Software)",
+    "description": "Aplicativo de e-commerce de grande escala com foco internacional, desenvolvido em ciclo full stack completo: Angular no frontend e C#.NET no backend. Implementação de novas funcionalidades, otimização de performance e escalabilidade, além de documentação técnica detalhada para equipe e stakeholders.",
+    "image": "https://placeholder.com/800x450",
+    "technologies": ["Angular", "C#", ".NET", "PostgreSQL"]
+  },
+  {
+    "title": "Landing Page Promocional (VSA Software)",
+    "description": "Landing page promocional desenvolvida em Vue.js durante a atuação na VSA Software para destacar promoções do e-commerce, atrair novos usuários e aumentar a conversão, com foco em performance e SEO.",
+    "image": "https://placeholder.com/800x450",
+    "technologies": ["Vue.js", "SEO"]
+  },
+  {
+    "title": "Alô Freelas",
+    "description": "Plataforma que facilita a conexão entre freelancers e estabelecimentos locais, focada no mercado de bares, distribuidoras e outros serviços locais. Desenvolvida com NestJS no backend e Clean Architecture.",
+    "image": "https://placeholder.com/800x450",
+    "technologies": ["NestJS", "PostgreSQL", "Clean Architecture"],
+    "projectLink": "https://alofreelas.com",
+    "githubLink": "https://github.com/spanol"
+  },
+  {
     "title": "Lollapalooza Lineup Generator",
-    "description": "Uma aplicação que gera um lineup aleatório para o festival Lollapalooza, se conectando com a API do spotify para carregar os artista mais ouvidos pelo usuário. Desenvolvida com Vue 3 e Tailwind CSS.",
+    "description": "Aplicação que gera um lineup aleatório para o festival Lollapalooza, conectando-se com a API do Spotify para carregar os artistas mais ouvidos pelo usuário. Desenvolvida com Vue 3 e Bootstrap.",
     "image": "/images/projects/mylolla-guide.webp",
-    "technologies": ["Vue 3", "Bootstrap"],
+    "technologies": ["Vue 3", "Bootstrap", "Spotify API"],
     "projectLink": "https://mylollagenerator.vercel.app/",
     "githubLink": "https://github.com/spanol/mylollagenerator"
   },
   {
     "title": "LunarDev",
-    "description": "Na LunarDev, estamos comprometidos em impulsionar sua visão para o futuro. Nossa equipe talentosa de desenvolvedores lunares está aqui para transformar suas ideias em soluções de software inovadoras e de alto desempenho. Seja qual for o desafio, estamos prontos para enfrentá-lo com nossa expertise em desenvolvimento personalizado, integração de sistemas e tecnologias de ponta.",
+    "description": "Site institucional da LunarDev, agência de desenvolvimento de software focada em soluções inovadoras e de alto desempenho. Desenvolvida com React e Bootstrap.",
     "image": "/images/projects/lunardev-guide.webp",
     "technologies": ["React", "Bootstrap"],
     "projectLink": "https://lunardev.com.br/"
   },
   {
-    "title": "Weather App",
-    "description": "Uma das primeiras aplicações que fiz. Ela mostra a previsão do tempo em tempo real, utilizando a API OpenWeatherMap. Desenvolvida com React e Tailwind CSS.",
-    "image": "/images/projects/weather-guide.webp",
-    "technologies": ["React", "Bootstrap"],
-    "projectLink": "https://weather-app-git-main-spanols-projects.vercel.app/",
-    "githubLink": "https://github.com/spanol/weatherApp"
-  },
-  {
     "title": "Zast ERP",
-    "description": "lorem dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "description": "Sistema ERP desenvolvido para a plataforma Zast, oferecendo gestão integrada de processos empresariais com interface moderna e responsiva.",
     "image": "https://www.zast.com.br/assets/images/company_banner3.png",
-    "technologies": ["Angular", "Bootstrap", ". NET 6.0"],
+    "technologies": ["Angular", "Bootstrap", ".NET 6.0"],
     "projectLink": "https://www.zast.com.br/"
   },
   {
     "title": "Zast Estabelecimento",
-    "description": "lorem dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "description": "Módulo da plataforma Zast voltado para a gestão de estabelecimentos, com funcionalidades específicas para o gerenciamento de operações e configurações do negócio.",
     "image": "https://www.zast.com.br/assets/images/company_banner4.png",
-    "technologies": ["Angular", "Bootstrap", ". NET 6.0"],
+    "technologies": ["Angular", "Bootstrap", ".NET 6.0"],
     "projectLink": "https://www.zast.com.br/"
   },
   {
     "title": "Zast Cliente",
-    "description": "lorem dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "description": "Interface da plataforma Zast voltada para o cliente final, proporcionando uma experiência de navegação intuitiva e acesso simplificado aos serviços disponíveis.",
     "image": "https://www.zast.com.br/assets/images/company_banner1.png",
-    "technologies": ["Angular", "Bootstrap", ". NET 6.0"],
+    "technologies": ["Angular", "Bootstrap", ".NET 6.0"],
     "projectLink": "https://www.zast.com.br/"
   },
   {
     "title": "Zast Festival Delivery",
-    "description": "lorem dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "description": "Solução de delivery integrada à plataforma Zast, desenvolvida para contextos de festival e eventos, com foco em agilidade e experiência do usuário.",
     "image": "https://www.zast.com.br/assets/images/company_banner2.png",
-    "technologies": ["Angular", "Bootstrap", ". NET 6.0"],
+    "technologies": ["Angular", "Bootstrap", ".NET 6.0"],
     "projectLink": "https://www.zast.com.br/"
+  },
+  {
+    "title": "Weather App",
+    "description": "Uma das primeiras aplicações desenvolvidas. Exibe a previsão do tempo em tempo real utilizando a API OpenWeatherMap. Desenvolvida com React e Bootstrap.",
+    "image": "/images/projects/weather-guide.webp",
+    "technologies": ["React", "Bootstrap", "OpenWeatherMap API"],
+    "projectLink": "https://weather-app-git-main-spanols-projects.vercel.app/",
+    "githubLink": "https://github.com/spanol/weatherApp"
   }
 ]
