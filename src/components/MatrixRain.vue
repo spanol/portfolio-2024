@@ -15,7 +15,7 @@ const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const nums = "0123456789";
 const chars = katakana + latin + nums;
 
-const fontSize = 14;
+const fontSize = 10;
 
 interface Column {
   y: number;

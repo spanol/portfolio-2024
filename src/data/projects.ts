@@ -2,6 +2,14 @@ import { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    title: "Bet Aki",
+    description:
+      "Bet Aki é uma plataforma de apostas esportivas regulamentada que oferece uma experiência de usuário envolvente e intuitiva. Desenvolvida com Angular no frontend, .NET 6.0 no backend, a plataforma é projetada para fornecer uma interface amigável e recursos avançados para os entusiastas de apostas esportivas.",
+    image: require("@/assets/projects/betaki.png"),
+    technologies: ["Angular", ".NET 6.0", "PostgreSQL"],
+    projectLink: "https://betaki.bet.br",
+  },
+  {
     title: "Daichi",
     description:
       "Uma rede social voltada para a comunidade geek, com foco em conectar pessoas com interesses em comum. Desenvolvida utilizando .NET 6.0 no backend, Angular no frontend e PostgreSQL como banco de dados.",
@@ -10,15 +18,15 @@ export const projects: Project[] = [
     projectLink: "https://daichi.com",
     githubLink: "https://github.com/spanol",
   },
-  // {
-  //   title: "Alô Freelas",
-  //   description:
-  //     "Uma plataforma que facilita a conexão entre freelancers e estabelecimentos locais, focada no mercado de bares, distribuidoras e outros serviços. Utiliza NestJS no backend e arquitetura limpa.",
-  //   image: require('@/assets/menino-feliz.webp'),
-  //   technologies: ["NestJS", "PostgreSQL", "Clean Architecture"],
-  //   projectLink: "https://alofreelas.com",
-  //   githubLink: "https://github.com/spanol",
-  // },
+  {
+    title: "Alô Freelas",
+    description:
+      "Uma plataforma que facilita a conexão entre freelancers e estabelecimentos locais, focada no mercado de bares, distribuidoras e outros serviços locais. Utiliza NestJS no backend e arquitetura limpa.",
+    image: require("@/assets/menino-feliz.webp"),
+    technologies: ["NestJS", "PostgreSQL", "Clean Architecture"],
+    projectLink: "https://alofreelas.com",
+    githubLink: "https://github.com/spanol",
+  },
   {
     title: "Lollapalooza Lineup Generator",
     description:
@@ -36,15 +44,7 @@ export const projects: Project[] = [
     technologies: ["React", "Bootstrap"],
     projectLink: "https://lunardev.com.br/",
   },
-  {
-    title: "Weather App",
-    description:
-      "Uma das primeiras aplicações que fiz. Ela mostra a previsão do tempo em tempo real, utilizando a API OpenWeatherMap. Desenvolvida com React e Tailwind CSS.",
-    image: require("@/assets/videos/weather-guide.webp"),
-    technologies: ["React", "Bootstrap"],
-    projectLink: "https://weather-app-git-main-spanols-projects.vercel.app/",
-    githubLink: "https://github.com/spanol/weatherApp",
-  },
+
   {
     title: "Zast ERP",
     description:
@@ -76,6 +76,15 @@ export const projects: Project[] = [
     image: "https://www.zast.com.br/assets/images/company_banner2.png",
     technologies: ["Angular", "Bootstrap", ". NET 6.0"],
     projectLink: "https://www.zast.com.br/",
+  },
+  {
+    title: "Weather App",
+    description:
+      "Uma das primeiras aplicações que fiz. Ela mostra a previsão do tempo em tempo real, utilizando a API OpenWeatherMap. Desenvolvida com React e Tailwind CSS.",
+    image: require("@/assets/videos/weather-guide.webp"),
+    technologies: ["React", "Bootstrap"],
+    projectLink: "https://weather-app-git-main-spanols-projects.vercel.app/",
+    githubLink: "https://github.com/spanol/weatherApp",
   },
   // {
   //   title: "Case Stepform",
