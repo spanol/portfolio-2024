@@ -1,13 +1,10 @@
 <template>
   <MatrixRain v-if="isMatrix" />
   <HeaderComponent />
-  <div
-    class="app flex items-center min-h-screen p-16 xl:px-32 mt-8 lg:mt-12 xl:mt-10 2xl:mt-0"
-    :class="{
-      'flex flex-col w-full h-full': true,
-      'transition-all duration-100': true,
-    }"
-  >
+  <div class="app flex items-center min-h-screen p-8 xl:px-32 mt-14 lg:mt-12 xl:mt-10 2xl:mt-4" :class="{
+    'flex flex-col w-full h-full': true,
+    'transition-all duration-100': true,
+  }">
     <router-view v-slot="{ Component, route }">
       <Transition :name="transitionName" mode="out-in">
         <component :is="Component" :key="route.fullPath" />
