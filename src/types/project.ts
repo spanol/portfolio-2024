@@ -3,6 +3,7 @@ export interface Project {
   description: string;
   image: string;
   technologies: string[];
+  category: "professional" | "personal";
   projectLink?: string;
   githubLink?: string;
 }

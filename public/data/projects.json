@@ -4,6 +4,7 @@
     "description": "Plataforma de apostas esportivas regulamentada com experiência de usuário envolvente e intuitiva. Liderou a modernização do frontend de Angular 14 para Angular 21 com arquitetura baseada em Signals, reduzindo o bundle de 4 MB para 1,69 MB sem perda de funcionalidades. Desenvolvimento de dashboard administrativo para gerenciamento de slots, provedores, banners e carrosséis, dando autonomia total ao time de marketing.",
     "image": "https://image.thum.io/get/width/800/https://betaki.bet",
     "technologies": ["Angular", "TypeScript", "Signals", "SCSS", ".NET 6.0", "PostgreSQL"],
+    "category": "professional",
     "projectLink": "https://betaki.bet"
   },
   {
@@ -11,6 +12,7 @@
     "description": "Landing pages promocionais de alta conversão desenvolvidas em Vue.js para a plataforma Bet Aki. Foco em performance, SEO e captação de leads, com backend em .NET para processamento de formulários e integração com o sistema principal da plataforma.",
     "image": "https://image.thum.io/get/width/800/https://betaki.bet",
     "technologies": ["Vue.js", "TypeScript", "SEO", ".NET"],
+    "category": "professional",
     "projectLink": "https://betaki.bet"
   },
   {
@@ -18,6 +20,7 @@
     "description": "Sistema de sustentação para um dos maiores terminais portuários do Brasil. Atuação em correção de bugs críticos em produção, manutenção de código legado (.NET Framework < 4.5), monitoramento e análise de filas de eventos com RabbitMQ, e implementação de testes automatizados em uma arquitetura de microserviços de alta disponibilidade.",
     "image": "https://image.thum.io/get/width/800/https://www.btp.com.br/",
     "technologies": ["Angular", ".NET Framework", "RabbitMQ", "Microservices", "Docker", "Bootstrap"],
+    "category": "professional",
     "projectLink": "https://www.btp.com.br/"
   },
   {
@@ -25,6 +28,7 @@
     "description": "Aplicação de e-commerce de grande escala com foco no mercado internacional. Atuação full stack com Angular no frontend e C#/.NET no backend, implementando novas funcionalidades, otimizações de performance e escalabilidade. Responsável também pela documentação técnica detalhada para a equipe de desenvolvimento e stakeholders.",
     "image": "https://image.thum.io/get/width/800/https://vsasolutions.com.br/",
     "technologies": ["Angular", "C#", ".NET", "PostgreSQL", "TypeScript"],
+    "category": "professional",
     "projectLink": "https://vsasolutions.com.br/"
   },
   {
@@ -32,6 +36,7 @@
     "description": "Landing page promocional desenvolvida em Vue.js para o e-commerce da VSA Software, com foco em aumento de conversão e aquisição de novos usuários. Otimizada para performance e SEO, com design responsivo e carregamento rápido.",
     "image": "https://image.thum.io/get/width/800/https://vsasolutions.com.br/",
     "technologies": ["Vue.js", "TypeScript", "SEO"],
+    "category": "professional",
     "projectLink": "https://vsasolutions.com.br/"
   },
   {
@@ -39,6 +44,7 @@
     "description": "Rede social voltada para a comunidade geek, desenvolvida 100% do zero como projeto autoral. Backend em .NET 6.0 com Entity Framework e Clean Architecture, banco de dados PostgreSQL modelado para suportar perfis, posts e interações entre usuários, e frontend dinâmico e responsivo com Angular e Bootstrap.",
     "image": "/images/projects/daichi.png",
     "technologies": [".NET 6.0", "Entity Framework", "Angular", "PostgreSQL", "Clean Architecture"],
+    "category": "personal",
     "projectLink": "https://daichi.com",
     "githubLink": "https://github.com/spanol"
   },
@@ -47,6 +53,7 @@
     "description": "Plataforma que conecta freelancers a estabelecimentos locais como bares, distribuidoras e prestadores de serviço. Backend robusto em NestJS com Clean Architecture, sistema de cadastro e matching entre profissionais e vagas temporárias, com foco na economia local e na agilidade de contratação.",
     "image": "https://image.thum.io/get/width/800/https://alofreelas.com",
     "technologies": ["NestJS", "TypeScript", "PostgreSQL", "Clean Architecture"],
+    "category": "personal",
     "projectLink": "https://alofreelas.com",
     "githubLink": "https://github.com/spanol"
   },
@@ -55,6 +62,7 @@
     "description": "Sistema ERP completo da plataforma Zast, oferecendo gestão integrada de processos empresariais: controle financeiro, gerenciamento de estoque, relatórios e dashboards analíticos. Interface moderna e responsiva construída com Angular e Bootstrap.",
     "image": "https://www.zast.com.br/assets/images/company_banner3.png",
     "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
+    "category": "professional",
     "projectLink": "https://www.zast.com.br/"
   },
   {
@@ -62,6 +70,7 @@
     "description": "Módulo da plataforma Zast voltado para gestão de estabelecimentos: cadastro de produtos, controle de cardápio, configuração de horários de funcionamento, gestão de pedidos e acompanhamento de métricas de venda em tempo real.",
     "image": "https://www.zast.com.br/assets/images/company_banner4.png",
     "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
+    "category": "professional",
     "projectLink": "https://www.zast.com.br/"
   },
   {
@@ -69,6 +78,7 @@
     "description": "Interface da plataforma Zast voltada para o cliente final, com navegação intuitiva para busca de estabelecimentos, visualização de cardápios, realização de pedidos e acompanhamento de entregas em tempo real.",
     "image": "https://www.zast.com.br/assets/images/company_banner1.png",
     "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
+    "category": "professional",
     "projectLink": "https://www.zast.com.br/"
   },
   {
@@ -76,6 +86,7 @@
     "description": "Solução de delivery sob demanda integrada à plataforma Zast, projetada para atender eventos e festivais de grande porte. Fluxo otimizado para alto volume de pedidos simultâneos, com foco em agilidade e experiência do usuário em ambientes de alta demanda.",
     "image": "https://www.zast.com.br/assets/images/company_banner2.png",
     "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
+    "category": "professional",
     "projectLink": "https://www.zast.com.br/"
   },
   {
@@ -83,6 +94,7 @@
     "description": "Aplicação interativa que gera lineups personalizados para o Lollapalooza a partir dos artistas mais ouvidos do usuário no Spotify. Integração com a API do Spotify via OAuth para leitura de dados de listening history, com geração visual de cartazes no estilo do festival.",
     "image": "/images/projects/mylolla-guide.webp",
     "technologies": ["Vue 3", "Spotify API", "Bootstrap", "OAuth"],
+    "category": "personal",
     "projectLink": "https://mylollagenerator.vercel.app/",
     "githubLink": "https://github.com/spanol/mylollagenerator"
   },
@@ -91,6 +103,7 @@
     "description": "Site institucional da LunarDev, agência de desenvolvimento de software fundada com foco em soluções digitais inovadoras e de alto desempenho. Desenvolvido com React e Bootstrap, com design moderno e responsivo para apresentação de serviços e portfólio da agência.",
     "image": "/images/projects/lunardev-guide.webp",
     "technologies": ["React", "Bootstrap", "JavaScript"],
+    "category": "personal",
     "projectLink": "https://lunardev.com.br/"
   },
   {
@@ -98,6 +111,7 @@
     "description": "Um dos primeiros projetos desenvolvidos na carreira. Aplicação de previsão do tempo em tempo real consumindo a API OpenWeatherMap, com busca por cidade, exibição de temperatura, umidade e condições climáticas. Desenvolvida com React e Bootstrap.",
     "image": "/images/projects/weather-guide.webp",
     "technologies": ["React", "Bootstrap", "OpenWeatherMap API"],
+    "category": "personal",
     "projectLink": "https://weather-app-git-main-spanols-projects.vercel.app/",
     "githubLink": "https://github.com/spanol/weatherApp"
   }
