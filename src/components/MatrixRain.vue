@@ -7,6 +7,9 @@ import { ref, onMounted, onUnmounted } from "vue";
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 let animationId: number | null = null;
+let motionQuery: MediaQueryList | null = null;
+let resizeListener: (() => void) | null = null;
+let motionListener: (() => void) | null = null;
 
 // Character set: Katakana + Latin + Numbers
 const katakana =
@@ -15,7 +18,7 @@ const latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const nums = "0123456789";
 const chars = katakana + latin + nums;
 
-const fontSize = 14;
+const fontSize = 10;
 
 interface Column {
   y: number;
@@ -59,6 +62,7 @@ onMounted(() => {
   }
 
   resize();
+  resizeListener = resize;
   window.addEventListener("resize", resize);
 
   let lastTime = 0;
@@ -135,12 +139,24 @@ onMounted(() => {
     animationId = requestAnimationFrame(draw);
   }
 
-  animationId = requestAnimationFrame(draw);
+  motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  motionListener = () => {
+    if (motionQuery?.matches) {
+      if (animationId !== null) cancelAnimationFrame(animationId);
+      animationId = null;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    } else if (animationId === null) {
+      animationId = requestAnimationFrame(draw);
+    }
+  };
+  motionQuery.addEventListener("change", motionListener);
+  if (!motionQuery.matches) animationId = requestAnimationFrame(draw);
+});
 
-  onUnmounted(() => {
-    window.removeEventListener("resize", resize);
-    if (animationId !== null) cancelAnimationFrame(animationId);
-  });
+onUnmounted(() => {
+  if (resizeListener) window.removeEventListener("resize", resizeListener);
+  if (motionListener) motionQuery?.removeEventListener("change", motionListener);
+  if (animationId !== null) cancelAnimationFrame(animationId);
 });
 </script>
 

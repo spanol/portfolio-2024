@@ -1,40 +1,11 @@
-import { ref, watch, onUnmounted } from "vue";
+import { computed } from "vue";
 import { useTheme } from "./useTheme";
 
-const hue = ref(0);
-const milliseconds = 110;
-
+// Three.js shaders still need a hue value; the interface accent itself lives
+// in the semantic CSS tokens so it remains steady throughout the session.
 export function usePrimaryColor() {
   const { isMatrix } = useTheme();
+  const hue = computed(() => (isMatrix.value ? 120 : 80));
 
-  watch(
-    hue,
-    (newHue) => {
-      document.documentElement.style.setProperty(
-        "--color-primary",
-        `${newHue} 70% 40%`
-      );
-    },
-    { immediate: true }
-  );
-
-  function animateHue() {
-    const intervalId = setInterval(() => {
-      if (isMatrix.value) {
-        // Lock to green hue (120°) in matrix mode
-        hue.value = 120;
-      } else {
-        hue.value = (hue.value + 1) % 360;
-      }
-    }, milliseconds);
-
-    onUnmounted(() => {
-      clearInterval(intervalId);
-    });
-  }
-
-  return {
-    hue,
-    animateHue,
-  };
+  return { hue };
 }

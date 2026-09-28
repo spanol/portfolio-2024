@@ -26,6 +26,7 @@ import {
   ViFileTypeTypescript,
   SiDotnet,
   BiTerminalFill,
+  IoClose,
 } from "oh-vue-icons/icons";
 
 addIcons(
@@ -49,7 +50,8 @@ addIcons(
   BiMoonFill,
   BiSunFill,
   BiTerminalFill,
-  PrMapMarker
+  PrMapMarker,
+  IoClose
 );
 
 const app = createApp(App);

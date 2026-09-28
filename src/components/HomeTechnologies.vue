@@ -1,26 +1,57 @@
 <template>
-    <div
-        class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-16 lg:mt-20 shadow-lg border dark:border-dark-border dark:bg-dark-surface rounded-xl p-5">
-        <p class="font-medium border-b-2 border-light text-primary dark:border-dark-border lg:border-0 lg:text-nowrap">
-            Principais tecnologias
-        </p>
-        <div class="vertical-divisor hidden lg:block dark:text-dark-text">
-            |
-        </div>
-
-        <div class="flex flex-wrap lg:flex-shrink justify-center gap-x-5">
-            <div v-for="(icon, index) in techStackIcons" :key="index" class="flex hover:-translate-y-4 cursor-pointer">
-                <v-icon :name="icon.icon" scale="3" class="dark:text-dark-text" />
-            </div>
-        </div>
-    </div>
+  <section class="technology-strip" aria-label="Principais tecnologias">
+    <span class="technology-strip__label">FERRAMENTAS /</span>
+    <ul class="technology-list">
+      <li v-for="technology in techStackIcons" :key="technology.name">
+        {{ technology.name }}
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script lang="ts" setup>
 defineProps<{
-    techStackIcons: Array<{
-        name: string;
-        icon: string;
-    }>;
+  techStackIcons: Array<{
+    name: string;
+    icon: string;
+  }>;
 }>();
 </script>
+
+<style scoped>
+.technology-strip {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 1rem;
+  border-top: 1px solid hsl(var(--color-line));
+  padding-top: 0.75rem;
+}
+.technology-strip__label {
+  flex: 0 0 auto;
+  color: hsl(var(--color-primary-ink));
+  font-size: 0.57rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+.technology-list {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.95rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.technology-list li {
+  color: hsl(var(--color-muted));
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+@media (max-width: 640px) {
+  .technology-strip { flex-direction: column; gap: 0.55rem; }
+}
+</style>

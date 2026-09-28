@@ -1,60 +1,42 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        primary: 'hsl(var(--color-primary) / <alpha-value>)',
-        secondary: {
-          light: "#E57373",
-          coral: "#FF8A80",
-        },
-        neutrals: {
-          darkGray: "#212121",
-          mediumGray: "#757575",
-          lightGray: "#E0E0E0",
-          white: "#FFFFFF",
-        },
-        alert: {
-          red: "#F44336",
-          success: "#388E3C",
-        },
-        light: "#767676",
-        dark: {
-          background: "#1a1a1a",
-          surface: "#2d2d2d",
-          text: "#e0e0e0",
-          border: "#404040",
-        },
-        matrix: {
-          background: "#000000",
-          surface: "#0a0a0a",
-          text: "#00FF41",
-          border: "#003B00",
-          glow: "#00FF41",
-          dim: "#005500",
-        }
+        primary: "hsl(var(--color-primary) / <alpha-value>)",
+        canvas: "hsl(var(--color-canvas) / <alpha-value>)",
+        surface: "hsl(var(--color-surface) / <alpha-value>)",
+        "surface-raised": "hsl(var(--color-surface-raised) / <alpha-value>)",
+        ink: "hsl(var(--color-ink) / <alpha-value>)",
+        muted: "hsl(var(--color-muted) / <alpha-value>)",
+        line: "hsl(var(--color-line) / <alpha-value>)",
       },
       fontFamily: {
-        title: ["Montserrat", "sans-serif"],
-        body: ["Open Sans", "sans-serif"],
-        sans: ["Poppins", "sans-serif"],
+        sans: ["var(--font-body)"],
+        display: ["var(--font-display)"],
       },
       fontSize: {
-        h1: "32px",
-        h2: "28px",
-        h3: "24px",
-        body: "16px",
-        small: "14px",
+        display: ["clamp(2.75rem, 6.5vw, 5.6rem)", { lineHeight: "0.98", letterSpacing: "-0.055em" }],
       },
       spacing: {
-        small: "8px",
-        medium: "16px",
-        large: "24px",
+        unit: "var(--space-unit)",
+        page: "var(--space-layout)",
+      },
+      borderRadius: {
+        control: "var(--radius-control)",
+        card: "var(--radius-card)",
+        window: "var(--radius-window)",
+      },
+      transitionDuration: {
+        fast: "var(--motion-fast)",
+        base: "var(--motion-base)",
+        route: "var(--motion-route)",
       },
       boxShadow: {
-        card: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        card: "0 14px 40px -34px hsl(var(--color-ink) / 0.45)",
+        window: "var(--shadow-window)",
       },
     },
   },
