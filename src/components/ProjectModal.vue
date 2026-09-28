@@ -30,6 +30,7 @@
 
           <div class="project-dialog__body">
             <p class="eyebrow">DETALHES DO PROJETO</p>
+            <p v-if="project.status" class="project-dialog__status">{{ project.status }}</p>
             <h2 id="project-modal-title" class="mt-2 font-display text-3xl text-ink sm:text-4xl">
               {{ project.title }}
             </h2>
@@ -45,6 +46,13 @@
             </ul>
 
             <p class="mt-6 leading-relaxed text-muted">{{ project.description }}</p>
+
+            <div v-if="project.highlights?.length" class="project-dialog__highlights">
+              <h3>O que foi construído</h3>
+              <ul>
+                <li v-for="highlight in project.highlights" :key="highlight">{{ highlight }}</li>
+              </ul>
+            </div>
 
             <div class="mt-8 flex flex-wrap gap-3">
               <a
@@ -188,6 +196,29 @@ onUnmounted(() => {
 
 .project-dialog__body {
   padding: clamp(1.25rem, 5cqi, 2.5rem);
+}
+.project-dialog__status {
+  margin: 0.75rem 0 0;
+  color: hsl(var(--color-primary-ink));
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.project-dialog__highlights { margin-top: 1.5rem; }
+.project-dialog__highlights h3 {
+  color: hsl(var(--color-ink));
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+}
+.project-dialog__highlights ul {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  color: hsl(var(--color-muted));
+  line-height: 1.55;
 }
 
 .modal-close {

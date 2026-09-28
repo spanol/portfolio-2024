@@ -15,6 +15,7 @@
         <span>{{ String(index).padStart(2, "0") }}</span>
         <span>{{ categoryLabel }}</span>
       </div>
+      <span v-if="project.status" class="work-card__status">{{ project.status }}</span>
       <h2>{{ project.title }}</h2>
       <p>{{ shortDescription }}</p>
       <div class="work-card__bottom">
@@ -98,6 +99,15 @@ const shortDescription = computed(() => props.project.description.length > 150
   letter-spacing: 0.14em;
 }
 .work-card__meta span:first-child { color: hsl(var(--color-primary-ink)); font-family: var(--font-display); }
+.work-card__status {
+  display: block;
+  margin: 0.8rem 0 -0.35rem;
+  color: hsl(var(--color-primary-ink));
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 .work-card h2 {
   margin: 0.75rem 0 0;
   color: hsl(var(--color-ink));

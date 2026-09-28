@@ -30,7 +30,7 @@
   </div>
 
   <img
-    v-else
+    v-else-if="project.image"
     class="project-cover project-cover__image"
     :class="{ 'project-cover--modal': variant === 'modal' }"
     :src="project.image"
@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<{
 
 const imageFailed = ref(false);
 const showEditorialCover = computed(
-  () => imageFailed.value || props.project.image.toLowerCase().includes("image.thum.io"),
+  () => !props.project.image || imageFailed.value || props.project.image.toLowerCase().includes("image.thum.io"),
 );
 const categoryLabel = computed(() =>
   props.project.category === "professional" ? "PROFISSIONAL" : "AUTORAL",

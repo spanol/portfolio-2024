@@ -1,5 +1,55 @@
 [
   {
+    "title": "SeuTreino.digital",
+    "description": "Plataforma para personal trainers com aplicativo do aluno e painel de gestão. Uma base compartilhada permite publicar instâncias com identidade e projeto Firebase próprios; alunos acompanham treinos e progresso, enquanto o personal organiza o catálogo e o acesso. A experiência combina web e Android, com autenticação e regras de acesso no backend. A entrega de vídeos e parte dos fluxos de mídia ainda estão em evolução.",
+    "technologies": ["Angular", "Ionic", "Capacitor", "Firebase", "TypeScript"],
+    "category": "personal",
+    "status": "Em evolução · 2026",
+    "highlights": [
+      "Arquitetura por cliente com uma base de código compartilhada e domínios próprios para app e painel.",
+      "App do aluno com treinos, perfil e registro de progresso; painel do personal com gestão de treinos e vídeos.",
+      "Autenticação, papéis e regras de dados e mídia com Firebase; versão Android integrada por Capacitor."
+    ],
+    "projectLink": "https://seutreino.digital"
+  },
+  {
+    "title": "Voxtrin Rebuild",
+    "description": "Reconstrução de um assistente de IA para Windows com interface desktop própria e backend independente. O cliente reúne agentes, sessões, chat, janela flutuante, documentos, tradução, transcrição e recursos de voz. Ferramentas MCP, HTTP e e-mail podem ser configuradas com controles de permissão. O produto segue em desenvolvimento: áudio ao vivo e cobrança ainda precisam de validação real.",
+    "technologies": ["Electron", "Node.js", "Python", "MCP", "Stripe"],
+    "category": "personal",
+    "status": "Protótipo funcional · 2026",
+    "highlights": [
+      "Cliente Electron com agentes, chat, conhecimento por documentos, memória e instalador Windows.",
+      "Backend próprio para autenticação, dispositivos, permissões e operações de assinatura.",
+      "Integrações MCP, webhooks e SMTP com confirmação de execução e proteção de segredos."
+    ]
+  },
+  {
+    "title": "Vigia",
+    "description": "Sistema de visão computacional para monitoramento de câmeras em lojas. Captura vídeo por streams RTSP, detecta pessoas e registra eventos e clipes para revisão em um dashboard. A arquitetura separa a captura contínua da interface de consulta e permite integrar os registros a outras rotinas operacionais.",
+    "technologies": ["Python", "YOLOv8", "OpenCV", "FastAPI", "RTSP"],
+    "category": "personal",
+    "status": "Em evolução · 2026",
+    "highlights": [
+      "Pipeline de captura e detecção de pessoas em vídeo de câmeras Intelbras.",
+      "Registro de eventos e clipes por loja, com dashboard e API separados do processo de captura.",
+      "API de consulta de clipes preparada para integração com fluxos de jornada do cliente."
+    ]
+  },
+  {
+    "title": "Corrida Eleitoral",
+    "description": "Experiência web interativa com placar alimentado por pagamentos. A aplicação integra checkout Pix e Mercado Pago, sincroniza eventos confirmados e oferece um painel administrativo protegido. O backend roda em funções da Vercel, com persistência em PostgreSQL e verificação das notificações de pagamento.",
+    "technologies": ["JavaScript", "Vercel Functions", "PostgreSQL", "Mercado Pago", "Pix"],
+    "category": "personal",
+    "status": "Projeto web · 2026",
+    "highlights": [
+      "Fluxos de checkout Pix e Mercado Pago com atualização do placar após confirmação do pagamento.",
+      "Painel administrativo com sessão HTTP-only e registro dos eventos do placar.",
+      "Funções de API e webhook autenticado para conciliar os pagamentos."
+    ],
+    "projectLink": "https://corrida-eleitoral.vercel.app"
+  },
+  {
     "title": "Bet Aki",
     "description": "Plataforma de apostas esportivas regulamentada com experiência de usuário envolvente e intuitiva. Liderou a modernização do frontend de Angular 14 para Angular 21 com arquitetura baseada em Signals, reduzindo o bundle de 4 MB para 1,69 MB sem perda de funcionalidades. Desenvolvimento de dashboard administrativo para gerenciamento de slots, provedores, banners e carrosséis, dando autonomia total ao time de marketing.",
     "image": "https://image.thum.io/get/width/800/https://betaki.bet",
