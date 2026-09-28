@@ -1,11 +1,17 @@
 <template>
   <header class="site-header" @keydown.esc="closeMenu">
     <div class="site-header__inner">
-      <RouterLink class="site-brand" to="/" aria-label="Vinicius Spanol — início" @click="closeMenu">
-        <span class="site-brand__mark" aria-hidden="true">VS</span>
-        <span class="site-brand__name">
-          <strong>VINICIUS SPANOL</strong>
-          <small>SOFTWARE ENGINEER / BR</small>
+      <RouterLink class="site-brand" to="/" aria-label="spanol.dev — início" @click="closeMenu">
+        <span class="site-brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" focusable="false">
+            <g transform="translate(0 -3)">
+              <path class="site-brand__glyph" d="M56 6H24C12 6 5 13 5 24s7 18 20 18h9c6 0 9 2 9 7s-3 6-10 6H6v9h28c13 0 21-7 21-19s-8-19-21-19h-9c-5 0-8-2-8-6s3-7 8-7h31z" />
+              <path class="site-brand__fold" d="M44 7h11v11z" />
+            </g>
+          </svg>
+        </span>
+        <span class="site-brand__name" aria-hidden="true">
+          <strong>spanol<span>.</span>dev</strong>
         </span>
       </RouterLink>
 
@@ -115,7 +121,7 @@ watch(() => route.fullPath, closeMenu);
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.625rem;
 }
 
 .site-brand__mark {
@@ -124,30 +130,36 @@ watch(() => route.fullPath, closeMenu);
   height: 2.55rem;
   place-items: center;
   border: 1px solid hsl(var(--color-line));
-  color: hsl(var(--color-primary-ink));
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 900;
-  letter-spacing: -0.12em;
+  padding: 0.16rem;
 }
 
-.site-brand__name {
-  display: grid;
-  gap: 0.25rem;
+.site-brand__mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
+
+.site-brand__glyph { fill: hsl(var(--color-ink)); }
+.site-brand__fold { fill: hsl(var(--color-primary)); }
 
 .site-brand__name strong {
   color: hsl(var(--color-ink));
-  font-size: 0.7rem;
-  font-weight: 850;
-  letter-spacing: 0.13em;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
 }
 
-.site-brand__name small {
-  color: hsl(var(--color-muted));
-  font-size: 0.52rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+.site-brand__name strong > span {
+  display: inline-block;
+  margin-inline: 0.04em;
+  color: hsl(var(--color-primary-ink));
+  transform: translateY(-0.02em);
+}
+
+.site-brand__name {
+  display: block;
 }
 
 .primary-nav {
@@ -324,13 +336,7 @@ watch(() => route.fullPath, closeMenu);
     height: 2.25rem;
   }
 
-  .site-brand__name strong {
-    font-size: 0.6rem;
-  }
-
-  .site-brand__name small {
-    font-size: 0.45rem;
-  }
+  .site-brand__name strong { font-size: 1rem; }
 
   .header-actions {
     gap: 0.35rem;

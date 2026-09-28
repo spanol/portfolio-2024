@@ -1,6 +1,7 @@
 import { ref, computed } from "vue";
 
 type Theme = "light" | "dark" | "matrix";
+const faviconVersion = "20260928";
 
 const theme = ref<Theme>("dark");
 
@@ -15,14 +16,14 @@ function applyTheme(t: Theme) {
     document.documentElement.classList.add("dark");
   }
 
-  const favicon = document.querySelector("link[rel*='icon']") as HTMLLinkElement;
+  const favicon = document.getElementById("site-favicon") as HTMLLinkElement | null;
   if (favicon) {
     const faviconMap: Record<Theme, string> = {
       light: "/favicon-light.svg",
       dark: "/favicon-dark.svg",
       matrix: "/favicon-matrix.svg",
     };
-    favicon.href = faviconMap[t];
+    favicon.href = `${faviconMap[t]}?v=${faviconVersion}`;
   }
 }
 
