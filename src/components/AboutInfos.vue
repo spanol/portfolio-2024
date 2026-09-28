@@ -1,36 +1,35 @@
 <template>
-    <h1 class="font-bold text-3xl text-center mt-8 lg:mt-0">
-        Olá! Eu sou Vinicius Spanol ╰(*°▽°*)╯
+  <div class="about-copy">
+    <p class="eyebrow">UM POUCO SOBRE MIM</p>
+    <h1 id="about-heading" class="section-title mt-3">
+      Olá, eu sou<br class="hidden sm:block" /> Vinicius Spanol.
     </h1>
 
-    <div class="text-xl text-light dark:text-dark-text mt-3">
-        <span>
-            Meu nome é Vinicius, sou desenvolvedor fullstack apaixonado por
-            criar aplicações limpas, seguras e inovadoras. Tenho experiência
-            profissional com Angular e .NET Framework, e me destaco na
-            utilização de bibliotecas de estilização como Tailwind e Bootstrap
-            para entregar interfaces modernas e funcionais.
-        </span>
-
-        <br />
-        <br />
-
-        <span>
-            No backend, já trabalhei profissionalmente com C# .NET e NestJS, e
-            desenvolvi pequenos projetos utilizando Node.js (Express) e Flask.
-            Também possuo experiência com bancos de dados NoSQL, como MongoDB, e
-            SQL, com Oracle.
-        </span>
-        <br />
-        <br />
-
-        <span>
-            Ao longo da minha carreira, explorei também o ecossistema de
-            frameworks como React e Vue, além de consolidar minha experiência
-            com Angular. No campo dos bancos de dados, já trabalhei com soluções
-            NoSQL, como MongoDB, e SQL, com Oracle.
-        </span>
+    <div class="mt-6 space-y-4 text-[0.96rem] leading-relaxed text-muted sm:text-base">
+      <p>
+        Sou desenvolvedor fullstack e gosto de criar aplicações limpas, seguras e
+        funcionais. Tenho experiência profissional com Angular e .NET Framework
+        e uso ferramentas como Tailwind e Bootstrap na construção de interfaces.
+      </p>
+      <p>
+        No backend, já trabalhei com C# .NET e NestJS, além de projetos com
+        Node.js, Express e Flask. Também tenho experiência com bancos de dados
+        MongoDB e Oracle.
+      </p>
+      <p>
+        Explorei os ecossistemas de React e Vue e sigo aprofundando minha
+        experiência com Angular.
+      </p>
     </div>
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<style scoped>
+.about-copy {
+  max-width: 42rem;
+}
+
+.section-title {
+  font-size: clamp(2.1rem, 5cqi, 3.25rem);
+}
+</style>

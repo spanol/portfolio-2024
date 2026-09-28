@@ -1,68 +1,224 @@
 <template>
   <Teleport to="body">
     <Transition name="modal-fade">
-      <div v-if="project" class="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm" @click.self="$emit('close')" />
-
-        <div
-          class="relative bg-white dark:bg-dark-surface rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto z-10">
+      <div
+        v-if="project"
+        class="modal-backdrop"
+        @click.self="closeModal"
+        @keydown.esc.stop.prevent="closeModal"
+      >
+        <section
+          ref="dialogRef"
+          class="project-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
+          tabindex="-1"
+          @keydown.tab="trapFocus"
+        >
           <button
-            class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors"
-            @click="$emit('close')">
-            <v-icon name="io-close" scale="1.5" />
+            ref="closeButtonRef"
+            class="modal-close"
+            type="button"
+            aria-label="Fechar detalhes do projeto"
+            @click="closeModal"
+          >
+            <v-icon name="io-close" scale="1.4" aria-hidden="true" />
           </button>
 
-          <img :src="project.image" :alt="project.title" class="w-full h-64 object-cover rounded-t-3xl" />
+          <ProjectCover :project="project" variant="modal" />
 
-          <div class="p-6 sm:p-8">
-            <h2 class="font-bold text-2xl sm:text-3xl text-black dark:text-white">
+          <div class="project-dialog__body">
+            <p class="eyebrow">DETALHES DO PROJETO</p>
+            <h2 id="project-modal-title" class="mt-2 font-display text-3xl text-ink sm:text-4xl">
               {{ project.title }}
             </h2>
 
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span v-for="tech in project.technologies" :key="tech"
-                class="px-3 py-1 text-xs font-semibold rounded-full bg-black/10 dark:bg-white/10 text-black dark:text-white">
-                {{ tech }}
-              </span>
-            </div>
+            <ul class="mt-5 flex flex-wrap gap-2" aria-label="Tecnologias utilizadas">
+              <li
+                v-for="technology in project.technologies"
+                :key="technology"
+                class="technology-tag"
+              >
+                {{ technology }}
+              </li>
+            </ul>
 
-            <p class="text-black/70 dark:text-white/80 mt-6 leading-relaxed">
-              {{ project.description }}
-            </p>
+            <p class="mt-6 leading-relaxed text-muted">{{ project.description }}</p>
 
-            <div class="flex gap-3 mt-8">
-              <a v-if="project.projectLink" :href="project.projectLink" target="_blank"
-                class="flex items-center gap-2 px-5 py-2.5 font-semibold rounded-xl bg-black dark:bg-white text-white dark:text-black hover:opacity-80 transition-opacity">
-                Ver Projeto
-                <v-icon name="bi-link-45deg" scale="1.3" />
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                v-if="project.projectLink"
+                class="button-primary"
+                :href="project.projectLink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver projeto
+                <v-icon name="bi-link-45deg" scale="1.1" aria-hidden="true" />
               </a>
-              <a v-if="project.githubLink" :href="project.githubLink" target="_blank"
-                class="flex items-center gap-2 px-5 py-2.5 font-semibold rounded-xl border-2 border-black dark:border-white text-black dark:text-white hover:opacity-70 transition-opacity">
+              <a
+                v-if="project.githubLink"
+                class="button-secondary"
+                :href="project.githubLink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Código
-                <v-icon name="bi-github" scale="1.3" />
+                <v-icon name="bi-github" scale="1.1" aria-hidden="true" />
               </a>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </Transition>
   </Teleport>
 </template>
 
 <script setup lang="ts">
-import { Project } from "@/types/project";
+import { nextTick, onUnmounted, ref, watch } from "vue";
+import ProjectCover from "@/components/ProjectCover.vue";
+import type { Project } from "@/types/project";
 
-defineProps<{
+const props = defineProps<{
   project: Project | null;
 }>();
 
-defineEmits(["close"]);
+const emit = defineEmits<{
+  (event: "close"): void;
+}>();
+
+const dialogRef = ref<HTMLElement | null>(null);
+const closeButtonRef = ref<HTMLButtonElement | null>(null);
+let previousFocus: HTMLElement | null = null;
+let previousBodyOverflow = "";
+let appRoot: HTMLElement | null = null;
+let previousAppInert = false;
+
+function closeModal() {
+  emit("close");
+}
+
+function restoreBackground() {
+  document.body.style.overflow = previousBodyOverflow;
+  if (appRoot) {
+    appRoot.inert = previousAppInert;
+    appRoot = null;
+  }
+}
+
+function trapFocus(event: KeyboardEvent) {
+  if (event.key !== "Tab" || !dialogRef.value) return;
+
+  const focusable = Array.from(
+    dialogRef.value.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  );
+  if (focusable.length === 0) {
+    event.preventDefault();
+    dialogRef.value.focus();
+    return;
+  }
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+watch(
+  () => props.project,
+  async (project) => {
+    if (project) {
+      previousFocus = document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+      previousBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      appRoot = document.getElementById("app");
+      previousAppInert = appRoot?.inert ?? false;
+      if (appRoot) appRoot.inert = true;
+      await nextTick();
+      closeButtonRef.value?.focus();
+    } else {
+      restoreBackground();
+      await nextTick();
+      if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true });
+      previousFocus = null;
+    }
+  },
+);
+
+onUnmounted(() => {
+  restoreBackground();
+  if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true });
+  previousFocus = null;
+});
 </script>
 
 <style scoped>
+.modal-backdrop {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: clamp(0.75rem, 3vw, 2rem);
+  background: hsl(var(--color-ink) / 0.58);
+  backdrop-filter: blur(10px);
+}
+
+.project-dialog {
+  position: relative;
+  width: min(100%, 48rem);
+  max-height: min(90svh, 56rem);
+  overflow-y: auto;
+  border: 1px solid hsl(var(--color-line));
+  border-radius: var(--radius-window);
+  background: hsl(var(--color-surface));
+  box-shadow: 0 36px 100px -42px hsl(var(--color-ink) / 0.75);
+}
+
+.project-dialog__body {
+  padding: clamp(1.25rem, 5cqi, 2.5rem);
+}
+
+.modal-close {
+  position: absolute;
+  z-index: 2;
+  top: 0.9rem;
+  right: 0.9rem;
+  display: grid;
+  width: 2.7rem;
+  height: 2.7rem;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: var(--radius-control);
+  color: white;
+  background: rgb(0 0 0 / 0.52);
+  backdrop-filter: blur(8px);
+}
+
+.technology-tag {
+  border: 1px solid hsl(var(--color-line));
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  color: hsl(var(--color-muted));
+  background: hsl(var(--color-surface-raised) / 0.65);
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity var(--motion-base) ease;
 }
 
 .modal-fade-enter-from,

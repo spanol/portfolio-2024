@@ -1,51 +1,82 @@
 <template>
-  <div class="hero-container relative z-10 m-auto lg:mb-10">
-    <div class="wave-wrapper">
-      <WaveBackground />
+  <figure class="portrait-object">
+    <span class="portrait-object__plate" aria-hidden="true" />
+    <div class="portrait-object__frame">
+      <img :src="portrait" alt="Retrato de Vinicius Spanol" />
+      <figcaption>
+        <span>VINICIUS SPANOL</span>
+        <span>WEB / MOBILE</span>
+      </figcaption>
     </div>
-    <div class="img-hero bg-center bg-cover h-64 w-64 lg:h-72 lg:w-72 xl:h-96 xl:w-96 top-[25px]">
-    </div>
-  </div>
+    <span class="portrait-object__side-label" aria-hidden="true">ANGULAR — .NET</span>
+  </figure>
 </template>
 
 <script setup lang="ts">
-import WaveBackground from "@/components/WaveBackground.vue";
+import portrait from "@/assets/spanol.png";
 </script>
 
 <style scoped>
-.hero-container {
+.portrait-object {
   position: relative;
-  width: fit-content;
+  width: 100%;
+  max-width: 19rem;
+  aspect-ratio: 0.76;
+  justify-self: center;
+  margin: 0;
+  isolation: isolate;
 }
 
-.wave-wrapper {
+.portrait-object__plate,
+.portrait-object__frame {
   position: absolute;
-  inset: -0.75rem;
-  border-radius: 50%;
-  overflow: hidden;
-  animation: morph 8s ease-in-out infinite;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 91%, 91% 100%, 0 100%);
 }
 
-.img-hero {
-  position: relative;
-  z-index: 1;
-  animation: morph 8s ease-in-out infinite;
-  background-image: url(/src/assets/spanol.png);
-  background-position: 50%;
-  background-repeat: no-repeat;
+.portrait-object__plate {
+  z-index: -1;
+  inset: 0 -0.8rem 0.8rem 0.8rem;
+  background: hsl(var(--color-primary));
 }
 
-@keyframes morph {
-  0% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
+.portrait-object__frame {
+  background: hsl(var(--color-surface-raised));
+}
 
-  50% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-  }
+.portrait-object__frame > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  filter: grayscale(1) contrast(1.08);
+}
 
-  100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
+.portrait-object__frame figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem 1rem 1.1rem;
+  color: white;
+  background: linear-gradient(0deg, rgb(0 0 0 / 0.82), rgb(0 0 0 / 0));
+  font-size: 0.57rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.portrait-object__side-label {
+  position: absolute;
+  right: -1.6rem;
+  bottom: 12%;
+  color: hsl(var(--color-primary-ink));
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  writing-mode: vertical-rl;
 }
 </style>

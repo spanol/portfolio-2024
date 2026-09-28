@@ -16,6 +16,8 @@ let camera: THREE.OrthographicCamera | null = null;
 let material: THREE.ShaderMaterial | null = null;
 let animationId: number | null = null;
 let resizeObserver: ResizeObserver | null = null;
+let themeObserver: MutationObserver | null = null;
+let motionQuery: MediaQueryList | null = null;
 
 const vertexShader = `
   void main() {
@@ -135,13 +137,17 @@ function initScene() {
   scene.add(mesh);
 
   // Watch theme changes via MutationObserver
-  const observer = new MutationObserver(() => {
+  themeObserver = new MutationObserver(() => {
     if (material) {
       material.uniforms.uIsDark.value = isDarkMode() ? 1.0 : 0.0;
       material.uniforms.uIsMatrix.value = isMatrixMode() ? 1.0 : 0.0;
+      material.uniforms.uHue.value = hue.value;
+      if (motionQuery?.matches && renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
     }
   });
-  observer.observe(document.documentElement, {
+  themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["class", "data-theme"],
   });
@@ -165,6 +171,12 @@ function initScene() {
 function animate() {
   if (!renderer || !scene || !camera || !material) return;
 
+  if (motionQuery?.matches) {
+    renderer.render(scene, camera);
+    animationId = null;
+    return;
+  }
+
   material.uniforms.uTime.value += 0.035;
   material.uniforms.uHue.value = hue.value;
 
@@ -172,12 +184,26 @@ function animate() {
   animationId = requestAnimationFrame(animate);
 }
 
+function handleMotionPreference() {
+  if (motionQuery?.matches) {
+    if (animationId !== null) cancelAnimationFrame(animationId);
+    animationId = null;
+    if (renderer && scene && camera) renderer.render(scene, camera);
+  } else if (animationId === null) {
+    animate();
+  }
+}
+
 onMounted(() => {
+  motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  motionQuery.addEventListener("change", handleMotionPreference);
   initScene();
   animate();
 });
 
 onUnmounted(() => {
+  motionQuery?.removeEventListener("change", handleMotionPreference);
+  themeObserver?.disconnect();
   if (animationId !== null) cancelAnimationFrame(animationId);
   if (resizeObserver) resizeObserver.disconnect();
   if (renderer) {

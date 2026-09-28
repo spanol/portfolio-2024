@@ -11,7 +11,15 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 const { hue } = usePrimaryColor();
 
 let renderer: THREE.WebGLRenderer | null = null;
+let geometry: THREE.IcosahedronGeometry | null = null;
+let wireGeometry: THREE.IcosahedronGeometry | null = null;
+let material: THREE.ShaderMaterial | null = null;
+let wireMaterial: THREE.ShaderMaterial | null = null;
 let animationId: number | null = null;
+let themeObserver: MutationObserver | null = null;
+let motionQuery: MediaQueryList | null = null;
+let renderSceneFrame: (() => void) | null = null;
+let resumeAnimation: (() => void) | null = null;
 
 const vertexShader = `
   uniform float uTime;
@@ -188,10 +196,10 @@ onMounted(() => {
     alpha: true,
     antialias: true,
   });
-  renderer.setSize(400, 400);
+  renderer.setSize(400, 400, false);
   renderer.setPixelRatio(window.devicePixelRatio);
 
-  const geometry = new THREE.IcosahedronGeometry(1, 64);
+  geometry = new THREE.IcosahedronGeometry(1, 64);
 
   const uniforms = {
     uTime: { value: 0 },
@@ -202,7 +210,7 @@ onMounted(() => {
     uIsMatrix: { value: isMatrixMode() ? 1.0 : 0.0 },
   };
 
-  const material = new THREE.ShaderMaterial({
+  material = new THREE.ShaderMaterial({
     vertexShader,
     fragmentShader,
     uniforms,
@@ -212,7 +220,7 @@ onMounted(() => {
   scene.add(mesh);
 
   // Wireframe overlay for extra detail
-  const wireMaterial = new THREE.ShaderMaterial({
+  wireMaterial = new THREE.ShaderMaterial({
     vertexShader,
     fragmentShader: `
       precision highp float;
@@ -247,21 +255,29 @@ onMounted(() => {
     transparent: true,
   });
 
-  const wireGeo = new THREE.IcosahedronGeometry(1, 16);
-  const wireMesh = new THREE.Mesh(wireGeo, wireMaterial);
+  wireGeometry = new THREE.IcosahedronGeometry(1, 16);
+  const wireMesh = new THREE.Mesh(wireGeometry, wireMaterial);
   scene.add(wireMesh);
 
   // Theme observer
-  const observer = new MutationObserver(() => {
+  themeObserver = new MutationObserver(() => {
     uniforms.uIsDark.value = isDarkMode() ? 1.0 : 0.0;
     uniforms.uIsMatrix.value = isMatrixMode() ? 1.0 : 0.0;
+    uniforms.uHue.value = hue.value;
+    if (motionQuery?.matches) renderer!.render(scene, camera);
   });
-  observer.observe(document.documentElement, {
+  themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["class", "data-theme"],
   });
 
   function animate() {
+    if (!renderer) return;
+    if (motionQuery?.matches) {
+      renderer.render(scene, camera);
+      animationId = null;
+      return;
+    }
     uniforms.uTime.value += 0.012;
     uniforms.uHue.value = hue.value;
 
@@ -274,11 +290,33 @@ onMounted(() => {
     animationId = requestAnimationFrame(animate);
   }
 
+  renderSceneFrame = () => renderer!.render(scene, camera);
+  resumeAnimation = animate;
+  motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  motionQuery.addEventListener("change", handleMotionPreference);
   animate();
 });
 
+function handleMotionPreference() {
+  if (motionQuery?.matches) {
+    if (animationId !== null) cancelAnimationFrame(animationId);
+    animationId = null;
+    renderSceneFrame?.();
+    return;
+  }
+  if (animationId === null) {
+    resumeAnimation?.();
+  }
+}
+
 onUnmounted(() => {
+  motionQuery?.removeEventListener("change", handleMotionPreference);
+  themeObserver?.disconnect();
   if (animationId !== null) cancelAnimationFrame(animationId);
+  geometry?.dispose();
+  wireGeometry?.dispose();
+  material?.dispose();
+  wireMaterial?.dispose();
   if (renderer) {
     renderer.dispose();
   }
@@ -289,7 +327,8 @@ onUnmounted(() => {
 .blob-canvas {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 1;
   max-width: 400px;
   max-height: 400px;
 }

@@ -1,26 +1,63 @@
 <template>
-    <div
-        class="stack flex flex-col lg:flex-row items-center gap-y-8 gap-x-5 mt-16 lg:mt-20 shadow-lg border dark:border-dark-border dark:bg-dark-surface rounded-xl p-5">
-        <p class="font-medium border-b-2 border-light text-primary dark:border-dark-border lg:border-0 lg:text-nowrap">
-            Principais tecnologias
-        </p>
-        <div class="vertical-divisor hidden lg:block dark:text-dark-text">
-            |
-        </div>
-
-        <div class="flex flex-wrap lg:flex-shrink justify-center gap-x-5">
-            <div v-for="(icon, index) in techStackIcons" :key="index" class="flex hover:-translate-y-4 cursor-pointer">
-                <v-icon :name="icon.icon" scale="3" class="dark:text-dark-text" />
-            </div>
-        </div>
-    </div>
+  <section class="technology-strip" aria-label="Principais tecnologias">
+    <span class="technology-strip__label">STACK <span aria-hidden="true">/</span></span>
+    <ul class="technology-list">
+      <li v-for="technology in techStackIcons" :key="technology.name">
+        {{ technology.name }}
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script lang="ts" setup>
 defineProps<{
-    techStackIcons: Array<{
-        name: string;
-        icon: string;
-    }>;
+  techStackIcons: Array<{
+    name: string;
+    icon: string;
+  }>;
 }>();
 </script>
+
+<style scoped>
+.technology-strip {
+  display: flex;
+  min-height: 3.25rem;
+  align-items: flex-start;
+  gap: 1.1rem;
+  border-top: 1px solid hsl(var(--color-line));
+  padding-top: 0.8rem;
+}
+
+.technology-strip__label {
+  flex: 0 0 auto;
+  color: hsl(var(--color-primary-ink));
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.technology-list {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.technology-list li {
+  color: hsl(var(--color-muted));
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@container (max-width: 480px) {
+  .technology-strip {
+    gap: 0.8rem;
+  }
+}
+</style>

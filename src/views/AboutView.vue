@@ -1,19 +1,45 @@
 <template>
-  <div class="about my-auto dark:bg-dark-background dark:text-dark-text">
-    <div class="about flex flex-col-reverse xl:flex-row justify-center items-center gap-32">
-      <div class="image-wrapper hidden xl:block">
+  <section class="about-view px-6 py-9 sm:px-9 sm:py-12 lg:px-14" aria-labelledby="about-heading">
+    <div class="about-layout">
+      <div class="about-model" aria-hidden="true">
         <SpanolModel />
       </div>
-
-      <div class="infos flex flex-col gap-y-10 lg:w-2/4">
-        <AboutInfos />
-      </div>
+      <AboutInfos />
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
-import AboutInfos from '@/components/AboutInfos.vue';
-import SpanolModel from '@/components/SpanolModel.vue';
-
+import AboutInfos from "@/components/AboutInfos.vue";
+import SpanolModel from "@/components/SpanolModel.vue";
 </script>
+
+<style scoped>
+.about-view {
+  min-height: 100%;
+}
+
+.about-layout {
+  display: grid;
+  min-height: 100%;
+  align-items: center;
+  gap: clamp(1.5rem, 4cqi, 3rem);
+}
+
+.about-model {
+  display: none;
+  width: min(100%, 18rem);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+@container (min-width: 640px) {
+  .about-layout {
+    grid-template-columns: minmax(175px, 0.78fr) minmax(0, 1.22fr);
+  }
+
+  .about-model {
+    display: block;
+  }
+}
+</style>
