@@ -27,12 +27,15 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 The semantic color tokens (`--color-canvas`, `--color-surface`, `--color-ink`,
 `--color-muted`, `--color-line`, `--color-primary`, `--color-primary-ink`, and
-`--color-on-primary`) are defined in `src/index.css` for light, dark, and Matrix
-themes. Shared spacing, radius, type, and motion values live alongside them.
+`--color-on-primary`) live in `src/index.css`, with light, dark, and Matrix
+palettes. Type, spacing, edge radius, and motion tokens sit beside them so views
+can share the same visual rules.
 
-Route changes turn the two adjacent faces inside `.portfolio-window`. The
-`--cube-depth` value is half of the window width; keep it aligned with the
-`rotateY()` enter/leave poses if the stage geometry changes. The shared
-`--motion-*` tokens tune the 1.2 second recession, face turn, settle, and staggered
-content reveal. Reduced-motion preferences collapse those animations and pause
-the Matrix and Three.js effects.
+Navigation is a wide folio: `.scene-stage` supplies perspective and the route
+sheet uses the `folio-forward` and `folio-backward` enter/leave poses. The
+`--motion-route` and `--ease-kinetic` tokens tune the page turn. Keep the route
+sheet's clipping and opacity on the animated face so its 3D edge remains visible.
+The reduced-motion preference removes the turn and disables ambient animation.
+
+Project cards read from `public/data/projects.json`; update that file to change
+the visible project titles, descriptions, images, technologies, and links.

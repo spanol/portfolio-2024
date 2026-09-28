@@ -69,7 +69,7 @@ onMounted(() => {
   height: 2.7rem;
   place-items: center;
   border: 1px solid hsl(var(--color-line));
-  border-radius: 0.85rem;
+  border-radius: 0;
   color: hsl(var(--color-ink));
   background: hsl(var(--color-surface) / 0.8);
   transition: border-color 150ms ease, background-color 150ms ease;

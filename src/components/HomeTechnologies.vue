@@ -1,6 +1,6 @@
 <template>
   <section class="technology-strip" aria-label="Principais tecnologias">
-    <span class="technology-strip__label">STACK <span aria-hidden="true">/</span></span>
+    <span class="technology-strip__label">FERRAMENTAS /</span>
     <ul class="technology-list">
       <li v-for="technology in techStackIcons" :key="technology.name">
         {{ technology.name }}
@@ -21,43 +21,37 @@ defineProps<{
 <style scoped>
 .technology-strip {
   display: flex;
-  min-height: 3.25rem;
+  min-width: 0;
   align-items: flex-start;
-  gap: 1.1rem;
+  gap: 1rem;
   border-top: 1px solid hsl(var(--color-line));
-  padding-top: 0.8rem;
+  padding-top: 0.75rem;
 }
-
 .technology-strip__label {
   flex: 0 0 auto;
   color: hsl(var(--color-primary-ink));
-  font-size: 0.61rem;
+  font-size: 0.57rem;
   font-weight: 850;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
 }
-
 .technology-list {
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  gap: 0.2rem 0.6rem;
+  gap: 0.35rem 0.95rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-
 .technology-list li {
   color: hsl(var(--color-muted));
   font-family: var(--font-display);
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.74rem;
+  font-weight: 750;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-
-@container (max-width: 480px) {
-  .technology-strip {
-    gap: 0.8rem;
-  }
+@media (max-width: 640px) {
+  .technology-strip { flex-direction: column; gap: 0.55rem; }
 }
 </style>

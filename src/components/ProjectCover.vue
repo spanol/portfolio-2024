@@ -1,8 +1,8 @@
 <template>
   <div
     v-if="showEditorialCover"
-    class="project-cover project-cover--editorial"
-    :class="{ 'project-cover--modal': variant === 'modal' }"
+    class="project-cover"
+    :class="['project-cover--editorial', coverVariant, { 'project-cover--modal': variant === 'modal' }]"
     role="img"
     :aria-label="`Capa editorial do projeto ${project.title}`"
   >
@@ -26,7 +26,7 @@
         <li v-if="project.technologies.length > 3">+{{ project.technologies.length - 3 }}</li>
       </ul>
     </div>
-    <span class="project-cover__index" aria-hidden="true">SPANOL / DIMENSIONS</span>
+    <span class="project-cover__index" aria-hidden="true">VISUAL INDEX / VS</span>
   </div>
 
   <img
@@ -58,6 +58,14 @@ const showEditorialCover = computed(
 const categoryLabel = computed(() =>
   props.project.category === "professional" ? "PROFISSIONAL" : "AUTORAL",
 );
+const coverVariant = computed(() => {
+  const title = props.project.title.toLowerCase();
+  if (title.includes("landing")) return "project-cover--stack";
+  if (title.includes("bet aki")) return "project-cover--signal";
+
+  const hash = Array.from(title).reduce((sum, character) => sum + character.charCodeAt(0), 0);
+  return ["project-cover--cut", "project-cover--grid", "project-cover--offset"][hash % 3];
+});
 
 watch(() => props.project.image, () => {
   imageFailed.value = false;
@@ -89,6 +97,65 @@ watch(() => props.project.image, () => {
     linear-gradient(128deg, hsl(var(--color-surface-raised)), hsl(var(--color-surface)) 65%);
   isolation: isolate;
 }
+
+.project-cover--stack {
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 2.3rem, hsl(var(--color-ink) / 0.045) 2.3rem 2.36rem),
+    linear-gradient(128deg, hsl(var(--color-surface-raised)), hsl(var(--color-surface)) 65%);
+}
+.project-cover--stack .project-cover__geometry {
+  top: 10%;
+  right: 8%;
+  width: 27%;
+  height: 74%;
+  transform: rotate(-8deg);
+}
+.project-cover--stack .project-cover__geometry-outline { inset: 0 9% 16% 16%; transform: rotate(13deg); }
+.project-cover--stack .project-cover__geometry-plate {
+  inset: 9% 17% 1% 10%;
+  clip-path: polygon(18% 0, 100% 9%, 83% 100%, 0 88%);
+  transform: rotate(7deg);
+}
+.project-cover--stack .project-cover__geometry-cut { inset: 23% 28% 23% 23%; transform: rotate(39deg); }
+
+.project-cover--cut {
+  background-image:
+    linear-gradient(146deg, transparent 48%, hsl(var(--color-primary) / 0.12) 48.2%, transparent 76%),
+    linear-gradient(128deg, hsl(var(--color-surface-raised)), hsl(var(--color-surface)) 65%);
+}
+.project-cover--cut .project-cover__geometry { top: 12%; right: 10%; width: 35%; height: 67%; transform: rotate(18deg); }
+.project-cover--cut .project-cover__geometry-outline { inset: 7% -5% 0 12%; transform: rotate(-19deg); }
+.project-cover--cut .project-cover__geometry-plate {
+  inset: 6% 8% 9% 20%;
+  clip-path: polygon(0 0, 100% 18%, 78% 100%, 16% 75%);
+  transform: rotate(-7deg);
+}
+.project-cover--cut .project-cover__geometry-cut { inset: 29% 31% 16% 8%; transform: rotate(-24deg); }
+
+.project-cover--grid {
+  background-image:
+    linear-gradient(hsl(var(--color-ink) / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--color-ink) / 0.035) 1px, transparent 1px),
+    linear-gradient(128deg, hsl(var(--color-surface-raised)), hsl(var(--color-surface)) 65%);
+  background-size: 2.2rem 2.2rem, 2.2rem 2.2rem, auto;
+}
+.project-cover--grid .project-cover__geometry { top: 13%; right: 9%; width: 32%; height: 52%; transform: rotate(0); }
+.project-cover--grid .project-cover__geometry-outline { inset: 9% 12% 0 0; transform: rotate(6deg); }
+.project-cover--grid .project-cover__geometry-plate {
+  inset: 3% 0 16% 23%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 86%);
+}
+.project-cover--grid .project-cover__geometry-cut { inset: 23% 26% 31% 11%; transform: rotate(-8deg); }
+.project-cover--grid .project-cover__identity { right: 6%; bottom: 11%; }
+
+.project-cover--offset .project-cover__geometry { top: 13%; right: 7%; width: 30%; height: 70%; transform: rotate(16deg); }
+.project-cover--offset .project-cover__geometry-outline { inset: 2% 3% 3% 17%; transform: rotate(-24deg); }
+.project-cover--offset .project-cover__geometry-plate {
+  inset: 17% 18% 13% 1%;
+  clip-path: polygon(24% 0, 100% 18%, 77% 100%, 0 79%);
+  transform: rotate(-10deg);
+}
+.project-cover--offset .project-cover__geometry-cut { inset: 31% 38% 26% 14%; transform: rotate(19deg); }
 
 .project-cover__top {
   position: absolute;
@@ -204,6 +271,7 @@ watch(() => props.project.image, () => {
   max-height: 18rem;
   aspect-ratio: 16 / 7;
 }
+.project-cover--modal.project-cover--grid .project-cover__identity { right: 6%; bottom: 11%; }
 
 .project-cover--modal .project-cover__identity h3 {
   font-size: clamp(1.25rem, 3.8cqi, 2rem);

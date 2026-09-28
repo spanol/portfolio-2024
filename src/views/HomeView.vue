@@ -1,12 +1,15 @@
 <template>
-  <section class="home-view" aria-labelledby="home-heading">
-    <div class="home-view__poster">
-      <div class="home-view__copy">
-        <p class="home-view__kicker"><span>01</span> DESENVOLVEDOR FULLSTACK</p>
-        <HomeHeading :contact-icons="contactIcons" />
-      </div>
-      <HomeImageComponent />
+  <section class="home-scene" aria-labelledby="home-heading">
+    <div class="home-scene__copy">
+      <p class="page-kicker">ENGENHARIA DE SOFTWARE / PORTFÓLIO</p>
+      <HomeHeading :contact-icons="contactIcons" />
     </div>
+
+    <div class="home-scene__visual">
+      <HomeImageComponent />
+      <span class="home-scene__visual-note" aria-hidden="true">VOLUME 01 / VINICIUS SPANOL</span>
+    </div>
+
     <HomeTechnologies :tech-stack-icons="techStackIcons" />
   </section>
 </template>
@@ -59,72 +62,95 @@ const techStackIcons = [
 </script>
 
 <style scoped>
-.home-view {
+.home-scene {
   display: grid;
-  min-height: 100%;
-  grid-template-rows: minmax(0, 1fr) auto;
-  padding: clamp(1.25rem, 4.5cqi, 2.4rem);
-}
-
-.home-view__poster {
-  display: grid;
-  align-items: end;
-  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
-  gap: clamp(1rem, 3cqi, 2rem);
-  padding-block: 0.4rem 1.25rem;
-}
-
-.home-view__copy {
-  min-width: 0;
-  align-self: center;
-  padding-bottom: 0.75rem;
-}
-
-.home-view__kicker {
-  display: flex;
+  min-height: min(100svh - 11rem, 75rem);
   align-items: center;
-  gap: 0.55rem;
-  margin-bottom: clamp(1rem, 2.7cqi, 1.8rem);
-  color: hsl(var(--color-primary-ink));
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  grid-template-columns: minmax(0, 1.12fr) minmax(19rem, 0.88fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 1.5rem clamp(2rem, 6vw, 7rem);
+  padding-block: clamp(2rem, 5vh, 4rem) 1.25rem;
 }
 
-.home-view__kicker span {
+.home-scene__copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  padding-block: 1rem 2rem;
+}
+
+.home-scene__visual {
+  position: relative;
   display: grid;
-  width: 1.55rem;
-  height: 1.55rem;
-  place-items: center;
-  background: hsl(var(--color-primary));
-  color: hsl(var(--color-on-primary));
-  font-size: 0.68rem;
+  min-width: 0;
+  min-height: 29rem;
+  align-items: center;
+  justify-items: center;
 }
 
-@container (max-width: 540px) {
-  .home-view {
-    grid-template-rows: auto auto;
+.home-scene__visual::before {
+  position: absolute;
+  width: min(31rem, 92%);
+  aspect-ratio: 1;
+  border: 1px solid hsl(var(--color-primary) / 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2.5rem hsl(var(--color-primary) / 0.035);
+  content: "";
+}
+
+.home-scene__visual-note {
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  color: hsl(var(--color-muted));
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  writing-mode: vertical-rl;
+}
+
+.home-scene :deep(.technology-strip) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 850px) {
+  .home-scene {
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.75fr);
+    gap: 1rem 2rem;
   }
 
-  .home-view__poster {
+  .home-scene__visual {
+    min-height: 25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-scene {
+    min-height: 0;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.4rem;
-    padding-bottom: 0.9rem;
+    grid-template-rows: auto auto auto;
+    gap: 1rem;
+    padding-block: 2.2rem 1rem;
   }
 
-  .home-view__copy {
-    order: 0;
+  .home-scene__copy {
+    padding: 0.5rem 0 0;
   }
 
-  .home-view__poster :deep(.portrait-object) {
-    order: 1;
-    justify-self: end;
-    width: 56%;
-    margin-top: -0.5rem;
+  .home-scene__visual {
+    min-height: 20rem;
+    justify-items: end;
+    margin-right: 0.75rem;
   }
 
-  .home-view__kicker {
-    margin-bottom: 0.8rem;
+  .home-scene__visual::before {
+    right: 3%;
+    width: min(75vw, 21rem);
+  }
+
+  .home-scene__visual-note {
+    right: -0.7rem;
+    bottom: 0.5rem;
   }
 }
 </style>

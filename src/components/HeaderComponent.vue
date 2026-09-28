@@ -1,59 +1,52 @@
 <template>
   <header class="site-header" @keydown.esc="closeMenu">
     <div class="site-header__inner">
-      <RouterLink
-        class="site-brand shrink-0 text-ink"
-        to="/"
-        aria-label="Spanol.dev — início"
-        @click="closeMenu"
-      >
-        <span class="leading-none">
-          <span class="site-brand__word">SPANOL<span>.</span></span>
-          <span class="site-brand__meta">FULL STACK / PORTFÓLIO</span>
+      <RouterLink class="site-brand" to="/" aria-label="Vinicius Spanol — início" @click="closeMenu">
+        <span class="site-brand__mark" aria-hidden="true">VS</span>
+        <span class="site-brand__name">
+          <strong>VINICIUS SPANOL</strong>
+          <small>SOFTWARE ENGINEER / BR</small>
         </span>
       </RouterLink>
 
-      <nav class="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+      <nav class="primary-nav" aria-label="Navegação principal">
         <RouterLink
           v-for="tab in navTabs"
           :key="tab.path"
           :to="tab.path"
-          class="nav-link"
-          active-class="nav-link--active"
+          class="primary-nav__link"
+          active-class="primary-nav__link--active"
+          :aria-label="`${tab.number} ${tab.name}`"
         >
-          <span class="nav-link__number">{{ tab.number }}</span>
-          <span>{{ tab.name }}</span>
+          <span>{{ tab.number }}</span>
+          <b>{{ tab.name }}</b>
         </RouterLink>
       </nav>
 
-      <div class="hidden shrink-0 items-center gap-3 lg:flex">
-        <a class="button-primary" href="/curriculum.docx" download>
+      <div class="header-actions">
+        <a class="resume-link" href="/curriculum.docx" download>
           <span>CURRÍCULO</span>
           <span aria-hidden="true">↗</span>
         </a>
         <ThemeTogglerComponent />
-      </div>
-
-      <div class="flex shrink-0 items-center gap-2 lg:hidden">
-        <ThemeTogglerComponent />
         <button
-          class="icon-button"
+          class="menu-toggle"
           type="button"
-          :aria-label="isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'"
+          :aria-label="isOpen ? 'Fechar navegação' : 'Abrir navegação'"
           :aria-expanded="isOpen"
           aria-controls="mobile-navigation"
           @click="toggleMenu"
         >
-          <v-icon :name="isOpen ? 'io-close' : 'bi-list'" scale="1.5" aria-hidden="true" />
+          <v-icon :name="isOpen ? 'io-close' : 'bi-list'" scale="1.25" aria-hidden="true" />
         </button>
       </div>
     </div>
 
-    <Transition name="mobile-menu">
+    <Transition name="menu-drop">
       <nav
         v-if="isOpen"
         id="mobile-navigation"
-        class="mobile-navigation lg:hidden"
+        class="mobile-navigation"
         aria-label="Navegação principal"
       >
         <RouterLink
@@ -64,11 +57,10 @@
           active-class="mobile-navigation__link--active"
           @click="closeMenu"
         >
-          {{ tab.name }}
+          <span>{{ tab.number }}</span>{{ tab.name }}<b aria-hidden="true">↗</b>
         </RouterLink>
-        <a class="button-primary mt-2 justify-center" href="/curriculum.docx" download>
-          Baixar currículo
-          <v-icon name="bi-link-45deg" scale="1.05" aria-hidden="true" />
+        <a class="mobile-navigation__resume" href="/curriculum.docx" download>
+          Baixar currículo <span aria-hidden="true">↗</span>
         </a>
       </nav>
     </Transition>
@@ -102,132 +94,250 @@ watch(() => route.fullPath, closeMenu);
 </script>
 
 <style scoped>
-.site-brand {
-  display: inline-flex;
+.site-header {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  border-bottom: 1px solid hsl(var(--color-line));
+}
+
+.site-header__inner {
+  display: flex;
+  width: min(100% - 2.5rem, 92rem);
+  min-height: 5.25rem;
   align-items: center;
-  padding-block: 0.3rem;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 3rem);
+  margin-inline: auto;
 }
 
-.site-brand__word {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.7rem;
-  font-weight: 900;
-  letter-spacing: -0.075em;
-  line-height: 0.78;
+.site-brand {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.8rem;
 }
 
-.site-brand__word > span {
+.site-brand__mark {
+  display: grid;
+  width: 2.55rem;
+  height: 2.55rem;
+  place-items: center;
+  border: 1px solid hsl(var(--color-line));
   color: hsl(var(--color-primary-ink));
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: -0.12em;
 }
 
-.site-brand__meta {
-  display: block;
-  margin-top: 0.4rem;
+.site-brand__name {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.site-brand__name strong {
+  color: hsl(var(--color-ink));
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+}
+
+.site-brand__name small {
   color: hsl(var(--color-muted));
-  font-size: 0.53rem;
-  font-weight: 800;
+  font-size: 0.52rem;
+  font-weight: 700;
   letter-spacing: 0.16em;
 }
 
-.nav-link {
+.primary-nav {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: clamp(0.55rem, 2vw, 2rem);
+  margin-inline: auto;
+}
+
+.primary-nav__link {
   position: relative;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  padding: 0.65rem 0.45rem;
+  display: grid;
+  min-height: 5.25rem;
+  align-content: center;
+  gap: 0.34rem;
   color: hsl(var(--color-muted));
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.04em;
   transition: color var(--motion-fast) ease;
 }
 
-.nav-link::after {
+.primary-nav__link > span {
+  color: hsl(var(--color-primary-ink));
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.primary-nav__link > b {
+  font-size: 0.68rem;
+  font-weight: 650;
+}
+
+.primary-nav__link::after {
   position: absolute;
-  right: 0.45rem;
-  bottom: 0.32rem;
-  left: 0.45rem;
-  height: 2px;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 3px;
   background: hsl(var(--color-primary));
   content: "";
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-link__number {
-  color: hsl(var(--color-muted));
-  font-family: var(--font-display);
-  font-size: 0.64rem;
-  font-weight: 700;
+.primary-nav__link:hover,
+.primary-nav__link--active {
+  color: hsl(var(--color-ink));
 }
 
-.nav-link:hover,
-.nav-link--active {
-  color: hsl(var(--color-primary-ink));
-}
-
-.nav-link:hover::after,
-.nav-link--active::after {
+.primary-nav__link:hover::after,
+.primary-nav__link--active::after {
   transform: scaleX(1);
 }
 
-.site-header .button-primary {
-  min-height: 2.45rem;
-  gap: 1rem;
-  border-radius: 2px;
-  padding: 0.55rem 0.75rem;
-  font-size: 0.64rem;
-  letter-spacing: 0.12em;
+.header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.7rem;
 }
 
-.icon-button {
-  display: grid;
-  width: 2.7rem;
-  height: 2.7rem;
+.resume-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  border: 1px solid hsl(var(--color-line));
+  padding: 0.72rem 0.85rem;
+  color: hsl(var(--color-ink));
+  font-size: 0.57rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  transition: background-color var(--motion-fast) ease, border-color var(--motion-fast) ease;
+}
+
+.resume-link:hover {
+  border-color: hsl(var(--color-primary));
+  background: hsl(var(--color-primary) / 0.14);
+}
+
+.menu-toggle {
+  display: none;
+  width: 2.6rem;
+  height: 2.6rem;
   place-items: center;
   border: 1px solid hsl(var(--color-line));
-  border-radius: 2px;
   color: hsl(var(--color-ink));
-  background: hsl(var(--color-surface) / 0.8);
+  background: transparent;
 }
 
 .mobile-navigation {
   position: absolute;
-  top: calc(100% - 0.2rem);
-  right: 1rem;
-  left: 1rem;
+  top: calc(100% + 1px);
+  right: 1.25rem;
+  left: 1.25rem;
   z-index: 30;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 0.3rem;
-  overflow: auto;
-  max-height: calc(100svh - 6rem);
   border: 1px solid hsl(var(--color-line));
-  border-radius: 2px;
   padding: 0.75rem;
   background: hsl(var(--color-surface));
-  box-shadow: 0 24px 60px -36px hsl(var(--color-ink) / 0.6);
+  box-shadow: 0 25px 70px -45px hsl(var(--color-ink) / 0.7);
 }
 
-.mobile-navigation__link {
-  border-radius: 2px;
-  padding: 0.8rem 0.9rem;
-  color: hsl(var(--color-muted));
-  font-size: 0.9rem;
-  font-weight: 650;
+.mobile-navigation__link,
+.mobile-navigation__resume {
+  display: flex;
+  min-height: 3.2rem;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid hsl(var(--color-line) / 0.7);
+  padding: 0.65rem 0.7rem;
+  color: hsl(var(--color-ink));
+  font-size: 0.86rem;
+  font-weight: 700;
 }
 
-.mobile-navigation__link:hover,
-.mobile-navigation__link--active {
+.mobile-navigation__link > span {
   color: hsl(var(--color-primary-ink));
-  background: hsl(var(--color-primary) / 0.16);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
 }
 
-.mobile-navigation .button-primary {
-  border-radius: 2px;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
+.mobile-navigation__link > b,
+.mobile-navigation__resume > span {
+  margin-left: auto;
+  color: hsl(var(--color-primary-ink));
+}
+
+.mobile-navigation__link--active {
+  background: hsl(var(--color-primary) / 0.1);
+}
+
+.mobile-navigation__resume {
+  border: 0;
+  color: hsl(var(--color-primary-ink));
+}
+
+.menu-drop-enter-active,
+.menu-drop-leave-active {
+  transition: opacity 180ms ease, transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-drop-enter-from,
+.menu-drop-leave-to {
+  opacity: 0;
+  transform: translateY(-0.6rem);
+}
+
+@media (max-width: 900px) {
+  .primary-nav {
+    display: none;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .menu-toggle {
+    display: grid;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header__inner {
+    width: calc(100% - 2rem);
+    min-height: 4.5rem;
+    gap: 0.5rem;
+  }
+
+  .site-brand__mark {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .site-brand__name strong {
+    font-size: 0.6rem;
+  }
+
+  .site-brand__name small {
+    font-size: 0.45rem;
+  }
+
+  .header-actions {
+    gap: 0.35rem;
+  }
+
+  .resume-link {
+    display: none;
+  }
 }
 </style>

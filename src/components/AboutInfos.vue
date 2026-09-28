@@ -1,35 +1,51 @@
 <template>
-  <div class="about-copy">
-    <p class="eyebrow">UM POUCO SOBRE MIM</p>
-    <h1 id="about-heading" class="section-title mt-3">
-      Olá, eu sou<br class="hidden sm:block" /> Vinicius Spanol.
-    </h1>
-
-    <div class="mt-6 space-y-4 text-[0.96rem] leading-relaxed text-muted sm:text-base">
-      <p>
-        Sou desenvolvedor fullstack e gosto de criar aplicações limpas, seguras e
-        funcionais. Tenho experiência profissional com Angular e .NET Framework
-        e uso ferramentas como Tailwind e Bootstrap na construção de interfaces.
-      </p>
-      <p>
-        No backend, já trabalhei com C# .NET e NestJS, além de projetos com
-        Node.js, Express e Flask. Também tenho experiência com bancos de dados
-        MongoDB e Oracle.
-      </p>
-      <p>
-        Explorei os ecossistemas de React e Vue e sigo aprofundando minha
-        experiência com Angular.
-      </p>
-    </div>
+  <div class="about-notes">
+    <section class="about-note">
+      <h2>Interface</h2>
+      <p>Angular, React, Vue, TypeScript, Tailwind e Bootstrap.</p>
+    </section>
+    <section class="about-note">
+      <h2>Serviços</h2>
+      <p>C#, .NET, NestJS, Node.js, Express e Flask.</p>
+    </section>
+    <section class="about-note">
+      <h2>Dados &amp; integração</h2>
+      <p>PostgreSQL, MongoDB, Oracle e RabbitMQ.</p>
+    </section>
   </div>
 </template>
 
 <style scoped>
-.about-copy {
-  max-width: 42rem;
+.about-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid hsl(var(--color-line));
 }
-
-.section-title {
-  font-size: clamp(2.1rem, 5cqi, 3.25rem);
+.about-note {
+  min-width: 0;
+  padding: 1rem 1rem 0 0;
+}
+.about-note + .about-note {
+  border-left: 1px solid hsl(var(--color-line));
+  padding-left: 1rem;
+}
+.about-note h2 {
+  margin: 0;
+  color: hsl(var(--color-primary-ink));
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.about-note p {
+  margin: 0.6rem 0 0;
+  color: hsl(var(--color-muted));
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+@media (max-width: 640px) {
+  .about-notes { grid-template-columns: minmax(0, 1fr); }
+  .about-note { padding: 0.85rem 0; }
+  .about-note + .about-note { border-top: 1px solid hsl(var(--color-line)); border-left: 0; padding-left: 0; }
 }
 </style>

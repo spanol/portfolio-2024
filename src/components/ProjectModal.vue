@@ -177,8 +177,8 @@ onUnmounted(() => {
 
 .project-dialog {
   position: relative;
-  width: min(100%, 48rem);
-  max-height: min(90svh, 56rem);
+  width: min(100%, 56rem);
+  max-height: min(92svh, 62rem);
   overflow-y: auto;
   border: 1px solid hsl(var(--color-line));
   border-radius: var(--radius-window);
@@ -208,12 +208,13 @@ onUnmounted(() => {
 
 .technology-tag {
   border: 1px solid hsl(var(--color-line));
-  border-radius: 999px;
+  border-radius: 0;
   padding: 0.35rem 0.7rem;
   color: hsl(var(--color-muted));
   background: hsl(var(--color-surface-raised) / 0.65);
   font-size: 0.76rem;
   font-weight: 650;
+  letter-spacing: 0.03em;
 }
 
 .modal-fade-enter-active,

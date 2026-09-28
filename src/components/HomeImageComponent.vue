@@ -1,14 +1,13 @@
 <template>
-  <figure class="portrait-object">
-    <span class="portrait-object__plate" aria-hidden="true" />
-    <div class="portrait-object__frame">
-      <img :src="portrait" alt="Retrato de Vinicius Spanol" />
-      <figcaption>
-        <span>VINICIUS SPANOL</span>
-        <span>WEB / MOBILE</span>
-      </figcaption>
-    </div>
-    <span class="portrait-object__side-label" aria-hidden="true">ANGULAR — .NET</span>
+  <figure class="hero-object">
+    <span class="hero-object__backplate" aria-hidden="true" />
+    <span class="hero-object__edge" aria-hidden="true" />
+    <img class="hero-object__image" :src="portrait" alt="Retrato de Vinicius Spanol" />
+    <span class="hero-object__coordinate" aria-hidden="true">V / 01</span>
+    <figcaption class="hero-object__caption">
+      <span><strong>VINICIUS SPANOL</strong><small>FULLSTACK DEVELOPER</small></span>
+      <span aria-hidden="true">2026</span>
+    </figcaption>
   </figure>
 </template>
 
@@ -17,66 +16,98 @@ import portrait from "@/assets/spanol.png";
 </script>
 
 <style scoped>
-.portrait-object {
+.hero-object {
   position: relative;
-  width: 100%;
-  max-width: 19rem;
-  aspect-ratio: 0.76;
-  justify-self: center;
+  width: min(100%, 25rem);
+  aspect-ratio: 0.78;
   margin: 0;
-  isolation: isolate;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  animation: object-float 8s ease-in-out infinite;
 }
 
-.portrait-object__plate,
-.portrait-object__frame {
+.hero-object__backplate,
+.hero-object__edge,
+.hero-object__image {
   position: absolute;
   inset: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 91%, 91% 100%, 0 100%);
 }
 
-.portrait-object__plate {
-  z-index: -1;
-  inset: 0 -0.8rem 0.8rem 0.8rem;
-  background: hsl(var(--color-primary));
-}
-
-.portrait-object__frame {
+.hero-object__backplate {
+  inset: 1.2rem -1.2rem -1.2rem 1.2rem;
+  border: 1px solid hsl(var(--color-ink) / 0.5);
   background: hsl(var(--color-surface-raised));
+  transform: translateZ(-2rem) rotateY(-11deg) rotateX(3deg);
 }
 
-.portrait-object__frame > img {
+.hero-object__edge {
+  z-index: 1;
+  inset: auto -0.95rem 1.7rem auto;
+  width: 1.35rem;
+  height: 62%;
+  background: hsl(var(--color-primary));
+  clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 88%);
+  transform: translateZ(1.25rem) rotateY(-11deg);
+}
+
+.hero-object__image {
+  z-index: 0;
   display: block;
   width: 100%;
   height: 100%;
+  border: 1px solid hsl(var(--color-line));
   object-fit: cover;
-  object-position: center 38%;
-  filter: grayscale(1) contrast(1.08);
+  object-position: center 37%;
+  filter: grayscale(1) contrast(1.12) brightness(0.92);
+  transform: rotateY(-11deg) rotateX(3deg);
+  box-shadow: 1.2rem 1.6rem 0 hsl(var(--color-ink) / 0.12);
 }
 
-.portrait-object__frame figcaption {
+.hero-object__coordinate {
   position: absolute;
+  z-index: 2;
+  top: 0.7rem;
+  left: -1.5rem;
+  color: hsl(var(--color-primary-ink));
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+}
+
+.hero-object__caption {
+  position: absolute;
+  z-index: 2;
   right: 0;
   bottom: 0;
   left: 0;
   display: flex;
   justify-content: space-between;
+  align-items: end;
   gap: 0.5rem;
-  padding: 1rem 1rem 1.1rem;
+  padding: 1.5rem 1.25rem 1.1rem;
   color: white;
-  background: linear-gradient(0deg, rgb(0 0 0 / 0.82), rgb(0 0 0 / 0));
-  font-size: 0.57rem;
-  font-weight: 800;
-  letter-spacing: 0.13em;
+  background: linear-gradient(0deg, rgb(0 0 0 / 0.88), transparent);
+  transform: rotateY(-11deg) rotateX(3deg);
 }
 
-.portrait-object__side-label {
-  position: absolute;
-  right: -1.6rem;
-  bottom: 12%;
-  color: hsl(var(--color-primary-ink));
-  font-size: 0.54rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  writing-mode: vertical-rl;
+.hero-object__caption > span:first-child { display: grid; gap: 0.3rem; }
+.hero-object__caption strong { font-size: 0.66rem; letter-spacing: 0.15em; }
+.hero-object__caption small,
+.hero-object__caption > span:last-child { font-size: 0.54rem; font-weight: 800; letter-spacing: 0.15em; }
+
+@keyframes object-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.55rem); }
+}
+
+@media (max-width: 640px) {
+  .hero-object { width: min(75vw, 19rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-object { animation: none; }
 }
 </style>

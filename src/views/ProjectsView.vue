@@ -1,63 +1,48 @@
 <template>
-  <section class="projects-view px-6 py-9 sm:px-9 sm:py-12 lg:px-14" aria-labelledby="projects-heading">
-    <header class="projects-heading">
-      <p class="eyebrow">PORTFÓLIO</p>
-      <h1 id="projects-heading" class="section-title mt-3">Projetos.</h1>
-      <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-        Cada projeto é uma nova história. Aqui você encontra um pouco da minha.
+  <section class="projects-scene" aria-labelledby="projects-heading">
+    <header class="projects-scene__header">
+      <div>
+        <p class="page-kicker">CAPÍTULO 03 / TRABALHOS</p>
+        <h1 id="projects-heading" class="section-title" data-page-focus>
+          PROJETOS<br /><em>EM CAMPO.</em>
+        </h1>
+      </div>
+      <p class="projects-scene__intro">
+        Produtos, plataformas e ideias que saíram do quadro e encontraram pessoas.
+        Abra um projeto para ver tecnologias e detalhes.
       </p>
     </header>
 
-    <p v-if="loading" class="mt-8 text-sm text-muted" role="status">Carregando projetos…</p>
-    <p v-else-if="loadError" class="mt-8 text-sm text-muted" role="alert">
+    <div class="project-index-bar">
+      <div class="project-filters" role="group" aria-label="Filtrar projetos">
+        <button
+          v-for="filter in filters"
+          :key="filter.id"
+          type="button"
+          :aria-pressed="activeFilter === filter.id"
+          :class="{ 'project-filter--active': activeFilter === filter.id }"
+          @click="activeFilter = filter.id"
+        >
+          {{ filter.label }} <span>{{ filter.count }}</span>
+        </button>
+      </div>
+      <span class="project-index-bar__count">{{ visibleProjects.length }} PROJETOS</span>
+    </div>
+
+    <p v-if="loading" class="projects-message" role="status">Preparando o índice…</p>
+    <p v-else-if="loadError" class="projects-message" role="alert">
       Não foi possível carregar os projetos. Tente atualizar a página.
     </p>
 
-    <template v-else>
-    <section class="project-section" aria-labelledby="professional-heading">
-      <div class="project-section__heading">
-        <div>
-          <p class="eyebrow">EXPERIÊNCIA</p>
-          <h2 id="professional-heading" class="mt-2 font-display text-2xl text-ink sm:text-3xl">
-            Projetos profissionais
-          </h2>
-        </div>
-        <p class="max-w-xs text-sm leading-relaxed text-muted">
-          Projetos desenvolvidos em empresas e para clientes.
-        </p>
-      </div>
-      <div class="project-grid">
-        <ProjectCard
-          v-for="project in professionalProjects"
-          :key="project.title"
-          v-bind="project"
-          @select="selectedProject = project"
-        />
-      </div>
-    </section>
-
-    <section class="project-section" aria-labelledby="personal-heading">
-      <div class="project-section__heading">
-        <div>
-          <p class="eyebrow">AUTORIA</p>
-          <h2 id="personal-heading" class="mt-2 font-display text-2xl text-ink sm:text-3xl">
-            Projetos pessoais
-          </h2>
-        </div>
-        <p class="max-w-xs text-sm leading-relaxed text-muted">
-          Projetos autorais e de código aberto.
-        </p>
-      </div>
-      <div class="project-grid">
-        <ProjectCard
-          v-for="project in personalProjects"
-          :key="project.title"
-          v-bind="project"
-          @select="selectedProject = project"
-        />
-      </div>
-    </section>
-    </template>
+    <div v-else class="project-index">
+      <ProjectCard
+        v-for="(project, index) in visibleProjects"
+        :key="project.title"
+        :project="project"
+        :index="index + 1"
+        @select="selectedProject = project"
+      />
+    </div>
 
     <ProjectModal :project="selectedProject" @close="selectedProject = null" />
   </section>
@@ -71,16 +56,25 @@ import type { Project } from "@/types/project";
 
 const projects = ref<Project[]>([]);
 const selectedProject = ref<Project | null>(null);
+const activeFilter = ref<"all" | "professional" | "personal">("all");
 const loading = ref(true);
 const loadError = ref(false);
-
-const professionalProjects = computed(() =>
-  projects.value.filter((project) => project.category === "professional"),
-);
-
-const personalProjects = computed(() =>
-  projects.value.filter((project) => project.category === "personal"),
-);
+const visibleProjects = computed(() => activeFilter.value === "all"
+  ? projects.value
+  : projects.value.filter((project) => project.category === activeFilter.value));
+const filters = computed(() => [
+  { id: "all" as const, label: "Tudo", count: projects.value.length },
+  {
+    id: "professional" as const,
+    label: "Profissional",
+    count: projects.value.filter((project) => project.category === "professional").length,
+  },
+  {
+    id: "personal" as const,
+    label: "Autoral",
+    count: projects.value.filter((project) => project.category === "personal").length,
+  },
+]);
 
 onMounted(async () => {
   try {
@@ -96,37 +90,78 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.projects-view {
-  min-height: 100%;
-}
-
-.projects-heading {
-  margin-bottom: clamp(2.25rem, 5cqi, 3.5rem);
-}
-
-.project-section + .project-section {
-  margin-top: clamp(2.5rem, 5cqi, 4rem);
-}
-
-.project-section__heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
-.project-grid {
+.projects-scene { padding-block: clamp(2.6rem, 7vh, 6rem) 4rem; }
+.projects-scene__header {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
-  gap: 1rem;
+  align-items: end;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.55fr);
+  gap: 2rem;
+  padding-bottom: clamp(2rem, 5vh, 3.5rem);
 }
-
-@container (max-width: 520px) {
-  .project-section__heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+.projects-scene__header .page-kicker { margin-bottom: 1.55rem; }
+.projects-scene__intro {
+  max-width: 27rem;
+  margin: 0 0 0.4rem auto;
+  color: hsl(var(--color-muted));
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.project-index-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid hsl(var(--color-line));
+  border-bottom: 1px solid hsl(var(--color-line));
+  padding-block: 0.75rem;
+}
+.project-filters { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.project-filters button {
+  display: inline-flex;
+  min-height: 2.3rem;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  padding: 0.4rem 0.65rem;
+  color: hsl(var(--color-muted));
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color var(--motion-fast) ease, border-color var(--motion-fast) ease;
+}
+.project-filters button span { color: hsl(var(--color-primary-ink)); font-family: var(--font-display); }
+.project-filters button:hover,
+.project-filters button.project-filter--active { border-color: hsl(var(--color-line)); color: hsl(var(--color-ink)); }
+.project-filters button.project-filter--active { background: hsl(var(--color-surface)); }
+.project-index-bar__count {
+  flex: 0 0 auto;
+  color: hsl(var(--color-muted));
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+.project-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2.3rem);
+  padding-top: clamp(1.1rem, 2.4vw, 2rem);
+}
+.projects-message {
+  border-bottom: 1px solid hsl(var(--color-line));
+  padding: 2rem 0;
+  color: hsl(var(--color-muted));
+}
+@media (max-width: 760px) {
+  .projects-scene__header { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+  .projects-scene__intro { margin: 0; }
+}
+@media (max-width: 600px) {
+  .projects-scene { padding-block: 2.2rem 3rem; }
+  .project-index { grid-template-columns: minmax(0, 1fr); }
+  .project-index-bar { align-items: flex-start; flex-direction: column; }
+  .project-index-bar__count { padding-left: 0.65rem; }
 }
 </style>
