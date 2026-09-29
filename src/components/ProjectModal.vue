@@ -54,9 +54,22 @@
               </ul>
             </div>
 
+            <div v-if="project.deployments?.length" class="project-dialog__deployments">
+              <h3>Deploys no Subiu.dev</h3>
+              <ul>
+                <li v-for="deployment in project.deployments" :key="deployment.url">
+                  <a :href="deployment.url" target="_blank" rel="noopener noreferrer">
+                    <span>{{ deployment.label }}</span>
+                    <span class="project-dialog__deployment-url">{{ deployment.url.replace(/^https:\/\//, "") }}</span>
+                    <v-icon name="bi-box-arrow-up-right" scale="0.9" aria-hidden="true" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
             <div class="mt-8 flex flex-wrap gap-3">
               <a
-                v-if="project.projectLink"
+                v-if="project.projectLink && !project.deployments?.length"
                 class="button-primary"
                 :href="project.projectLink"
                 target="_blank"
@@ -219,6 +232,46 @@ onUnmounted(() => {
   padding-left: 1.2rem;
   color: hsl(var(--color-muted));
   line-height: 1.55;
+}
+.project-dialog__deployments { margin-top: 1.5rem; }
+.project-dialog__deployments h3 {
+  color: hsl(var(--color-ink));
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+}
+.project-dialog__deployments ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.project-dialog__deployments a {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(7rem, 0.55fr) minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  border: 1px solid hsl(var(--color-line));
+  padding: 0.8rem 0.9rem;
+  color: hsl(var(--color-ink));
+  text-decoration: none;
+  transition: border-color var(--motion-fast) ease, background-color var(--motion-fast) ease;
+}
+.project-dialog__deployments a:hover {
+  border-color: hsl(var(--color-primary) / 0.6);
+  background: hsl(var(--color-surface-raised) / 0.65);
+}
+.project-dialog__deployments a > span:first-child { font-weight: 750; }
+.project-dialog__deployment-url {
+  overflow-wrap: anywhere;
+  color: hsl(var(--color-muted));
+  font-size: 0.76rem;
+}
+@media (max-width: 520px) {
+  .project-dialog__deployments a { grid-template-columns: minmax(0, 1fr) auto; }
+  .project-dialog__deployment-url { grid-column: 1; grid-row: 2; }
+  .project-dialog__deployments a > .ov-icon { grid-column: 2; grid-row: 1 / span 2; }
 }
 
 .modal-close {

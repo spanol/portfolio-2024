@@ -40,5 +40,6 @@ The reduced-motion preference removes the turn and disables ambient animation.
 Project cards read from `public/data/projects.json`; update that file to change
 the visible project titles, descriptions, images, technologies, and links.
 Projects may also include `status` and `highlights` for a short stage label and
-concrete deliverables in the details dialog. Omit `image` to use the built-in
-editorial cover.
+concrete deliverables in the details dialog, plus `featured` and `spotlight`
+for portfolio highlights. Use `deployments` for multiple published URLs under
+one project. Omit `image` to use the built-in editorial cover.

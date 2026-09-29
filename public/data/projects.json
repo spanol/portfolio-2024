@@ -1,168 +1,287 @@
 [
   {
     "title": "SeuTreino.digital",
-    "description": "Plataforma para personal trainers com aplicativo do aluno e painel de gestão. Uma base compartilhada permite publicar instâncias com identidade e projeto Firebase próprios; alunos acompanham treinos e progresso, enquanto o personal organiza o catálogo e o acesso. A experiência combina web e Android, com autenticação e regras de acesso no backend. A entrega de vídeos e parte dos fluxos de mídia ainda estão em evolução.",
+    "description": "Plataforma para personal trainers com aplicativo do aluno e painel de gestão. A base compartilhada atende instâncias independentes, com identidade visual, domínios e projeto Firebase próprios para cada cliente. O aluno acompanha treinos e progresso; o personal organiza treinos e libera conteúdos.",
     "technologies": ["Angular", "Ionic", "Capacitor", "Firebase", "TypeScript"],
     "category": "personal",
-    "status": "Em evolução · 2026",
+    "featured": true,
+    "spotlight": "App do aluno + painel do personal · base multi-cliente",
+    "status": "Em evolução · web, Android e labels",
     "highlights": [
-      "Arquitetura por cliente com uma base de código compartilhada e domínios próprios para app e painel.",
-      "App do aluno com treinos, perfil e registro de progresso; painel do personal com gestão de treinos e vídeos.",
-      "Autenticação, papéis e regras de dados e mídia com Firebase; versão Android integrada por Capacitor."
+      "Aplicativo do aluno com treinos, perfil e registro de progresso.",
+      "Painel do personal para organizar treinos e conteúdos.",
+      "Arquitetura por cliente com domínios, identidade e projetos Firebase separados.",
+      "Os domínios do primeiro cliente foram validados em HTTPS; os fluxos autenticados ainda não foram verificados."
     ],
     "projectLink": "https://seutreino.digital"
   },
   {
-    "title": "Voxtrin Rebuild",
-    "description": "Reconstrução de um assistente de IA para Windows com interface desktop própria e backend independente. O cliente reúne agentes, sessões, chat, janela flutuante, documentos, tradução, transcrição e recursos de voz. Ferramentas MCP, HTTP e e-mail podem ser configuradas com controles de permissão. O produto segue em desenvolvimento: áudio ao vivo e cobrança ainda precisam de validação real.",
-    "technologies": ["Electron", "Node.js", "Python", "MCP", "Stripe"],
+    "title": "OKEO · Automarket",
+    "description": "Plataforma local-first de captação e organização de leads para automação de marketing. A v1 unifica entradas via API, formulário hospedado e widget JavaScript, com autenticação por origem e deduplicação; a próxima etapa planejada é a automação de campanhas por e-mail.",
+    "technologies": ["Python", "FastAPI", "SQLModel", "SQLite", "Jinja2", "JavaScript"],
     "category": "personal",
-    "status": "Protótipo funcional · 2026",
+    "featured": true,
+    "spotlight": "Captura multicanal · leads normalizados e sem duplicidade",
+    "status": "v1 entregue · automação de campanhas em planejamento",
     "highlights": [
-      "Cliente Electron com agentes, chat, conhecimento por documentos, memória e instalador Windows.",
-      "Backend próprio para autenticação, dispositivos, permissões e operações de assinatura.",
-      "Integrações MCP, webhooks e SMTP com confirmação de execução e proteção de segredos."
+      "Ingestão autenticada por origem via API, formulário responsivo hospedado e widget incorporável.",
+      "Normalização de e-mail e telefone, deduplicação e suporte a requisições idempotentes.",
+      "Base local-first em SQLite, com controles para limites de origem e origens web permitidas.",
+      "Próxima milestone: segmentação, fila de envio e descadastro com trilha de consentimento."
     ]
   },
   {
-    "title": "Vigia",
-    "description": "Sistema de visão computacional para monitoramento de câmeras em lojas. Captura vídeo por streams RTSP, detecta pessoas e registra eventos e clipes para revisão em um dashboard. A arquitetura separa a captura contínua da interface de consulta e permite integrar os registros a outras rotinas operacionais.",
-    "technologies": ["Python", "YOLOv8", "OpenCV", "FastAPI", "RTSP"],
+    "title": "AffiliaCore",
+    "description": "Plataforma white-label para agências de apostas operarem redes de afiliados em instâncias próprias. Reúne cadastro, comissões CPA/REV por casa, resultados, acordos, ranking, pagamentos e auditoria; cada afiliado acessa apenas seus próprios dados.",
+    "technologies": ["React", "TypeScript", "Express", "Firebase Auth", "Firestore", "Firebase App Hosting"],
     "category": "personal",
-    "status": "Em evolução · 2026",
+    "featured": true,
+    "spotlight": "Operação white-label · agência e portal individual do afiliado",
+    "status": "Demonstração publicada · produto em evolução",
     "highlights": [
-      "Pipeline de captura e detecção de pessoas em vídeo de câmeras Intelbras.",
-      "Registro de eventos e clipes por loja, com dashboard e API separados do processo de captura.",
-      "API de consulta de clipes preparada para integração com fluxos de jornada do cliente."
+      "Painéis para a agência e portal com acesso isolado para cada afiliado.",
+      "Comissões CPA/REV por casa, importação ou integração de resultados e acordos de parceria.",
+      "Ranking, pagamentos, onboarding e trilha de auditoria integrados à operação.",
+      "Demonstração publicada em demo.affiliacore.com.br; a produtização e o onboarding de novas agências seguem em evolução."
+    ],
+    "projectLink": "https://affiliacore.com.br"
+  },
+  {
+    "title": "Bet Aki",
+    "description": "Modernização de uma plataforma de apostas esportivas e criação de ferramentas para o time de marketing. Migrei o frontend de Angular 14 para Angular 21, introduzi Signals e reduzi o bundle de 4 MB para 1,69 MB sem perder funcionalidades. As landing pages promocionais do produto também foram desenvolvidas em Vue.",
+    "image": "https://image.thum.io/get/width/800/https://betaki.bet",
+    "technologies": ["Angular", "Signals", "TypeScript", "Vue.js", ".NET", "PostgreSQL"],
+    "category": "professional",
+    "featured": true,
+    "spotlight": "−58% no bundle inicial · 4 MB → 1,69 MB",
+    "highlights": [
+      "Migração gradual do frontend de Angular 14 para Angular 21.",
+      "Redução do bundle inicial de 4 MB para 1,69 MB, mantendo as funcionalidades.",
+      "Painel administrativo para slots, provedores, banners e carrosséis.",
+      "Landing pages em Vue integradas ao backend .NET."
+    ],
+    "projectLink": "https://betaki.bet"
+  },
+  {
+    "title": "Voxtrin Rebuild",
+    "description": "Reconstrução de um assistente de IA para Windows com cliente desktop e backend próprios. O produto combina agentes, sessões, chat, janela flutuante, documentos, tradução, transcrição e recursos de voz. Ferramentas MCP, HTTP e e-mail têm controles de permissão. Voz ao vivo e cobrança ainda dependem de validação com serviços e credenciais reais.",
+    "technologies": ["Electron", "Node.js", "Python", "MCP", "Stripe"],
+    "category": "personal",
+    "featured": true,
+    "spotlight": "Cliente Windows e backend próprios · agentes e ferramentas MCP",
+    "status": "Protótipo funcional",
+    "highlights": [
+      "Cliente Electron com agentes, chat, conhecimento por documentos, memória e instalador Windows.",
+      "Backend próprio para autenticação, dispositivos, permissões e operações de assinatura.",
+      "Ferramentas MCP, webhooks e SMTP com confirmação antes da execução e proteção de segredos.",
+      "Fluxos de áudio ao vivo e cobrança real permanecem em validação."
+    ]
+  },
+  {
+    "title": "Precium · dados e catálogo para varejo",
+    "description": "Ferramentas para organizar dados de produtos e comparar itens de varejo com referências de custo por prato. O fluxo combina extração de dados de notas fiscais, sugestões de correspondência de catálogo e revisão humana para confirmar nome, variante, peso e embalagem antes de aplicar cada vínculo.",
+    "technologies": ["Python", "FastAPI", "Angular", "Playwright", "Automação"],
+    "category": "professional",
+    "status": "Integração em operação",
+    "highlights": [
+      "Extração de produtos de XML de Nota Fiscal Eletrônica para planilhas e catálogo.",
+      "Sugestões de correspondência entre produtos e referências de custo por prato.",
+      "Revisão humana de variantes e embalagens antes de gravar vínculos.",
+      "Atualização agendada dos vínculos aprovados."
+    ]
+  },
+  {
+    "title": "Vigia · visão computacional no varejo",
+    "description": "Sistema multi-loja de visão computacional para câmeras de minimercados. A captura contínua registra eventos e clipes; um processo separado oferece consultas e revisão. A API também está sendo conectada a fluxos de jornada do cliente para localizar vídeo relacionado a visitas.",
+    "technologies": ["Python", "YOLOv8", "OpenCV", "FastAPI", "RTSP"],
+    "category": "professional",
+    "status": "Em evolução",
+    "highlights": [
+      "Captura de streams de vídeo e detecção de pessoas em câmeras de lojas.",
+      "Registro de eventos e clipes com captura separada da API e do dashboard.",
+      "Arquitetura multi-loja e integração de consulta com sistemas operacionais."
+    ]
+  },
+  {
+    "title": "Hermes Mobile",
+    "description": "Aplicativo móvel para conversar com um agente hospedado no gateway Hermes. O cliente conecta por HTTP e SSE para transmitir respostas, acompanhar ferramentas e aprovar ações. Quando a conexão cai ou o app é reaberto, recupera o estado da execução a partir do servidor.",
+    "technologies": ["Angular", "Ionic", "Capacitor", "HTTP", "Server-Sent Events"],
+    "category": "personal",
+    "status": "Em desenvolvimento",
+    "highlights": [
+      "Chat com histórico remoto, streaming de respostas e status recuperável de ferramentas.",
+      "Aprovação de ações com opções de autorização por execução, sessão ou sempre.",
+      "Retomada de execuções após recarga ou retorno da conectividade.",
+      "Token de acesso fica em memória e precisa ser informado novamente após reabrir o app."
+    ]
+  },
+  {
+    "title": "Subiu",
+    "description": "Plataforma self-hosted para publicar projetos e campanhas em um servidor próprio. O motor conecta repositórios, constrói e executa containers, provisiona subdomínios com HTTPS e oferece tracking first-party para os sites publicados.",
+    "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Docker", "Traefik"],
+    "category": "personal",
+    "status": "Site e motor de deploy em operação",
+    "highlights": [
+      "Pipeline de build e publicação de aplicações em containers no servidor próprio.",
+      "Subdomínios HTTPS encaminhados pelo Traefik para cada aplicação.",
+      "Script de tracking first-party servido em t.subiu.dev.",
+      "Painel operacional acessível pela tailnet."
+    ],
+    "projectLink": "https://subiu.dev"
+  },
+  {
+    "title": "Gateway multimarcas",
+    "description": "Gateway ASP.NET Core e sites white-label publicados para GirosBet, Superbet e Aura Bet. As marcas compartilham backend, PostgreSQL e Redis, com bundles de frontend independentes; a Aura Bet também tem CMS e banco próprios para isolar o conteúdo.",
+    "technologies": ["ASP.NET Core", "PostgreSQL", "Redis", "Docker", "Traefik"],
+    "category": "professional",
+    "status": "Três marcas publicadas no Subiu.dev",
+    "highlights": [
+      "Três sites com identidade e bundle independentes sobre o mesmo gateway.",
+      "Backend, PostgreSQL e Redis compartilhados entre as marcas.",
+      "CMS e banco separados para a Aura Bet.",
+      "Rotas públicas via Cloudflare e HTTPS, com painéis administrativos restritos."
+    ],
+    "deployments": [
+      { "label": "GirosBet", "url": "https://girosbet.subiu.dev" },
+      { "label": "Superbet", "url": "https://superbet.subiu.dev" },
+      { "label": "Aura Bet", "url": "https://aurabet.subiu.dev" }
+    ]
+  },
+  {
+    "title": "Subway Pay",
+    "description": "Plataforma web arcade com jogos em rodadas, fluxos de carteira Pix e programa de afiliados. A V2 migra o legado PHP para Laravel e foi publicada pelo runner do servidor Subiu, com releases por commit, backup e caminho documentado de rollback.",
+    "technologies": ["Laravel", "PHP", "MySQL", "Pix", "Docker", "Traefik"],
+    "category": "personal",
+    "status": "V2 publicada · operação em validação",
+    "highlights": [
+      "Migração progressiva do PHP legado para uma aplicação Laravel na raiz do projeto.",
+      "Deploy versionado com preflight, backup, verificação e rollback documentados.",
+      "Fluxos de conta, carteira e afiliados registrados no ambiente publicado.",
+      "Integrações e operação comercial ainda precisam de validação antes de serem tratadas como produção plena."
+    ],
+    "deployments": [
+      { "label": "Subway Pay · V2", "url": "https://subway-pay.subiu.dev" }
+    ]
+  },
+  {
+    "title": "Caso Master · acervo documental",
+    "description": "Microsite editorial para explorar documentos públicos, cronologia e referências sobre o Caso Master. A experiência prioriza contexto, busca e rastreabilidade das fontes; o conteúdo publicado distingue registros documentais de alegações e interpretações.",
+    "technologies": ["Busca documental", "Pesquisa editorial", "Pix", "Mercado Pago", "Subiu.dev"],
+    "category": "personal",
+    "status": "Acervo publicado · compra ponta a ponta pendente",
+    "highlights": [
+      "Acervo-base com 467 PDFs e 2.722 páginas pesquisáveis.",
+      "Cronologia, índice e referências para consulta das fontes.",
+      "Oferta limitada ao primeiro nível enquanto níveis adicionais passam por revisão legal e de privacidade.",
+      "Landing, checkout e políticas responderam HTTP 200; a compra real ainda não foi testada ponta a ponta."
+    ],
+    "deployments": [
+      { "label": "Microsite Caso Master", "url": "https://caso-master.subiu.dev" }
+    ]
+  },
+  {
+    "title": "Campaign Factory · Kit Preço de Verdade",
+    "description": "Ferramenta local para organizar campanhas, peças e automações de publicação. Um dos resultados já publicados é a landing do Kit Preço de Verdade no Subiu.dev, com auditorias automatizadas de CTA e mensuração; o registro técnico ainda aponta trabalho pendente na ligação ao checkout e nas tags de conversão do Google.",
+    "technologies": ["React", "Vite", "TypeScript", "FastAPI", "SQLite", "Playwright"],
+    "category": "personal",
+    "status": "Landing publicada · conversão em validação",
+    "highlights": [
+      "Frontend React/Vite e sidecar FastAPI/SQLite para preparar campanhas localmente.",
+      "Fluxos Playwright para revisar CTAs, eventos de mensuração e configurações de campanha.",
+      "Landing do Kit publicada no Subiu.dev com tracking first-party da plataforma.",
+      "No último registro técnico, CTAs ainda não levavam ao checkout e as tags Google não estavam ativas."
+    ],
+    "deployments": [
+      { "label": "Landing · Kit Preço de Verdade", "url": "https://cf-lancamento-do-kit-preco-de-verdade-v1.subiu.dev" }
     ]
   },
   {
     "title": "Corrida Eleitoral",
-    "description": "Experiência web interativa com placar alimentado por pagamentos. A aplicação integra checkout Pix e Mercado Pago, sincroniza eventos confirmados e oferece um painel administrativo protegido. O backend roda em funções da Vercel, com persistência em PostgreSQL e verificação das notificações de pagamento.",
+    "description": "Aplicação web interativa com placar atualizado por pagamentos. Integra checkout Pix e Mercado Pago, recebe confirmações por webhook e oferece um painel administrativo protegido para acompanhar as movimentações.",
     "technologies": ["JavaScript", "Vercel Functions", "PostgreSQL", "Mercado Pago", "Pix"],
     "category": "personal",
-    "status": "Projeto web · 2026",
     "highlights": [
-      "Fluxos de checkout Pix e Mercado Pago com atualização do placar após confirmação do pagamento.",
-      "Painel administrativo com sessão HTTP-only e registro dos eventos do placar.",
-      "Funções de API e webhook autenticado para conciliar os pagamentos."
+      "Checkout por Pix direto ou Mercado Pago Checkout Pro.",
+      "Atualização do placar só após confirmação autenticada do pagamento.",
+      "Painel administrativo com sessão HTTP-only e banco PostgreSQL."
     ],
     "projectLink": "https://corrida-eleitoral.vercel.app"
   },
   {
-    "title": "Bet Aki",
-    "description": "Plataforma de apostas esportivas regulamentada com experiência de usuário envolvente e intuitiva. Liderou a modernização do frontend de Angular 14 para Angular 21 com arquitetura baseada em Signals, reduzindo o bundle de 4 MB para 1,69 MB sem perda de funcionalidades. Desenvolvimento de dashboard administrativo para gerenciamento de slots, provedores, banners e carrosséis, dando autonomia total ao time de marketing.",
-    "image": "https://image.thum.io/get/width/800/https://betaki.bet",
-    "technologies": ["Angular", "TypeScript", "Signals", "SCSS", ".NET 6.0", "PostgreSQL"],
-    "category": "professional",
-    "projectLink": "https://betaki.bet"
-  },
-  {
-    "title": "Bet Aki – Landing Pages",
-    "description": "Landing pages promocionais de alta conversão desenvolvidas em Vue.js para a plataforma Bet Aki. Foco em performance, SEO e captação de leads, com backend em .NET para processamento de formulários e integração com o sistema principal da plataforma.",
-    "image": "https://image.thum.io/get/width/800/https://betaki.bet",
-    "technologies": ["Vue.js", "TypeScript", "SEO", ".NET"],
-    "category": "professional",
-    "projectLink": "https://betaki.bet"
-  },
-  {
     "title": "Brasil Terminal Portuário",
-    "description": "Sistema de sustentação para um dos maiores terminais portuários do Brasil. Atuação em correção de bugs críticos em produção, manutenção de código legado (.NET Framework < 4.5), monitoramento e análise de filas de eventos com RabbitMQ, e implementação de testes automatizados em uma arquitetura de microserviços de alta disponibilidade.",
+    "description": "Sustentação de sistemas para um dos maiores terminais portuários do Brasil. Atuei em correções críticas em produção, manutenção de aplicações .NET Framework legado e análise de filas de eventos em uma arquitetura de microsserviços de alta disponibilidade.",
     "image": "https://image.thum.io/get/width/800/https://www.btp.com.br/",
-    "technologies": ["Angular", ".NET Framework", "RabbitMQ", "Microservices", "Docker", "Bootstrap"],
+    "technologies": ["Angular", ".NET Framework", "RabbitMQ", "Microservices", "Docker"],
     "category": "professional",
+    "highlights": [
+      "Correção de falhas críticas e manutenção de aplicações em produção.",
+      "Monitoramento e análise de filas RabbitMQ.",
+      "Testes automatizados em serviços de uma arquitetura de microsserviços."
+    ],
     "projectLink": "https://www.btp.com.br/"
   },
   {
-    "title": "E-commerce Internacional (VSA Software)",
-    "description": "Aplicação de e-commerce de grande escala com foco no mercado internacional. Atuação full stack com Angular no frontend e C#/.NET no backend, implementando novas funcionalidades, otimizações de performance e escalabilidade. Responsável também pela documentação técnica detalhada para a equipe de desenvolvimento e stakeholders.",
+    "title": "E-commerce internacional · VSA Software",
+    "description": "Desenvolvimento full stack para um e-commerce de grande escala voltado ao mercado internacional. Contribuí com funcionalidades, desempenho e documentação técnica, além de criar páginas promocionais responsivas para aquisição de usuários.",
     "image": "https://image.thum.io/get/width/800/https://vsasolutions.com.br/",
-    "technologies": ["Angular", "C#", ".NET", "PostgreSQL", "TypeScript"],
+    "technologies": ["Angular", "Vue.js", "C#", ".NET", "PostgreSQL"],
     "category": "professional",
+    "highlights": [
+      "Funcionalidades e otimizações no e-commerce com frontend Angular e backend .NET.",
+      "Landing pages promocionais em Vue com foco em performance e SEO.",
+      "Documentação técnica para equipe de desenvolvimento e stakeholders."
+    ],
     "projectLink": "https://vsasolutions.com.br/"
   },
   {
-    "title": "Landing Page Promocional (VSA Software)",
-    "description": "Landing page promocional desenvolvida em Vue.js para o e-commerce da VSA Software, com foco em aumento de conversão e aquisição de novos usuários. Otimizada para performance e SEO, com design responsivo e carregamento rápido.",
-    "image": "https://image.thum.io/get/width/800/https://vsasolutions.com.br/",
-    "technologies": ["Vue.js", "TypeScript", "SEO"],
+    "title": "Zast · plataforma de delivery",
+    "description": "Conjunto de aplicações para operação de delivery: ERP, gestão do estabelecimento, experiência de compra do cliente e atendimento a festivais. Reuni em um case os módulos que compartilham a mesma plataforma e backend.",
+    "image": "https://www.zast.com.br/assets/images/company_banner3.png",
+    "technologies": ["Angular", "TypeScript", "Bootstrap", ".NET 6.0"],
     "category": "professional",
-    "projectLink": "https://vsasolutions.com.br/"
+    "highlights": [
+      "ERP com gestão financeira, estoque, relatórios e dashboards.",
+      "Painel do estabelecimento para produtos, cardápio, pedidos e métricas.",
+      "Aplicativo de compra para clientes e fluxo de delivery para festivais."
+    ],
+    "projectLink": "https://www.zast.com.br/"
   },
   {
     "title": "Daichi",
-    "description": "Rede social voltada para a comunidade geek, desenvolvida 100% do zero como projeto autoral. Backend em .NET 6.0 com Entity Framework e Clean Architecture, banco de dados PostgreSQL modelado para suportar perfis, posts e interações entre usuários, e frontend dinâmico e responsivo com Angular e Bootstrap.",
+    "description": "Rede social autoral para aproximar pessoas da comunidade geek. Construí a aplicação do zero, com backend em .NET, modelagem de perfis, publicações e interações, e interface responsiva em Angular.",
     "image": "/images/projects/daichi.png",
     "technologies": [".NET 6.0", "Entity Framework", "Angular", "PostgreSQL", "Clean Architecture"],
     "category": "personal",
-    "projectLink": "https://daichi.com",
-    "githubLink": "https://github.com/spanol"
+    "highlights": [
+      "Backend organizado com Clean Architecture e Entity Framework.",
+      "Modelo relacional para perfis, posts e interações.",
+      "Frontend responsivo em Angular e Bootstrap."
+    ],
+    "projectLink": "https://daichi.com"
   },
   {
     "title": "Alô Freelas",
-    "description": "Plataforma que conecta freelancers a estabelecimentos locais como bares, distribuidoras e prestadores de serviço. Backend robusto em NestJS com Clean Architecture, sistema de cadastro e matching entre profissionais e vagas temporárias, com foco na economia local e na agilidade de contratação.",
-    "image": "https://image.thum.io/get/width/800/https://alofreelas.com",
+    "description": "Plataforma para conectar freelancers a bares, distribuidoras e outros negócios locais. O produto organiza o cadastro de profissionais e vagas temporárias e propõe um fluxo de matching para agilizar contratações.",
     "technologies": ["NestJS", "TypeScript", "PostgreSQL", "Clean Architecture"],
     "category": "personal",
-    "projectLink": "https://alofreelas.com",
-    "githubLink": "https://github.com/spanol"
-  },
-  {
-    "title": "Zast ERP",
-    "description": "Sistema ERP completo da plataforma Zast, oferecendo gestão integrada de processos empresariais: controle financeiro, gerenciamento de estoque, relatórios e dashboards analíticos. Interface moderna e responsiva construída com Angular e Bootstrap.",
-    "image": "https://www.zast.com.br/assets/images/company_banner3.png",
-    "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
-    "category": "professional",
-    "projectLink": "https://www.zast.com.br/"
-  },
-  {
-    "title": "Zast Estabelecimento",
-    "description": "Módulo da plataforma Zast voltado para gestão de estabelecimentos: cadastro de produtos, controle de cardápio, configuração de horários de funcionamento, gestão de pedidos e acompanhamento de métricas de venda em tempo real.",
-    "image": "https://www.zast.com.br/assets/images/company_banner4.png",
-    "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
-    "category": "professional",
-    "projectLink": "https://www.zast.com.br/"
-  },
-  {
-    "title": "Zast Cliente",
-    "description": "Interface da plataforma Zast voltada para o cliente final, com navegação intuitiva para busca de estabelecimentos, visualização de cardápios, realização de pedidos e acompanhamento de entregas em tempo real.",
-    "image": "https://www.zast.com.br/assets/images/company_banner1.png",
-    "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
-    "category": "professional",
-    "projectLink": "https://www.zast.com.br/"
-  },
-  {
-    "title": "Zast Festival Delivery",
-    "description": "Solução de delivery sob demanda integrada à plataforma Zast, projetada para atender eventos e festivais de grande porte. Fluxo otimizado para alto volume de pedidos simultâneos, com foco em agilidade e experiência do usuário em ambientes de alta demanda.",
-    "image": "https://www.zast.com.br/assets/images/company_banner2.png",
-    "technologies": ["Angular", "Bootstrap", ".NET 6.0", "TypeScript"],
-    "category": "professional",
-    "projectLink": "https://www.zast.com.br/"
+    "highlights": [
+      "Cadastro de profissionais e oportunidades de trabalho temporário.",
+      "Matching entre vagas e perfis de freelancers.",
+      "Backend NestJS com TypeScript e arquitetura limpa."
+    ],
+    "projectLink": "https://alofreelas.com"
   },
   {
     "title": "Lollapalooza Lineup Generator",
-    "description": "Aplicação interativa que gera lineups personalizados para o Lollapalooza a partir dos artistas mais ouvidos do usuário no Spotify. Integração com a API do Spotify via OAuth para leitura de dados de listening history, com geração visual de cartazes no estilo do festival.",
+    "description": "Aplicação que transforma os artistas mais ouvidos de uma conta Spotify em um lineup personalizado para o Lollapalooza e gera um pôster visual do festival.",
     "image": "/images/projects/mylolla-guide.webp",
-    "technologies": ["Vue 3", "Spotify API", "Bootstrap", "OAuth"],
+    "technologies": ["Vue 3", "Spotify API", "OAuth", "Bootstrap"],
     "category": "personal",
+    "highlights": [
+      "Autorização OAuth para consultar os dados de listening history do Spotify.",
+      "Geração de lineup personalizado e pôster para compartilhar."
+    ],
     "projectLink": "https://mylollagenerator.vercel.app/",
     "githubLink": "https://github.com/spanol/mylollagenerator"
-  },
-  {
-    "title": "LunarDev",
-    "description": "Site institucional da LunarDev, agência de desenvolvimento de software fundada com foco em soluções digitais inovadoras e de alto desempenho. Desenvolvido com React e Bootstrap, com design moderno e responsivo para apresentação de serviços e portfólio da agência.",
-    "image": "/images/projects/lunardev-guide.webp",
-    "technologies": ["React", "Bootstrap", "JavaScript"],
-    "category": "personal",
-    "projectLink": "https://lunardev.com.br/"
-  },
-  {
-    "title": "Weather App",
-    "description": "Um dos primeiros projetos desenvolvidos na carreira. Aplicação de previsão do tempo em tempo real consumindo a API OpenWeatherMap, com busca por cidade, exibição de temperatura, umidade e condições climáticas. Desenvolvida com React e Bootstrap.",
-    "image": "/images/projects/weather-guide.webp",
-    "technologies": ["React", "Bootstrap", "OpenWeatherMap API"],
-    "category": "personal",
-    "projectLink": "https://weather-app-git-main-spanols-projects.vercel.app/",
-    "githubLink": "https://github.com/spanol/weatherApp"
   }
 ]
