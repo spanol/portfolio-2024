@@ -1,10 +1,77 @@
 [
   {
+    "title": "AffiliaCore",
+    "description": "Plataforma white-label para agências de apostas operarem redes de afiliados em instâncias próprias. Reúne cadastro, comissões CPA/REV por casa, resultados, acordos, ranking, pagamentos e auditoria; cada afiliado acessa apenas seus próprios dados.",
+    "technologies": ["React","TypeScript","Express","Firebase Auth","Firestore","Firebase App Hosting"],
+    "category": "personal",
+    "featured": true,
+    "spotlight": "Operação white-label · agência e portal individual do afiliado",
+    "status": "Produto em operação",
+    "highlights": [
+      "Painéis para a agência e portal com acesso isolado para cada afiliado.",
+      "Comissões CPA/REV por casa, importação ou integração de resultados e acordos de parceria.",
+      "Ranking, pagamentos, onboarding e trilha de auditoria integrados à operação.",
+      "Produto em operação, com site público, demonstração e instâncias white-label para agências."
+    ],
+    "projectLink": "https://affiliacore.com.br",
+    "portal": {
+      "brand": "affiliacore",
+      "label": "Gestão de afiliados",
+      "headline": "Sua operação.",
+      "accent": "Sua marca.",
+      "summary": "Gestão de redes de afiliados com comissões por casa, portal individual e a identidade de cada agência.",
+      "features": [
+        "White-label",
+        "CPA + REV",
+        "Portal do afiliado"
+      ],
+      "logo": "/images/projects/affiliacore-logo.svg",
+      "demo": {
+        "gif": "/images/projects/affiliacore-demo.gif",
+        "poster": "/images/projects/affiliacore-poster.webp",
+        "alt": "Passeio pela página pública do Affiliacore, com a apresentação da plataforma e sua interface de gestão de afiliados."
+      }
+    }
+  },
+  {
+    "title": "Subiu",
+    "description": "Software house com infraestrutura própria para projetar, construir e publicar sites, sistemas e aplicações. O motor conecta repositórios, executa builds e containers, provisiona subdomínios com HTTPS e oferece tracking first-party para os projetos publicados.",
+    "technologies": ["Next.js","TypeScript","PostgreSQL","Docker","Traefik"],
+    "category": "personal",
+    "status": "Site e infraestrutura em operação",
+    "highlights": [
+      "Pipeline de build e publicação de aplicações em containers no servidor próprio.",
+      "Subdomínios HTTPS encaminhados pelo Traefik para cada aplicação.",
+      "Script de tracking first-party servido em t.subiu.dev.",
+      "Painel operacional acessível pela tailnet."
+    ],
+    "projectLink": "https://subiu.dev",
+    "featured": true,
+    "spotlight": "Software house · infraestrutura própria · medição desde a publicação",
+    "portal": {
+      "brand": "subiu",
+      "label": "Software house + infraestrutura",
+      "headline": "Subiu o site.",
+      "accent": "Subiu o número.",
+      "summary": "Da ideia ao projeto no ar: design, desenvolvimento e publicação com infraestrutura própria e medição desde o primeiro acesso.",
+      "features": [
+        "Design + código",
+        "Deploy próprio",
+        "Tracking first-party"
+      ],
+      "logo": "/images/projects/subiu-logo.svg",
+      "demo": {
+        "gif": "/images/projects/subiu-demo.gif",
+        "poster": "/images/projects/subiu-poster.webp",
+        "alt": "Passeio pela página pública do Subiu, mostrando a apresentação da software house, a publicação e os serviços."
+      }
+    }
+  },
+  {
     "title": "SeuTreino.digital",
     "description": "Plataforma para personal trainers com aplicativo do aluno e painel de gestão. A base compartilhada atende instâncias independentes, com identidade visual, domínios e projeto Firebase próprios para cada cliente. O aluno acompanha treinos e progresso; o personal organiza treinos e libera conteúdos.",
     "technologies": ["Angular", "Ionic", "Capacitor", "Firebase", "TypeScript"],
     "category": "personal",
-    "featured": true,
     "spotlight": "App do aluno + painel do personal · base multi-cliente",
     "status": "Em evolução · web, Android e labels",
     "highlights": [
@@ -20,7 +87,6 @@
     "description": "Plataforma local-first de captação e organização de leads para automação de marketing. A v1 unifica entradas via API, formulário hospedado e widget JavaScript, com autenticação por origem e deduplicação; a próxima etapa planejada é a automação de campanhas por e-mail.",
     "technologies": ["Python", "FastAPI", "SQLModel", "SQLite", "Jinja2", "JavaScript"],
     "category": "personal",
-    "featured": true,
     "spotlight": "Captura multicanal · leads normalizados e sem duplicidade",
     "status": "v1 entregue · automação de campanhas em planejamento",
     "highlights": [
@@ -31,28 +97,11 @@
     ]
   },
   {
-    "title": "AffiliaCore",
-    "description": "Plataforma white-label para agências de apostas operarem redes de afiliados em instâncias próprias. Reúne cadastro, comissões CPA/REV por casa, resultados, acordos, ranking, pagamentos e auditoria; cada afiliado acessa apenas seus próprios dados.",
-    "technologies": ["React", "TypeScript", "Express", "Firebase Auth", "Firestore", "Firebase App Hosting"],
-    "category": "personal",
-    "featured": true,
-    "spotlight": "Operação white-label · agência e portal individual do afiliado",
-    "status": "Demonstração publicada · produto em evolução",
-    "highlights": [
-      "Painéis para a agência e portal com acesso isolado para cada afiliado.",
-      "Comissões CPA/REV por casa, importação ou integração de resultados e acordos de parceria.",
-      "Ranking, pagamentos, onboarding e trilha de auditoria integrados à operação.",
-      "Demonstração publicada em demo.affiliacore.com.br; a produtização e o onboarding de novas agências seguem em evolução."
-    ],
-    "projectLink": "https://affiliacore.com.br"
-  },
-  {
     "title": "Bet Aki",
     "description": "Modernização de uma plataforma de apostas esportivas e criação de ferramentas para o time de marketing. Migrei o frontend de Angular 14 para Angular 21, introduzi Signals e reduzi o bundle de 4 MB para 1,69 MB sem perder funcionalidades. As landing pages promocionais do produto também foram desenvolvidas em Vue.",
     "image": "https://image.thum.io/get/width/800/https://betaki.bet",
     "technologies": ["Angular", "Signals", "TypeScript", "Vue.js", ".NET", "PostgreSQL"],
     "category": "professional",
-    "featured": true,
     "spotlight": "−58% no bundle inicial · 4 MB → 1,69 MB",
     "highlights": [
       "Migração gradual do frontend de Angular 14 para Angular 21.",
@@ -67,7 +116,6 @@
     "description": "Reconstrução de um assistente de IA para Windows com cliente desktop e backend próprios. O produto combina agentes, sessões, chat, janela flutuante, documentos, tradução, transcrição e recursos de voz. Ferramentas MCP, HTTP e e-mail têm controles de permissão. Voz ao vivo e cobrança ainda dependem de validação com serviços e credenciais reais.",
     "technologies": ["Electron", "Node.js", "Python", "MCP", "Stripe"],
     "category": "personal",
-    "featured": true,
     "spotlight": "Cliente Windows e backend próprios · agentes e ferramentas MCP",
     "status": "Protótipo funcional",
     "highlights": [
@@ -114,20 +162,6 @@
       "Retomada de execuções após recarga ou retorno da conectividade.",
       "Token de acesso fica em memória e precisa ser informado novamente após reabrir o app."
     ]
-  },
-  {
-    "title": "Subiu",
-    "description": "Plataforma self-hosted para publicar projetos e campanhas em um servidor próprio. O motor conecta repositórios, constrói e executa containers, provisiona subdomínios com HTTPS e oferece tracking first-party para os sites publicados.",
-    "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Docker", "Traefik"],
-    "category": "personal",
-    "status": "Site e motor de deploy em operação",
-    "highlights": [
-      "Pipeline de build e publicação de aplicações em containers no servidor próprio.",
-      "Subdomínios HTTPS encaminhados pelo Traefik para cada aplicação.",
-      "Script de tracking first-party servido em t.subiu.dev.",
-      "Painel operacional acessível pela tailnet."
-    ],
-    "projectLink": "https://subiu.dev"
   },
   {
     "title": "Gateway multimarcas",

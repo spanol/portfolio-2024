@@ -4,13 +4,13 @@
       <div>
         <p class="page-kicker">CAPÍTULO 03 / TRABALHOS</p>
         <h1 id="projects-heading" class="section-title" data-page-focus>
-          PROJETOS<br /><em>COM IMPACTO.</em>
+          PROJETOS<br /><em>NO AR.</em>
         </h1>
       </div>
       <div class="projects-scene__intro">
         <p>
-          Produtos, plataformas e sistemas escolhidos pelo problema que resolvem,
-          pela escala do desafio e pelo que aprendi construindo cada um.
+          Affiliacore e Subiu: os produtos que estou construindo e operando hoje.
+          Entre, conheça por dentro e explore os projetos autorais que vieram junto.
         </p>
         <span><strong>{{ featuredCount }}</strong> cases em primeiro plano</span>
       </div>
@@ -50,44 +50,61 @@
       >
         <header class="project-section__header">
           <div>
-            <p class="page-kicker">01 / SELEÇÃO PRINCIPAL</p>
-            <h2 id="featured-heading">Em destaque</h2>
+            <p class="page-kicker">01 / CONSTRUINDO AGORA</p>
+            <h2 id="featured-heading">Dois projetos. Dois universos.</h2>
           </div>
-          <p>Os projetos que melhor representam meu trabalho hoje.</p>
+          <p>Uma janela para cada produto, com a identidade de quem vive do outro lado.</p>
         </header>
 
         <div class="project-grid project-grid--featured">
-          <ProjectCard
+          <ProjectPortalCard
             v-for="(project, index) in featuredProjects"
             :key="project.title"
             :project="project"
             :index="index + 1"
-            featured
-            :spotlight="index === 0"
             @select="selectedProject = project"
           />
         </div>
       </section>
 
       <section
-        v-if="selectedProjects.length"
+        v-if="personalProjects.length"
         class="project-section project-section--selected"
         aria-labelledby="selected-heading"
       >
         <header class="project-section__header">
           <div>
-            <p class="page-kicker">02 / OUTROS TRABALHOS</p>
-            <h2 id="selected-heading">Projetos selecionados</h2>
+            <p class="page-kicker">02 / LABORATÓRIO AUTORAL</p>
+            <h2 id="selected-heading">Outras ideias em movimento.</h2>
           </div>
-          <p>Cases profissionais e produtos autorais que completam o percurso.</p>
+          <p>Produtos pessoais, experimentos e ferramentas que nasceram da curiosidade.</p>
         </header>
 
         <div class="project-grid project-grid--selected">
           <ProjectCard
-            v-for="(project, index) in selectedProjects"
+            v-for="(project, index) in personalProjects"
             :key="project.title"
             :project="project"
             :index="index + featuredProjects.length + 1"
+            @select="selectedProject = project"
+          />
+        </div>
+      </section>
+
+      <section v-if="professionalProjects.length" class="project-section" aria-labelledby="professional-heading">
+        <header class="project-section__header">
+          <div>
+            <p class="page-kicker">03 / PERCURSO PROFISSIONAL</p>
+            <h2 id="professional-heading">Construído em equipe.</h2>
+          </div>
+          <p>Plataformas e sistemas para os quais contribuí ao longo do caminho.</p>
+        </header>
+        <div class="project-grid project-grid--selected">
+          <ProjectCard
+            v-for="(project, index) in professionalProjects"
+            :key="project.title"
+            :project="project"
+            :index="index + featuredProjects.length + personalProjects.length + 1"
             @select="selectedProject = project"
           />
         </div>
@@ -101,6 +118,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import ProjectCard from "@/components/ProjectCard.vue";
+import ProjectPortalCard from "@/components/ProjectPortalCard.vue";
 import ProjectModal from "@/components/ProjectModal.vue";
 import type { Project } from "@/types/project";
 
@@ -122,18 +140,20 @@ const visibleProjects = computed(() => {
 });
 const featuredProjects = computed(() => visibleProjects.value.filter((project) => project.featured));
 const selectedProjects = computed(() => visibleProjects.value.filter((project) => !project.featured));
+const personalProjects = computed(() => selectedProjects.value.filter((project) => project.category === "personal"));
+const professionalProjects = computed(() => selectedProjects.value.filter((project) => project.category === "professional"));
 const filters = computed(() => [
   { id: "all" as const, label: "Tudo", count: projects.value.length },
   { id: "featured" as const, label: "Destaques", count: featuredCount.value },
   {
+    id: "personal" as const,
+    label: "Autorais",
+    count: projects.value.filter((project) => project.category === "personal").length,
+  },
+  {
     id: "professional" as const,
     label: "Profissional",
     count: projects.value.filter((project) => project.category === "professional").length,
-  },
-  {
-    id: "personal" as const,
-    label: "Autoral",
-    count: projects.value.filter((project) => project.category === "personal").length,
   },
 ]);
 
@@ -267,6 +287,7 @@ onMounted(async () => {
   .project-grid--selected { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
+  .project-grid--featured { grid-template-columns: minmax(0, 1fr); }
   .projects-scene__header { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
   .projects-scene__intro { justify-self: start; margin: 0; }
   .project-section__header { align-items: start; flex-direction: column; gap: 0.7rem; }

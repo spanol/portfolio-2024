@@ -1,6 +1,11 @@
 <template>
+  <ProjectDemo
+    v-if="project.portal"
+    class="project-cover project-cover--portal"
+    :project="{ ...project, portal: project.portal }"
+  />
   <div
-    v-if="showEditorialCover"
+    v-else-if="showEditorialCover"
     class="project-cover"
     :class="['project-cover--editorial', coverVariant, { 'project-cover--modal': variant === 'modal' }]"
     role="img"
@@ -43,6 +48,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import type { Project } from "@/types/project";
+import ProjectDemo from "@/components/ProjectDemo.vue";
 
 const props = withDefaults(defineProps<{
   project: Project;
@@ -80,6 +86,7 @@ watch(() => props.project.image, () => {
   min-height: 0;
   margin: 0;
 }
+.project-cover--portal { height: auto; }
 
 .project-cover__image {
   object-fit: cover;
